@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Bionische Roboterhand</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" th:href="@{/styles/navbar_style.css}"/>
+    <link rel="stylesheet" th:href="@{/styles/mainStyle.css}"/>
+    <link rel="icon" th:href="@{/pictures/icon_v2_or.svg}" type="image/icon type"/>
+</head>
+<body>
+    <header class="main_header" id="mainHeader">
+        <div>
+            <img th:src="@{/pictures/icon_v2_or.svg}" alt="picture" class="icon"/>
+            <img th:src="@{/pictures/Logo_v2.svg}" alt="logo" class="logo"/>
+        </div>
+        <nav class="innerNav">
+            <ul class="navigation">
+                <li><a th:href="@{/index}">Home</a></li>
+                <li><a th:href="@{/projectOverview}">Projekt</a></li>
+                <li><a th:href="@{/simulator3D}">3D - Simulator</a></li>
+                <li><a th:href="@{/devInformation}">Entwickler</a></li>
+                <li><a th:href="@{/sponsoren}">Sponsoren</a></li>
+                <li><a th:href="@{/blog}">Blog</a></li>
+            </ul>
+            <a class="user" th:href="@{/blog}">
+                <img th:src="@{/pictures/padlock.svg}" alt="picture" class="user_icon"/>
+            </a>
+        </nav>
+    </header>
+    <main class="main_wrapper">
+        <header class="content-element thumbnail">
+            <h1>
+                Bionische Roboterhand - Diplomarbeit
+            </h1>
+        </header>
+        <div class="developer">
+            <section class="content-element dominik">
+                <div class="name">
+                    <h1>Dominik Lovetinsky</h1>
+                </div>
+                <div class="innerWrapper">
+                    <ul class="u_dominik skills">
+                        <li>Java</li>
+                        <li>Python</li>
+                        <li>Web-Development</li>
+                        <li>Mathematik</li>
+                        <li>Elektronik</li>
+                        <li><a class="linkToDevs" th:href="@{/devInformation}">Mehr erfahren</a></li>
+                    </ul>
+                </div>
+            </section>
+            <section class="content-element philipp">
+                <div class="name">
+                    <h1>Philipp Maschayechi</h1>
+                </div>
+                <div class="innerWrapper">
+                    <ul class="u_philipp skills">
+                        <li>Blender</li>
+                        <li>C#-Development</li>
+                        <li>Raumfahrt</li>
+                        <li>Unity</li>
+                        <li>Physik</li>
+                        <li><a class="linkToDevs" th:href="@{/devInformation}">Mehr erfahren</a></li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+    </main>
+    <footer>
+
+    </footer>
+<!--  scripts  -->
+    <script rel="script" th:src="@{/scripts/onscroll.js}"></script>
+</body>
+</html>

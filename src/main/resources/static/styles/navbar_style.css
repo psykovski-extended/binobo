@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@600;800;900&display=swap');
+
+* {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    background-color: #000720;
+}
+
+img {
+    width: 30px;
+    height: auto;
+    alignment: center;
+    background-color: transparent;
+}
+
+li, a {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: 17px;
+    color: #ff7800;/*#ae5507;*/
+}
+
+header, ul, li, h1, a {
+    background-color: #222222;
+}
+
+ul.navigation{
+    padding-right: 15px;
+}
+
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%
+}
+
+.innerNav {
+    background-color: transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main_header {
+    position: sticky;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 10%;
+}
+
+.logo {
+    height: 40px;
+    width: auto;
+    alignment: center;
+    padding:  0;
+    margin-left: 5px;
+}
+
+.icon {
+    height: 50px;
+    width: 50px;
+    alignment: center;
+}
+
+.icon:hover {
+    transform:rotate(180deg);
+    height: 55px;
+    width: 55px;
+    margin-bottom: -5px;
+}
+
+.logo_v2{
+    fill: #27750a;
+}
+
+.navigation {
+    list-style: none;
+}
+
+.navigation li {
+    display: inline-block;
+    padding: 0 20px;
+}
+
+.navigation li a, .icon, .logo_v2, a, img.logo{
+    transition: all 0.3s ease 0s;
+}
+
+.navigation li a:hover, a:hover {
+    /*     color: #27750a; */
+    color: white;
+    font-size: 20px;
+    padding-top: -4px;
+}
+
+a {
+    text-decoration: none;
+}
+
+h1 {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+}
+
+.user_icon {
+    margin: 0;
+    transition: all 0.3s ease 0s;
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+}
+
+.user_icon:hover {
+    height: 55px;
+    width: 55px;
+}
+
+nav.innerNav {
+    padding: 0;
+}
+
+.user{
+    height: 50px;
+    width: 50px;
+}
+
+img.logo:hover {
+    /*     padding: auto; */
+    margin-bottom: -5px;
+    height: 50px;
+    width: auto;
+}

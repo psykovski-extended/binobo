@@ -1,0 +1,128 @@
+
+.main_wrapper {
+    line-height: 1.6;
+    background-color: transparent;
+    width: 70%;
+    margin: 30px auto;
+    color: cornsilk;
+}
+
+h1 {
+    transition: all 0.3s ease 0s;
+    text-align: center;
+    background-color: transparent;
+    font-size: 60px;
+}
+
+.thumbnail {
+    padding-top: 7%;
+    background-image: url("../pictures/techIllu.jpg");
+    height: 300px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.content-element {
+    transition: all 0.3s ease 0s;
+    border-radius: 30px;
+    width: 100%;
+    margin-bottom: 4%;
+}
+
+.dominik {
+    background-image: url("../pictures/code.jpg");
+    /*height: 300px;*/
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-radius: 30px 0 0 30px;
+}
+
+.philipp {
+    background-image: url("../pictures/rocket.jpg");
+    /* height: 300px; */
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-radius: 0 30px 30px 0;
+}
+
+.dominik, .philipp {
+    transition: all 0.3s ease 0s;
+    width: 50%;
+    /*----just templates----*/
+    display: block;
+    height: 500px;
+    background-color: aqua;
+}
+
+.developer {
+    display: flex;
+}
+
+h1:hover {
+    color: #ff5a00;
+}
+
+.content-element:hover {
+    height: 700px;
+}
+
+.dominik:hover {
+    background-image:   linear-gradient(to bottom left,rgba(34,34,34,0),
+    rgba(34,34,34,1)), url("../pictures/code.jpg");
+    border-radius: 30px 0 50px 30px;
+}
+
+.philipp:hover {
+    background-image:   linear-gradient(to bottom right,rgba(34,34,34,0),
+    rgba(34,34,34,1)), url("../pictures/rocket.jpg");
+    border-radius: 0 30px 30px 50px;
+}
+
+.thumbnail:hover {
+    padding-top: 2%
+}
+
+div, .u_dominik, .u_philipp, li, .linkToDevs {
+    background-color: transparent;
+}
+
+.u_dominik, .u_philipp, .u_dominik li, .u_philipp li {
+    list-style: none;
+    transition: all 0.3s ease 0s;
+
+}
+
+.u_philipp {
+    text-align: right;
+}
+
+.u_dominik {
+    text-align: left;
+}
+
+.content-element:not(:hover) .innerWrapper .skills li,
+.content-element:not(:hover) .innerWrapper .skills a
+{
+    color: transparent;
+    padding-top: 5%;
+}
+
+.content-element:hover .innerWrapper {
+    padding-top: 55%;
+}
+
+.innerWrapper {
+    transition: all 0.3s ease 0s;
+    width: 100%;
+    height: calc(100% - 192px);
+    padding: 0 10% 15%;
+}
+
+.innerWrapper:hover {
+    color: white;
+}
+
+/*For @media: ab 1240px bildschirmweite umspringen!*/

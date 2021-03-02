@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Bionische Roboterhand</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" th:href="@{/styles/navbar_style.css}"/>
+    <link rel="stylesheet" th:href="@{/styles/mainStyle.css}"/>
+    <link rel="icon" th:href="@{/pictures/icon_v2_or.svg}" type="image/icon type"/>
+</head>
+<body>
+<header class="main_header" id="mainHeader">
+    <a>
+        <img th:src="@{/pictures/icon_v2_or.svg}" alt="picture" class="icon"/>
+        <img th:src="@{/pictures/logo.svg}" alt="logo" class="logo"/>
+    </a>
+    <nav>
+        <ul class="navigation">
+            <li><a th:href="@{/index}">Home</a></li>
+            <li><a th:href="@{/projectOverview}">Projekt</a></li>
+            <li><a th:href="@{/simulator3D}">3D - Simulator</a></li>
+            <li><a th:href="@{/devInformation}">Entwickler</a></li>
+            <li><a th:href="@{/sponsoren}">Sponsoren</a></li>
+            <li><a th:href="@{/blog}">Blog</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main class="main_wrapper">
+
+    <div class="developer">
+        <section class="content-element dominik">
+
+        </section>
+        <section class="content-element philipp">
+
+        </section>
+    </div>
+</main>
+<footer>
+
+</footer>
+<!--  scripts  -->
+<script rel="script" th:src="@{/scripts/onscroll.js}"></script>
+</body>
+</html>
