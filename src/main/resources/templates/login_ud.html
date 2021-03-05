@@ -22,21 +22,72 @@
             <li><a th:href="@{/devInformation}">Entwickler</a></li>
             <li><a th:href="@{/sponsoren}">Sponsoren</a></li>
             <li><a th:href="@{/blog}">Blog</a></li>
+            <li id="on_media_icon"><img th:src="@{/pictures/on_media_navbar_icon.svg}"/></li>
         </ul>
         <a class="user" th:href="@{/blog}">
             <img th:src="@{/pictures/padlock.svg}" alt="picture" class="user_icon"/>
         </a>
     </nav>
 </header>
-
-<main class="main_wrapper">
+<main class="main_wrapper" id="main_wrapper_on_media">
     <div class="form_wrapper">
         <div class="form_visible">
-            <form class="form">
-
+            <div class="flex loginHeader_Wrapper">
+                <div class="loginHeader_Wrapper">
+                    <h1 class="loginHeader">Sign</h1>
+                </div>
+                <div class="onoffswitch">
+                    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" tabindex="0" checked>
+                    <label class="onoffswitch-label" for="myonoffswitch">
+                        <span class="onoffswitch-inner"></span>
+                        <span class="onoffswitch-switch"></span>
+                    </label>
+                </div>
+            </div>
+            <form class="form" action="#" method="post">
+                <div class="flex on_media_flex">
+                    <div class="first_name">
+                        <label for="first_name" class="label_inner">Vorname:</label><br>
+                        <input type="text" id="first_name" name="first_name" placeholder="Vorname">
+                    </div>
+                    <hr>
+                    <div class="last_name">
+                        <label for="last_name" class="label_inner">Nachname:</label><br>
+                        <input type="text" id="last_name" name="last_name" placeholder="Nachname">
+                    </div>
+                </div>
+                <div class="username">
+                    <label for="username" class="label_inner">Username:</label><br>
+                    <input type="text" id="username" name="username" placeholder="BinoboIsAwesome">
+                </div>
+                <div class="email">
+                    <label for="email" class="label_inner">E-Mail:</label><br>
+                    <input type="text" id="email" name="email" placeholder="robo@binobo.io">
+                </div>
+                <div class="password">
+                    <label for="password" class="label_inner">Passwort:</label><br>
+                    <input type="password" id="password" placeholder="aweSoMe1">
+                </div>
+                <div class="password_verify">
+                    <label for="password_verify" class="label_inner">Passwort best&auml;tigen:</label><br>
+                    <input type="password" id="password_verify" placeholder="aweSoMe1">
+                </div>
+                <div class="flex btns">
+                    <div class="verify_btn">
+                        <input type="submit" id="verify_btn" value="Submit">
+                    </div>
+                    <div class="cancel_btn">
+                        <input type="button" onClick="location.href='index.html'" value="Cancel">
+                    </div>
+                </div>
             </form>
         </div>
     </div>
 </main>
+<footer>
+
+</footer>
+<!--  scripts  -->
+<script rel="script" th:src="@{/scripts/onscroll.js}"></script>
 </body>
 </html>

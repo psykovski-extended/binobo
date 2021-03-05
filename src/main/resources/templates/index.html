@@ -21,13 +21,14 @@
                 <li><a th:href="@{/devInformation}">Entwickler</a></li>
                 <li><a th:href="@{/sponsoren}">Sponsoren</a></li>
                 <li><a th:href="@{/blog}">Blog</a></li>
+                <li id="on_media_icon"><img th:src="@{/pictures/on_media_navbar_icon.svg}"/></li>
             </ul>
             <a class="user" th:href="@{/blog}">
                 <img th:src="@{/pictures/padlock.svg}" alt="picture" class="user_icon"/>
             </a>
         </nav>
     </header>
-    <main class="main_wrapper">
+    <main class="main_wrapper" id="main_wrapper_on_media">
         <header class="content-element thumbnail">
             <h1>
                 Bionische Roboterhand - Diplomarbeit

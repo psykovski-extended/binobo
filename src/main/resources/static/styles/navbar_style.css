@@ -25,6 +25,7 @@ li, a {
 
 header, ul, li, h1, a {
     background-color: #222222;
+    z-index: 999999;
 }
 
 ul.navigation{
@@ -133,4 +134,72 @@ img.logo:hover {
     margin-bottom: -5px;
     height: 50px;
     width: auto;
+}
+
+ul.navigation li:last-child {
+    display: none;
+}
+
+@media screen and (max-width: 1260px) {
+
+    ul.navigation li:not(:last-child){
+        display: none;
+    }
+
+    #on_media_icon {
+        display: inline;
+    }
+
+    #on_media_icon img {
+        margin-top: 8px;
+        height: 70px;
+        width: 70px;
+    }
+
+    #main_wrapper_on_media {
+        width: 90%;
+        padding: 0;
+    }
+
+    nav.innerNav {
+        flex-direction: row-reverse;
+    }
+
+    #mainHeader {
+        height: 150px;
+        padding: 03%;
+    }
+
+    #mainHeader div, #mainHeader nav.innerNav {
+        height: 100%;
+        display: flex;
+        align-items: center;
+    }
+
+    .logo, img.logo:hover {
+        /*         margin-bottom: -10px;; */
+        /*         transition: all 0.3s ease 0s; */
+        margin: 0;
+        margin-left: 20px;
+        height: 120%;
+    }
+
+    .icon {
+        margin-top: -15px;
+        height: 100px;
+        width: 100px;
+    }
+
+    .icon:hover {
+        height: 120px;
+        width: 120px;
+    }
+
+    img.user_icon, img.user_icon:hover {
+        height: 100px;
+        width: 100px;
+        margin-left: -200%;
+        margin-top: -50%;
+    }
+
 }
