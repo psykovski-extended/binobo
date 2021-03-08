@@ -116,12 +116,12 @@ input[type="submit"], input[type="button"] {
     box-sizing: border-box;
 }
 .onoffswitch-inner:before {
-    content: "IN";
+    content: "UP";
     padding-left: 27px;
     background-color: #222222; color: #FF7800;
 }
 .onoffswitch-inner:after {
-    content: "UP";
+    content: "IN";
     padding-right: 27px;
     background-color: #FF7800; color: #222222;
     text-align: right;
@@ -142,6 +142,12 @@ input[type="submit"], input[type="button"] {
     right: 0;
     background-color: #222;
     border-color: #ff7800;
+}
+
+/* sign in */
+
+.sign_in {
+    display: none;
 }
 
 /* on media */

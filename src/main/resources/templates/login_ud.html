@@ -3,10 +3,22 @@
 <head>
     <title>Bionische Roboterhand</title>
     <meta charset="UTF-8"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600&display=swap" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/styles/navbar_style.css}"/>
     <link rel="stylesheet" th:href="@{/styles/mainStyle.css}"/>
     <link rel="stylesheet" th:href="@{/styles/loginFormStyle.css}"/>
     <link rel="icon" th:href="@{/pictures/icon_v2_or.svg}" type="image/icon type"/>
+
+    <script>
+        function changeForm(){
+            const sign_up = document.getElementsByClassName("sign_up");
+            for(let i = 0; i<sign_up.length; i++){
+                if(sign_up[i].classList.contains("sign_in"))sign_up[i].classList.remove("sign_in");
+                else sign_up[i].classList.add("sign_in");
+            }
+        }
+    </script>
 </head>
 <body>
 <header class="main_header" id="mainHeader">
@@ -38,7 +50,7 @@
                 </div>
                 <div class="onoffswitch">
                     <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" tabindex="0" checked>
-                    <label class="onoffswitch-label" for="myonoffswitch">
+                    <label class="onoffswitch-label" for="myonoffswitch" onclick="changeForm()">
                         <span class="onoffswitch-inner"></span>
                         <span class="onoffswitch-switch"></span>
                     </label>
@@ -46,12 +58,12 @@
             </div>
             <form class="form" action="#" method="post">
                 <div class="flex on_media_flex">
-                    <div class="first_name">
+                    <div class="first_name sign_up" id="fn">
                         <label for="first_name" class="label_inner">Vorname:</label><br>
                         <input type="text" id="first_name" name="first_name" placeholder="Vorname">
                     </div>
                     <hr>
-                    <div class="last_name">
+                    <div class="last_name sign_up">
                         <label for="last_name" class="label_inner">Nachname:</label><br>
                         <input type="text" id="last_name" name="last_name" placeholder="Nachname">
                     </div>
@@ -60,7 +72,7 @@
                     <label for="username" class="label_inner">Username:</label><br>
                     <input type="text" id="username" name="username" placeholder="BinoboIsAwesome">
                 </div>
-                <div class="email">
+                <div class="email sign_up">
                     <label for="email" class="label_inner">E-Mail:</label><br>
                     <input type="text" id="email" name="email" placeholder="robo@binobo.io">
                 </div>
@@ -68,7 +80,7 @@
                     <label for="password" class="label_inner">Passwort:</label><br>
                     <input type="password" id="password" placeholder="aweSoMe1">
                 </div>
-                <div class="password_verify">
+                <div class="password_verify sign_up">
                     <label for="password_verify" class="label_inner">Passwort best&auml;tigen:</label><br>
                     <input type="password" id="password_verify" placeholder="aweSoMe1">
                 </div>
