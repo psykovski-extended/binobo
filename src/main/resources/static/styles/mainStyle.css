@@ -126,3 +126,34 @@ div, .u_dominik, .u_philipp, li, .linkToDevs {
 }
 
 /*For @media: ab 1240px bildschirmweite umspringen!*/
+
+
+@media screen and (max-width: 1260px) {
+
+    div.developer {
+        display: inline;
+        width: 100%;
+    }
+
+    .dominik, .philipp {
+        width: 100%;
+        border-radius: 30px;
+    }
+
+    .content-element:hover .innerWrapper {
+        padding-top: 40%;
+    }
+
+    .dominik:hover {
+        background-image:   linear-gradient(to bottom left,rgba(34,34,34,0),
+        rgba(34,34,34,1)), url("../pictures/code.jpg");
+        border-radius: 30px;
+    }
+
+    .philipp:hover {
+        background-image:   linear-gradient(to bottom right,rgba(34,34,34,0),
+        rgba(34,34,34,1)), url("../pictures/rocket.jpg");
+        border-radius: 30px;
+    }
+
+}

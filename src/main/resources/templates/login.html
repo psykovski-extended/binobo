@@ -13,12 +13,14 @@
     <script>
         function changeForm(){
             const sign_up = document.getElementsByClassName("sign_up");
+
             for(let i = 0; i<sign_up.length; i++){
                 if(sign_up[i].classList.contains("sign_in"))sign_up[i].classList.remove("sign_in");
                 else sign_up[i].classList.add("sign_in");
             }
         }
     </script>
+
 </head>
 <body>
 <header class="main_header" id="mainHeader">
@@ -34,7 +36,7 @@
             <li><a th:href="@{/devInformation}">Entwickler</a></li>
             <li><a th:href="@{/sponsoren}">Sponsoren</a></li>
             <li><a th:href="@{/blog}">Blog</a></li>
-            <li id="on_media_icon"><img th:src="@{/pictures/on_media_navbar_icon.svg}"/></li>
+            <li id="on_media_icon"><img id="dropdown_icon" th:src="@{/pictures/on_media_navbar_icon.svg}"/></li>
         </ul>
         <a class="user" th:href="@{/blog}">
             <img th:src="@{/pictures/padlock.svg}" alt="picture" class="user_icon"/>
@@ -56,7 +58,7 @@
                     </label>
                 </div>
             </div>
-            <form class="form" action="#" method="post">
+            <form class="form" th:action="@{/login/verify}" method="post">
                 <div class="flex on_media_flex">
                     <div class="first_name sign_up" id="fn">
                         <label for="first_name" class="label_inner">Vorname:</label><br>
@@ -89,7 +91,7 @@
                         <input type="submit" id="verify_btn" value="Submit">
                     </div>
                     <div class="cancel_btn">
-                        <input type="button" onClick="location.href='index.html'" value="Cancel">
+                        <input type="button" onClick="location.href='index'" value="Cancel">
                     </div>
                 </div>
             </form>
