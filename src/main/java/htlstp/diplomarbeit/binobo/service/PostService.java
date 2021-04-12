@@ -11,4 +11,5 @@ public interface PostService {
     Post findByTitle(String title);
     void savePost(Post post);
     void deletePost(Post post);
+    Post findById(Long postId);
 }

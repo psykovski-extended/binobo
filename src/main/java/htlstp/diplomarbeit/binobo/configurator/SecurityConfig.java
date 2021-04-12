@@ -14,7 +14,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
                 .authorizeRequests()
-                .antMatchers("/scripts/**", "/pictures/**", "/styles/**", "/index", "/devInformation", "/projectOverview", "/sponsoren", "/").permitAll()
+                .antMatchers("/scripts/**", "/pictures/**", "/styles/**", "/home", "/developer", "/project", "/sponsoring", "/").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -26,7 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    PasswordEncoder passwordEncoder() {
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 

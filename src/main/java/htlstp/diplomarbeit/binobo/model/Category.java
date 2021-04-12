@@ -21,7 +21,7 @@ public class Category {
     @NotNull
     @Pattern(regexp = "#[0-9a-fA-F]{6}")
     private String colorCode;
-    @OneToMany(mappedBy = "post")
+    @OneToMany(mappedBy = "category")
     private List<Post> posts = new ArrayList<>();
 
     public Category(){}

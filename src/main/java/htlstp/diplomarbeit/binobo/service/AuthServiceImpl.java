@@ -4,6 +4,7 @@ import htlstp.diplomarbeit.binobo.dao.UserDAO;
 import htlstp.diplomarbeit.binobo.dto.RegisterRequest;
 import htlstp.diplomarbeit.binobo.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -11,6 +12,9 @@ public class AuthServiceImpl implements AuthService{
 
     @Autowired
     private UserDAO userDAO;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public void signUp(RegisterRequest registerRequest) {
@@ -31,6 +35,6 @@ public class AuthServiceImpl implements AuthService{
 
     @Override
     public String encodePassword(String password) {
-        return null;
+        return passwordEncoder.encode(password);
     }
 }

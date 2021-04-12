@@ -6,6 +6,12 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import java.util.List;
+
+// FIXME in progress!
+
 @Repository
 public class UserDAOImpl implements UserDAO{
 
@@ -46,5 +52,40 @@ public class UserDAOImpl implements UserDAO{
 
         // Close the session
         session.close();
+    }
+
+    /**
+     *
+     * @param user
+     * @return
+     */
+    // TODO check if this is working!!
+    @Override
+    public boolean doesUserExist(User user) {
+        // Open a session
+        Session session = sessionFactory.openSession();
+        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+        CriteriaQuery<User> criteria = criteriaBuilder.createQuery(User.class);
+        criteria.from(User.class);
+        List<User> users = session.createQuery(criteria).getResultList();
+
+        boolean userExists = false;
+
+        for(User u : users){
+//            if(u.getEmail().equals(user.getEmail()) && u.getUserName())
+        }
+
+        return false;
+    }
+
+    @Override
+    public User findById(Long id) {
+        Session session = sessionFactory.openSession();
+
+        User user = session.get(User.class, id);
+
+        session.close();
+
+        return user;
     }
 }

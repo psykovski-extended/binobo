@@ -1,32 +1,10 @@
 <!DOCTYPE html>
 <html lang="de" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Bionische Roboterhand</title>
-    <meta charset="UTF-8"/>
-    <link rel="stylesheet" th:href="@{/styles/navbar_style.css}"/>
-    <link rel="stylesheet" th:href="@{/styles/mainStyle.css}"/>
-    <link rel="icon" th:href="@{/pictures/icon_v2_or.svg}" type="image/icon type"/>
+<head th:replace="layout :: head('Entwickler')">
 </head>
 <body>
-<header class="main_header" id="mainHeader">
-    <div>
-        <img th:src="@{/pictures/icon_v2_or.svg}" alt="picture" class="icon"/>
-        <img th:src="@{/pictures/Logo_v2.svg}" alt="logo" class="logo"/>
-    </div>
-    <nav class="innerNav">
-        <ul class="navigation">
-            <li><a th:href="@{/index}">Home</a></li>
-            <li><a th:href="@{/projectOverview}">Projekt</a></li>
-            <li><a th:href="@{/simulator3D}">3D - Simulator</a></li>
-            <li><a th:href="@{/devInformation}">Entwickler</a></li>
-            <li><a th:href="@{/sponsoren}">Sponsoren</a></li>
-            <li><a th:href="@{/blog}">Blog</a></li>
-            <li id="on_media_icon"><img th:src="@{/pictures/on_media_navbar_icon.svg}"/></li>
-        </ul>
-        <a class="user" th:href="@{/blog}">
-            <img th:src="@{/pictures/padlock.svg}" alt="picture" class="user_icon"/>
-        </a>
-    </nav>
+<header th:replace="layout :: nav">
+
 </header>
 <main class="main_wrapper" id="main_wrapper_on_media">
 

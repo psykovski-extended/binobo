@@ -1,0 +1,33 @@
+package htlstp.diplomarbeit.binobo.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class InfoPagesController {
+
+    @RequestMapping(value = "")
+    public String toIndex(){
+        return "index";
+    }
+
+    @RequestMapping(value = "/home")
+    public String toHome(){
+        return "index";
+    }
+
+    @RequestMapping(value = "/developer")
+    public String devInfo(){
+        return "devInformation";
+    }
+
+    @RequestMapping(value = "/project")
+    public String projInfo(){
+        return "projectOverview";
+    }
+
+    @RequestMapping(value = "/sponsoring")
+    public String sponsors(){
+        return "sponsoren";
+    }
+}

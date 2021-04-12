@@ -2,7 +2,7 @@ package htlstp.diplomarbeit.binobo.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.time.Instant;
+import java.time.LocalDateTime;
 
 @Entity
 public class Post {
@@ -21,9 +21,9 @@ public class Post {
     private String content;
     @Column
     @NotBlank
-    private Instant createdOn;
+    private LocalDateTime createdOn = LocalDateTime.now();
     @Column
-    private Instant updatedOn;
+    private LocalDateTime updatedOn;
     @ManyToOne
     private Category category;
     @ManyToOne
@@ -63,19 +63,19 @@ public class Post {
         this.content = content;
     }
 
-    public Instant getCreatedOn() {
+    public LocalDateTime getCreatedOn() {
         return createdOn;
     }
 
-    public void setCreatedOn(Instant createdOn) {
+    public void setCreatedOn(LocalDateTime createdOn) {
         this.createdOn = createdOn;
     }
 
-    public Instant getUpdatedOn() {
+    public LocalDateTime getUpdatedOn() {
         return updatedOn;
     }
 
-    public void setUpdatedOn(Instant updatedOn) {
+    public void setUpdatedOn(LocalDateTime updatedOn) {
         this.updatedOn = updatedOn;
     }
 
