@@ -1,7 +1,8 @@
 package htlstp.diplomarbeit.binobo.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 @Entity
@@ -9,18 +10,20 @@ public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     @Column
-    @NotBlank
+    @NotNull
     private String username;
     @Column
-    @NotBlank
+    @NotNull
+    @Size(min = 15, max = 64)
     private String title;
-    @Column
-    @NotBlank
+    @Column(length = 65555)
+    @NotNull
+    @Size(min = 5, max=30000)
     private String content;
     @Column
-    @NotBlank
+    @NotNull
     private LocalDateTime createdOn = LocalDateTime.now();
     @Column
     private LocalDateTime updatedOn;
@@ -31,11 +34,11 @@ public class Post {
 
     public Post(){}
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -1,47 +1,19 @@
 <!DOCTYPE html>
 <html lang="de" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Bionische Roboterhand</title>
+    <title>Binobo | Login or Register</title>
     <meta charset="UTF-8"/>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" th:href="@{/styles/navbar_style.css}"/>
     <link rel="stylesheet" th:href="@{/styles/mainStyle.css}"/>
     <link rel="stylesheet" th:href="@{/styles/loginFormStyle.css}"/>
     <link rel="icon" th:href="@{/pictures/icon_v2_or.svg}" type="image/icon type"/>
 
-    <script>
-        function changeForm(){
-            const sign_up = document.getElementsByClassName("sign_up");
-
-            for(let i = 0; i<sign_up.length; i++){
-                if(sign_up[i].classList.contains("sign_in"))sign_up[i].classList.remove("sign_in");
-                else sign_up[i].classList.add("sign_in");
-            }
-        }
-    </script>
-
 </head>
 <body>
-<header class="main_header" id="mainHeader">
-    <div>
-        <img th:src="@{/pictures/icon_v2_or.svg}" alt="picture" class="icon"/>
-        <img th:src="@{/pictures/Logo_v2.svg}" alt="logo" class="logo"/>
-    </div>
-    <nav class="innerNav">
-        <ul class="navigation">
-            <li><a th:href="@{/index}">Home</a></li>
-            <li><a th:href="@{/projectOverview}">Projekt</a></li>
-            <li><a th:href="@{/simulator3D}">3D - Simulator</a></li>
-            <li><a th:href="@{/devInformation}">Entwickler</a></li>
-            <li><a th:href="@{/sponsoren}">Sponsoren</a></li>
-            <li><a th:href="@{/blog}">Blog</a></li>
-            <li id="on_media_icon"><img id="dropdown_icon" th:src="@{/pictures/on_media_navbar_icon.svg}"/></li>
-        </ul>
-        <a class="user" th:href="@{/blog}">
-            <img th:src="@{/pictures/padlock.svg}" alt="picture" class="user_icon"/>
-        </a>
-    </nav>
+<header th:replace="layout :: nav">
 </header>
 <main class="main_wrapper" id="main_wrapper_on_media">
     <div class="form_wrapper">
@@ -58,40 +30,66 @@
                     </label>
                 </div>
             </div>
-            <form class="form" th:action="@{/login/verify}" method="post">
+            <!--          Register Form            -->
+            <form class="form register" id="register" th:action="@{/login/register}" method="post" th:object="${userDTO}">
                 <div class="flex on_media_flex">
                     <div class="first_name sign_up" id="fn">
                         <label for="first_name" class="label_inner">Vorname:</label><br>
-                        <input type="text" id="first_name" name="first_name" placeholder="Vorname">
+                        <input th:field="*{firstname}" type="text" id="first_name" name="first_name" placeholder="Vorname"
+                        minlength="2" maxlength="64">
                     </div>
                     <hr>
                     <div class="last_name sign_up">
                         <label for="last_name" class="label_inner">Nachname:</label><br>
-                        <input type="text" id="last_name" name="last_name" placeholder="Nachname">
+                        <input th:field="*{lastname}" type="text" id="last_name" name="last_name" placeholder="Nachname"
+                               minlength="2" maxlength="64">
                     </div>
                 </div>
                 <div class="username">
                     <label for="username" class="label_inner">Username:</label><br>
-                    <input type="text" id="username" name="username" placeholder="BinoboIsAwesome">
+                    <input th:field="*{username}" type="text" id="username" name="username" placeholder="BinoboIsAwesome"
+                           minlength="3" maxlength="64">
                 </div>
                 <div class="email sign_up">
                     <label for="email" class="label_inner">E-Mail:</label><br>
-                    <input type="text" id="email" name="email" placeholder="robo@binobo.io">
+                    <input th:field="*{email}" type="text" id="email" name="email" placeholder="robo@binobo.io"
+                           minlength="7" maxlength="64">
                 </div>
                 <div class="password">
                     <label for="password" class="label_inner">Passwort:</label><br>
-                    <input type="password" id="password" placeholder="aweSoMe1">
+                    <input th:field="*{password}" type="password" id="password" placeholder="aweSoMe1"
+                           minlength="8" maxlength="128">
                 </div>
                 <div class="password_verify sign_up">
                     <label for="password_verify" class="label_inner">Passwort best&auml;tigen:</label><br>
-                    <input type="password" id="password_verify" placeholder="aweSoMe1">
+                    <input th:field="*{password_verify}" type="password" id="password_verify" placeholder="aweSoMe1"
+                           minlength="8" maxlength="128">
                 </div>
                 <div class="flex btns">
                     <div class="verify_btn">
                         <input type="submit" id="verify_btn" value="Submit">
                     </div>
                     <div class="cancel_btn">
-                        <input type="button" onClick="location.href='index'" value="Cancel">
+                        <input type="button" onClick="location.href='/'" value="Cancel">
+                    </div>
+                </div>
+            </form>
+            <!--          Login Form            -->
+            <form class="form login" id="login" th:action="@{/login}" method="post" th:object="${user}">
+                <div class="username">
+                    <label for="username" class="label_inner">Username:</label><br>
+                    <input th:field="*{username}" type="text" id="username1" name="username" placeholder="BinoboIsAwesome" required>
+                </div>
+                <div class="password">
+                    <label for="password_s" class="label_inner">Passwort:</label><br>
+                    <input th:field="*{password}" type="password" id="password_s" placeholder="aweSoMe1" required>
+                </div>
+                <div class="flex btns">
+                    <div class="verify_btn">
+                        <input type="submit" id="verify_btn1" value="Submit">
+                    </div>
+                    <div class="cancel_btn">
+                        <input type="button" onClick="location.href='/'" value="Cancel">
                     </div>
                 </div>
             </form>
@@ -99,9 +97,26 @@
     </div>
 </main>
 <footer>
-
 </footer>
 <!--  scripts  -->
 <script rel="script" th:src="@{/scripts/onscroll.js}"></script>
+
+<script>
+    const register = document.querySelector("#register").innerHTML;
+    const signIN = document.querySelector("#login").innerHTML;
+    document.querySelector("#login").innerHTML = "";
+    let isReg = true;
+
+    function changeForm(){
+        document.querySelector("#register").innerHTML = (isReg) ? "" : register;
+        document.querySelector("#login").innerHTML = (isReg) ? signIN : "";
+        isReg = !isReg;
+    }
+</script>
+<script>
+    $(document).ready(function(){
+        alert('To login, please toggle this fancy button!');
+    });
+</script>
 </body>
 </html>

@@ -8,7 +8,7 @@
 }
 
 body {
-    background-color: #aa780050;
+    background-color: #000720;
     background-image: linear-gradient(to left, rgba(0, 0, 170, 0.4), rgba(0, 160, 130, 0.4));
     padding-bottom: 1px;
 }
@@ -36,6 +36,7 @@ input {
     font-size : 23px;
     height: 50px;
     width: 100%;
+    outline: none;
 }
 
 input:hover {

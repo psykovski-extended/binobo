@@ -1,9 +1,21 @@
 package htlstp.diplomarbeit.binobo.dto;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 public class RegisterRequest {
 
+    @NotNull
+    @NotEmpty
     private String username;
+    @NotNull
+    @NotEmpty
     private String password;
+    @NotNull
+    @NotEmpty
+    private String password_verify;
+    @NotNull
+    @NotEmpty
     private String email;
     private String firstname;
     private String lastname;
@@ -18,6 +30,14 @@ public class RegisterRequest {
 
     public String getPassword() {
         return password;
+    }
+
+    public String getPassword_verify() {
+        return password_verify;
+    }
+
+    public void setPassword_verify(String password_verify) {
+        this.password_verify = password_verify;
     }
 
     public void setPassword(String password) {

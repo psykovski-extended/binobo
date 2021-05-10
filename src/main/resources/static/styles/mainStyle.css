@@ -125,9 +125,6 @@ div, .u_dominik, .u_philipp, li, .linkToDevs {
     color: white;
 }
 
-/*For @media: ab 1240px bildschirmweite umspringen!*/
-
-
 @media screen and (max-width: 1260px) {
 
     div.developer {

@@ -1,31 +1,45 @@
 package htlstp.diplomarbeit.binobo.model;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Entity
-public class User {
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column
+    @Column(unique = true, nullable = false)
     @NotEmpty
-    private String userName;
+    @NotNull
+    private String username;
     @Column
     private String firstName;
     @Column
     private String lastName;
-    @Column
+    @Column(unique = true, nullable = false)
     @NotEmpty
+    @NotNull
     private String email;
-    @Column
+    @Column(nullable = false)
     @NotEmpty
+    @NotNull
     private String password;
     @OneToMany(mappedBy = "user")
     List<Post> posts = new ArrayList<>();
+    @OneToOne
+    @JoinColumn(name = "role_id")
+    Role role;
+    @Column(nullable = false)
+    private boolean activated = true;
 
     public User(){}
 
@@ -37,12 +51,8 @@ public class User {
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String userName) {
+        this.username = userName;
     }
 
     public String getFirstName() {
@@ -69,8 +79,40 @@ public class User {
         this.email = email;
     }
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
+        grantedAuthorities.add(new SimpleGrantedAuthority(role.getName()));
+        return grantedAuthorities;
+    }
+
     public String getPassword() {
         return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return username;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return activated;
     }
 
     public void setPassword(String password) {
@@ -83,5 +125,13 @@ public class User {
 
     public void setPosts(List<Post> posts) {
         this.posts = posts;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 }

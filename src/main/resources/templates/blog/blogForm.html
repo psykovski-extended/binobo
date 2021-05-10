@@ -1,11 +1,82 @@
 <!DOCTYPE html>
 <html lang="de" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="layout :: head('Blog')">
+<head th:replace="layout :: head('Blog Form')">
 <!--  replace with current operator  -->
 </head>
 <body>
-<header th:replace="layout :: nav">
 
+<!-- Content -->
+<header th:replace="layout :: nav">
 </header>
+<link rel="stylesheet" th:href="@{/styles/textFieldStyle.css}"/>
+
+<div class="sidenav">
+    <a href="https://docs.mathjax.org/en/latest/index.html" target="_blank">Using Formulas</a>
+    <a href="https://highlightjs.org" target="_blank">Using Highlighting</a>
+</div>
+
+<div class="blog_form_wrapper">
+    <div class="blog_form_wrapper_inner">
+        <h1 th:text="${heading}" class="form_action_heading"></h1>
+        <form th:action="@{${action}}" method="post" th:object="${post}">
+            <input type="hidden" th:field="*{id}"/>
+            <div class="form_element" id="title">
+                <label for="heading" class="post_title">Title:</label>
+                <textarea id="heading" name="" rows="1" cols="64" required onkeyup="render_Post()" th:field="*{title}" spellcheck="false"></textarea>
+            </div>
+            <div class="form_element" id="content_wrapper">
+                <label for="content" class="post_content">Content:</label>
+                <div class="btn-nav">
+                    <ul class="blog-formatting-functions">
+                        <li id="strong"><img th:src="@{/pictures/bold.png}" alt="" onclick="format('strong')"/></li>
+                        <li id="italic"><img th:src="@{/pictures/italic.png}" alt="" onclick="format('italic')"/></li>
+                        <li id="strikeout"><img th:src="@{/pictures/strikeout.png}" alt="" onclick="format('strikeout')"/></li>
+                        <li id="blank1"><img th:src="@{/pictures/blank.png}"/></li>
+                        <li id="code"><img th:src="@{/pictures/code.png}" alt="" onclick="format('code')"/></li>
+                        <li id="link"><img th:src="@{/pictures/link.png}" alt="" onclick="format('link')"/></li>
+                        <li id="blank2"><img th:src="@{/pictures/blank.png}"/></li>
+                        <li id="ul"><img th:src="@{/pictures/ul_icon.png}" alt="" onclick="format('ul')"/></li>
+                        <li id="ol"><img th:src="@{/pictures/ol_icon.png}" alt="" onclick="format('ol')"/></li>
+                        <li id="blank3"><img th:src="@{/pictures/blank.png}"/></li>
+                        <li id="h2"><img th:src="@{/pictures/heading2.png}" alt="" onclick="format('h2')"/></li>
+                        <li id="h3"><img th:src="@{/pictures/heading3.png}" alt="" onclick="format('h3')"/></li>
+                        <li id="blank4"><img th:src="@{/pictures/blank.png}"/></li>
+                        <li id="formula"><img th:src="@{/pictures/formula.png}" alt="" onclick="format('formula')"/></li>
+                    </ul>
+                </div>
+                <div>
+                    <textarea id="content" name="" rows="20" cols="64" required onkeyup="render_Post()" th:field="*{content}" spellcheck="false"></textarea>
+                </div>
+            </div>
+
+            <!--       Here will the rendered content will get added to for instant response         -->
+            <div class="rendered_Content" id="rendered_content">
+
+            </div>
+
+            <div class="form_element flex" id="buttons">
+                <div>
+                    <input type="submit" id="submit" value="Submit"/>
+                </div>
+                <div>
+                    <button onclick="document.location='/blog'" class="cancel-btn">Cancel</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+</div>
+
+<!-- Additional files and styles -->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/darcula.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
+<script rel="script" th:src="@{/scripts/onscroll.js}"></script>
+<script rel="script" th:src="@{/scripts/renderBlogPost.js}"></script>
+
 </body>
 </html>

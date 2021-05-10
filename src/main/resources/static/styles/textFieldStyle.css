@@ -1,0 +1,258 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100;200;800&display=swap');
+
+.form_action_heading, .form_action_heading:hover {
+    color: #ff7800;
+}
+
+textarea#heading {
+    text-align: center;
+    font-weight: 400;
+}
+
+textarea {
+    outline: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 200;
+
+    width: 100%;
+    color: #ff7800;
+    font-size: 40px;
+    background-color: #222;
+    border-radius: 30px;
+    transition: all 0.3s ease 0s;
+    border-width: 0 0 3px 0;
+    border-color: #ae5507;
+    padding-left: 20px;
+    resize: none;
+}
+
+textarea:hover {
+    border-color: #ff7800;
+}
+
+.blog_form_wrapper {
+    width:100%;
+    /*     padding: 30px 10%; */
+    padding-left:300px;
+    padding-top: 30px;
+    padding-right: 30px;
+
+    /*     border-radius: 30px; */
+    background-size: cover;
+    background: url("../pictures/abstract_bg.png") fixed;
+}
+
+label {
+    font-size: 40px;
+    padding-left: 3%;
+    color: #ff7800;
+}
+
+form, label {
+    background: transparent;
+}
+
+#content {
+    padding: 4%;
+    font-size: 20px;
+    color: #ccc;
+    border-width: 3px 0 3px 0;
+
+    border-radius: 0 0 30px 30px;
+}
+
+code, span {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 200;
+}
+
+span {
+    background-color: transparent;
+}
+
+code, pre {
+    border-radius: 30px;
+}
+
+div.rendered_Content {
+    border-radius: 30px;
+    background-color: #333;
+    padding: 20px;
+}
+
+#rendered_content, strong, em, del, s {
+    font-family: 'JetBrains Mono', serif;
+    background-color: #333;
+    font-size: 20px;
+}
+
+#rendered_content, em, del, s {
+    font-weight: 100;
+
+    margin-top: 25px;
+}
+
+strong s {
+    font-weight: bold;
+}
+
+
+div.blog_form_wrapper_inner {
+    width: 100%;
+    background-color: #222222b0;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-bottom: 35px;
+
+    border-radius: 30px;
+}
+
+.blog-formatting-functions{
+    display: flex;
+    list-style: none;
+    padding: 10px;
+    background-color: transparent;
+    /*     width: 50%; */
+}
+
+.blog-formatting-functions li{
+    padding-left: 20px;
+    opacity: 0.5;
+    transition: all 0.3s ease 0s;
+}
+
+.blog-formatting-functions li:hover{
+    padding-left: 20px;
+    opacity: 1;
+}
+
+#blank1, #blank2, #blank3, #blank4 {
+    opacity: 0;
+    width: 10px;
+}
+
+div.btn-nav {
+    background-color: #222222;
+    border-radius: 30px 30px 0 0;
+}
+
+#mainHeader {
+    z-index: 99999999;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+#rendered_content ul, #rendered_content ol,
+#rendered_content ul li, #rendered_content ol li{
+    background-color: #333333;
+    color: #fff8dc;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 200;
+    margin-left: 20px;
+}
+
+#buttons{
+    width: 100%;
+}
+
+#buttons div {
+    width: 49%;
+}
+
+.flex {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-around;
+}
+
+input, .cancel-btn {
+    width: 100%;
+    font-size: 25px;
+    border-radius: 30px;
+    border-width: 0 0 3px 0;
+    border-color: #ae5507;
+    background-color: #222;
+    transition: all 0.3s ease 0s;
+    color: #ff7200;
+}
+
+input:hover, .cancel-btn:hover {
+    border-color: #ff7200;
+}
+
+p {
+    background-color: #333333;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 100;
+}
+
+#rendered_content p a, #rendered_content a {
+    font-size: inherit;
+    font-family: inherit;
+    font-weight: bold;
+    text-decoration: underline;
+    background-color: transparent;
+}
+
+h2, h3, h4, h5, h6 {
+    background-color: transparent;
+    font-family: inherit;
+}
+
+#post-heading, #post-heading:hover {
+    font-family: inherit;
+    color: white;
+}
+
+#formula img {
+    width: 25px;
+    padding-top:5px;
+}
+
+mjx-math {
+    padding: 10px;
+    border-radius: 15px;
+    font-size: 30px;
+    font-weight: 100;
+}
+
+mjx-c {
+    font-weight: 100;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: #222;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+.sidenav {
+    height: 100%;
+    width: 260px;
+    position: fixed;
+    z-index: 1;
+    top: 80px;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+.sidenav a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #ff7800;
+    display: block;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}

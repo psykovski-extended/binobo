@@ -3,6 +3,8 @@
 <head th:fragment="head(page_title)">
     <title th:text="'Binobo | ' + ${page_title}"></title>
     <meta charset="UTF-8"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600&display=swap" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/styles/navbar_style.css}"/>
     <link rel="stylesheet" th:href="@{/styles/mainStyle.css}"/>
     <link rel="icon" th:href="@{/pictures/icon_v2_or.svg}" type="image/icon type"/>
@@ -11,7 +13,32 @@
 <header th:fragment="nav" class="main_header" id="mainHeader">
     <div>
         <img th:src="@{/pictures/icon_v2_or.svg}" alt="picture" class="icon"/>
-        <img th:src="@{/pictures/Logo_v2.svg}" alt="logo" class="logo"/>
+<!--        <img th:src="@{/pictures/Logo_v2.svg}" alt="logo" class="logo"/>-->
+        <svg id="Ebene_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 965.88 307.22" class="logo">
+            <defs>
+                <style>
+                    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@600;800;900');
+
+                    .cls-1,.cls-2{
+                        isolation:isolate;
+                        fill:#ff7800;
+                        font-family:'Nunito', sans serif;
+                        font-weight:600;
+                    }
+                    .cls-1{
+                        font-size:272px;
+                    }
+                    .cls-2{
+                        font-size:119.73px;
+                    }
+                </style>
+            </defs>
+            <title>Logo_v2</title>
+            <g id="Ebene_1-2">
+                <text class="cls-1" transform="translate(0 231.88)">Binobo</text>
+                <text class="cls-2" transform="matrix(1, 0.03, -0.03, 1, 865.49, 128.59)">©</text>
+            </g>
+        </svg>
     </div>
     <nav class="innerNav">
         <ul class="navigation">
@@ -23,9 +50,21 @@
             <li><a th:href="@{/blog}">Blog</a></li>
             <li id="on_media_icon"><img th:src="@{/pictures/on_media_navbar_icon.svg}"/></li>
         </ul>
-        <a class="user" th:href="@{/blog}">
+<!--    TODO change to redirect to user settings    -->
+        <div class="userDropdown">
             <img th:src="@{/pictures/padlock.svg}" alt="picture" class="user_icon"/>
-        </a>
+            <div class="dropdown-content">
+                <ul>
+                    <li><a th:href="@{/user_settings}">Settings</a></li>
+                    <li><a>My Posts</a></li>
+                    <li>
+                        <form th:action="@{/logout}" method="post">
+                            <button type="submit">Logout</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </nav>
 </header>
 

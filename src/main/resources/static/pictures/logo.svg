@@ -1,1 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1843.7 334.65"><defs><style>.cls-1{font-size:272px;}.cls-1,.cls-2{fill:#ff7800;font-family:Nunito-SemiBold, Nunito;font-weight:600;}.cls-2{font-size:119.73px;}</style></defs><title>Element 2</title><g id="Ebene_2" data-name="Ebene 2"><g id="Ebene_1-2" data-name="Ebene 1"><text class="cls-1" transform="translate(0 231.88)">Binobo</text><text class="cls-2" transform="translate(865.49 128.59) rotate(1.6)">©</text></g></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1843.7 334.65">
+    <defs>
+        <style>.cls-1{font-size:272px;}.cls-1,.cls-2{fill:#ff7800;font-family:Nunito-SemiBold,
+            Nunito, "Arial Rounded MT Bold";font-weight:600;}.cls-2{font-size:119.73px;}
+        </style>
+    </defs>
+    <title>Element 2</title>
+    <g id="Ebene_2" data-name="Ebene 2">
+        <g id="Ebene_1-2" data-name="Ebene 1">
+            <text class="cls-1" transform="translate(0 231.88)">Binobo</text>
+            <text class="cls-2" transform="translate(865.49 128.59) rotate(1.6)">©</text>
+        </g>
+    </g>
+</svg>

@@ -58,7 +58,7 @@ public class PostDAOImpl implements PostDAO {
         session.beginTransaction();
 
         // Save the post
-        session.save(post);
+        session.saveOrUpdate(post);
 
         // commit the transaction
         session.getTransaction().commit();
