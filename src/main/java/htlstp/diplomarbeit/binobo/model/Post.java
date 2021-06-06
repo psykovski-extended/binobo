@@ -4,6 +4,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Post {
@@ -16,11 +18,11 @@ public class Post {
     private String username;
     @Column
     @NotNull
-    @Size(min = 15, max = 64)
+    @Size(min = 12, max = 64)
     private String title;
-    @Column(length = 65555)
+    @Column(length = 65535)
     @NotNull
-    @Size(min = 5, max=30000)
+    @Size(min = 20, max=45000)
     private String content;
     @Column
     @NotNull
@@ -28,9 +30,13 @@ public class Post {
     @Column
     private LocalDateTime updatedOn;
     @ManyToOne
+    @JoinColumn(name = "category_id")
     private Category category;
     @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
+    @OneToMany(mappedBy = "post")
+    private List<Comment> comments = new ArrayList<>();
 
     public Post(){}
 
@@ -96,5 +102,13 @@ public class Post {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 }

@@ -29,25 +29,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity webSecurity) throws Exception {
-        webSecurity.ignoring().antMatchers("/pictures/**", "/styles/**", "/scripts/**", "/", "/home", "/devInformation",
-                "/projectOverview", "/login/register");// TODO customize!!!
+        webSecurity.ignoring().antMatchers("/pictures/**", "/styles/**", "/scripts/**","/login/register");
+
     }
 
     @Override
     public void configure(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.authorizeRequests().anyRequest().hasRole("USER")
+        httpSecurity.authorizeRequests()
+                .antMatchers("/home", "/project", "/developer", "/sponsoring").permitAll()
+                .antMatchers("/blog/**", "/user/**").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/admin/**", "/simulator3D").hasRole("ADMIN")
         .and()
-        .formLogin().loginPage("/login")
-        .permitAll()
-        .successHandler(loginSuccessHandler())
-        .failureHandler(loginFailureHandler())
+            .formLogin().loginPage("/login")
+            .permitAll()
+            .successHandler(loginSuccessHandler())
+            .failureHandler(loginFailureHandler())
         .and()
-        .logout()
-        .permitAll()
-        .logoutSuccessUrl("/")
+            .logout()
+            .permitAll()
+            .logoutSuccessUrl("/")
         .and()
-        .csrf();
-//        .and().antMatcher("/user_overview").authorizeRequests().anyRequest().hasRole("ADMIN");
+            .csrf();
     }
 
     public AuthenticationSuccessHandler loginSuccessHandler(){

@@ -1,0 +1,24 @@
+.flash_error {
+    padding: 10px;
+    border-radius: 35px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    border: solid #222 3px;
+    font-size: 30px;
+}
+
+.flash_error .strong {
+    text-align:center;
+}
+
+.flash_error, .strong {
+    background-color: #983111;
+}
+
+.field_error {
+    color: #da3b09;
+    font-size: 20px;
+    text-align: center;
+}

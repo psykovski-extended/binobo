@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html lang="de" xmlns:th="http://www.thymeleaf.org">
 <head>
+<!--  FIXME austauschen mit template  -->
     <title>Binobo | Login or Register</title>
     <meta charset="UTF-8"/>
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com"/>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600&display=swap" rel="stylesheet"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" th:href="@{/styles/navbar_style.css}"/>
     <link rel="stylesheet" th:href="@{/styles/mainStyle.css}"/>
     <link rel="stylesheet" th:href="@{/styles/loginFormStyle.css}"/>
+    <link rel="stylesheet" th:href="@{/styles/flash_error.css}"/>
     <link rel="icon" th:href="@{/pictures/icon_v2_or.svg}" type="image/icon type"/>
-
 </head>
 <body>
 <header th:replace="layout :: nav">
 </header>
+
 <main class="main_wrapper" id="main_wrapper_on_media">
     <div class="form_wrapper">
         <div class="form_visible">
@@ -23,73 +25,81 @@
                     <h1 class="loginHeader">Sign</h1>
                 </div>
                 <div class="onoffswitch">
-                    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" tabindex="0" checked>
+                    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" tabindex="0" checked/>
                     <label class="onoffswitch-label" for="myonoffswitch" onclick="changeForm()">
                         <span class="onoffswitch-inner"></span>
                         <span class="onoffswitch-switch"></span>
                     </label>
                 </div>
             </div>
+            <div th:replace="layout :: flash_err"></div>
+            <div th:replace="layout :: flash_succ"></div>
+            <div th:replace="layout :: flash_warn"></div>
+            <div th:replace="layout :: flash_info"></div>
             <!--          Register Form            -->
             <form class="form register" id="register" th:action="@{/login/register}" method="post" th:object="${userDTO}">
                 <div class="flex on_media_flex">
                     <div class="first_name sign_up" id="fn">
                         <label for="first_name" class="label_inner">Vorname:</label><br>
                         <input th:field="*{firstname}" type="text" id="first_name" name="first_name" placeholder="Vorname"
-                        minlength="2" maxlength="64">
+                        minlength="2" maxlength="64" th:classappend="${#fields.hasErrors('firstname')}? 'error' : ''"/>
                     </div>
-                    <hr>
+                    <hr/>
                     <div class="last_name sign_up">
-                        <label for="last_name" class="label_inner">Nachname:</label><br>
+                        <label for="last_name" class="label_inner">Nachname:</label><br/>
                         <input th:field="*{lastname}" type="text" id="last_name" name="last_name" placeholder="Nachname"
-                               minlength="2" maxlength="64">
+                               minlength="2" maxlength="64" th:classappend="${#fields.hasErrors('lastname')}? 'error' : ''"/>
                     </div>
                 </div>
                 <div class="username">
-                    <label for="username" class="label_inner">Username:</label><br>
+                    <label for="username" class="label_inner">Username:</label><br/>
                     <input th:field="*{username}" type="text" id="username" name="username" placeholder="BinoboIsAwesome"
-                           minlength="3" maxlength="64">
+                           minlength="3" maxlength="64" th:classappend="${#fields.hasErrors('username')}? 'error' : ''"/>
+                    <div class="field_error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
                 </div>
                 <div class="email sign_up">
-                    <label for="email" class="label_inner">E-Mail:</label><br>
+                    <label for="email" class="label_inner">E-Mail:</label><br/>
                     <input th:field="*{email}" type="text" id="email" name="email" placeholder="robo@binobo.io"
-                           minlength="7" maxlength="64">
+                           minlength="7" maxlength="64" th:classappend="${#fields.hasErrors('email')}? 'error' : ''"/>
+                    <div class="field_error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
                 </div>
                 <div class="password">
-                    <label for="password" class="label_inner">Passwort:</label><br>
+                    <label for="password" class="label_inner">Passwort:</label><br/>
                     <input th:field="*{password}" type="password" id="password" placeholder="aweSoMe1"
-                           minlength="8" maxlength="128">
+                           minlength="8" maxlength="128" th:classappend="${#fields.hasErrors('password')}? 'error' : ''"/>
+                    <div class="field_error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
                 </div>
                 <div class="password_verify sign_up">
-                    <label for="password_verify" class="label_inner">Passwort best&auml;tigen:</label><br>
+                    <label for="password_verify" class="label_inner">Passwort best&auml;tigen:</label><br/>
                     <input th:field="*{password_verify}" type="password" id="password_verify" placeholder="aweSoMe1"
-                           minlength="8" maxlength="128">
+                           minlength="8" maxlength="128" th:classappend="${#fields.hasErrors('password_verify')}? 'error' : ''"/>
+                    <div class="field_error" th:if="${#fields.hasErrors('password_verify')}" th:errors="*{password_verify}"></div>
                 </div>
                 <div class="flex btns">
                     <div class="verify_btn">
-                        <input type="submit" id="verify_btn" value="Submit">
+                        <input type="submit" id="verify_btn" value="Submit"/>
                     </div>
                     <div class="cancel_btn">
-                        <input type="button" onClick="location.href='/'" value="Cancel">
+                        <input type="button" onClick="location.href='/'" value="Cancel"/>
                     </div>
                 </div>
             </form>
             <!--          Login Form            -->
             <form class="form login" id="login" th:action="@{/login}" method="post" th:object="${user}">
                 <div class="username">
-                    <label for="username" class="label_inner">Username:</label><br>
-                    <input th:field="*{username}" type="text" id="username1" name="username" placeholder="BinoboIsAwesome" required>
+                    <label for="username" class="label_inner">Username:</label><br/>
+                    <input th:field="*{username}" type="text" id="username1" name="username" placeholder="BinoboIsAwesome" required/>
                 </div>
                 <div class="password">
-                    <label for="password_s" class="label_inner">Passwort:</label><br>
-                    <input th:field="*{password}" type="password" id="password_s" placeholder="aweSoMe1" required>
+                    <label for="password_s" class="label_inner">Passwort:</label><br/>
+                    <input th:field="*{password}" type="password" id="password_s" placeholder="aweSoMe1" required/>
                 </div>
                 <div class="flex btns">
                     <div class="verify_btn">
-                        <input type="submit" id="verify_btn1" value="Submit">
+                        <input type="submit" id="verify_btn1" value="Submit"/>
                     </div>
                     <div class="cancel_btn">
-                        <input type="button" onClick="location.href='/'" value="Cancel">
+                        <input type="button" onClick="location.href='/'" value="Cancel"/>
                     </div>
                 </div>
             </form>
@@ -98,9 +108,8 @@
 </main>
 <footer>
 </footer>
-<!--  scripts  -->
+<!--  post-load scripts  -->
 <script rel="script" th:src="@{/scripts/onscroll.js}"></script>
-
 <script>
     const register = document.querySelector("#register").innerHTML;
     const signIN = document.querySelector("#login").innerHTML;
@@ -113,10 +122,10 @@
         isReg = !isReg;
     }
 </script>
-<script>
-    $(document).ready(function(){
-        alert('To login, please toggle this fancy button!');
-    });
-</script>
+<!--<script>-->
+<!--    $(document).ready(function(){-->
+<!--        alert('To login, please toggle this fancy button!');-->
+<!--    });-->
+<!--</script>-->
 </body>
 </html>

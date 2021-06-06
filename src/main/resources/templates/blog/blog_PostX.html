@@ -3,9 +3,37 @@
 <head th:replace="layout :: head('Blog')">
 <!--  Replace with current blog id  -->
 </head>
+<link rel="stylesheet" th:href="@{/styles/textFieldStyle.css}"/>
 <body>
 <header th:replace="layout :: nav">
 </header>
+<main class="main_wrapper">
+    <input type="hidden" th:value="${post.content}" id="raw_content">
+    <!--        <input type="hidden" th:value="${post.title}" id="title">-->
+    <input type="hidden" th:value="${user.username}" id="user">
 
+    <div>
+        <h1 id="post_heading" th:text="${post.title}"></h1>
+    </div>
+    <div class="rendered_Content" id="rendered_content_div">
+
+    </div>
+    <form method="post" th:action="@{|/blog/post/${post.id}/addComment|}" th:object="${comment}">
+        <div th:replace="layout :: editor('Add a Comment:')"></div>
+        <!--       Here will the rendered content will get added to for instant response         -->
+        <div class="rendered_Content" id="rendered_content"></div>
+        <div th:replace="layout :: buttons"></div>
+    </form>
+</main>
+
+<div th:replace="layout :: editor_scripts"></div>
+
+<script>
+    let content = document.querySelector("#raw_content").value;
+    let username = document.querySelector("#user").value;
+    let outputTo = document.querySelector("#rendered_content_div");
+
+    render_Post(content, outputTo);
+</script>
 </body>
 </html>

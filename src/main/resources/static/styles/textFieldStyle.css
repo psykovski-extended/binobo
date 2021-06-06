@@ -1,5 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100;200;800&display=swap');
 
+body {
+    overflow-x: hidden;
+}
+
+svg {
+    overflow: unset;
+}
+
 .form_action_heading, .form_action_heading:hover {
     color: #ff7800;
 }
@@ -30,16 +38,23 @@ textarea:hover {
     border-color: #ff7800;
 }
 
+li img {
+    cursor: pointer;
+}
+
 .blog_form_wrapper {
+    /*transition: margin-left .5s;*/
+    transition: margin .5s, padding .5s;
     width:100%;
-    /*     padding: 30px 10%; */
-    padding-left:300px;
-    padding-top: 30px;
-    padding-right: 30px;
+    padding: 30px 10%;
+    /*     padding-left:300px;
+        padding-top: 30px;
+        padding-right: 30px; */
 
     /*     border-radius: 30px; */
     background-size: cover;
     background: url("../pictures/abstract_bg.png") fixed;
+    overflow: hidden;
 }
 
 label {
@@ -96,6 +111,10 @@ strong s {
     font-weight: bold;
 }
 
+#rendered_content p img {
+    width: 100%;
+    border-radius:20px;
+}
 
 div.blog_form_wrapper_inner {
     width: 100%;
@@ -105,6 +124,7 @@ div.blog_form_wrapper_inner {
     padding-bottom: 35px;
 
     border-radius: 30px;
+    transition: width .5s;
 }
 
 .blog-formatting-functions{
@@ -126,7 +146,7 @@ div.blog_form_wrapper_inner {
     opacity: 1;
 }
 
-#blank1, #blank2, #blank3, #blank4 {
+#blank1, #blank2, #blank3, #blank4, #blank5 {
     opacity: 0;
     width: 10px;
 }
@@ -176,8 +196,10 @@ input, .cancel-btn {
     color: #ff7200;
 }
 
-input:hover, .cancel-btn:hover {
+input:hover, #buttons div .cancel-btn:hover {
     border-color: #ff7200;
+    color: #ff7200;
+    text-decoration: none;
 }
 
 p {
@@ -209,50 +231,139 @@ h2, h3, h4, h5, h6 {
     padding-top:5px;
 }
 
-mjx-math {
+.dropdown-content {
+    transform: translateX(-160px);
+}
+
+/* Table-styling */
+
+table {
+    margin-top: 20px;
+    width: 100%;
+}
+
+table * {
+    font-family: 'JetBrains mono', monospace;
+}
+
+th, td {
     padding: 10px;
-    border-radius: 15px;
-    font-size: 30px;
-    font-weight: 100;
 }
 
-mjx-c {
-    font-weight: 100;
+thead {
+    background-color: #444;
 }
 
-::-webkit-scrollbar {
-    width: 10px;
+tbody tr:nth-child(odd) {
+    background-color: #666;
 }
 
-::-webkit-scrollbar-track {
-    border-radius: 10px;
-    background-color: #222;
+tbody tr:nth-child(even) {
+    background-color: #888;
 }
 
-::-webkit-scrollbar-thumb {
-    background: #888;
+tbody tr *, thead tr * {
+    transition: all 0.3s ease 0s;
+    background-color: transparent
 }
 
-.sidenav {
+td:hover {
+    background-color: #445;
+}
+
+/* tooltip test */
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 150%;
+    left: 50%;
+    margin-left: -60px;
+}
+
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    transform: translateX(10px);
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+/* Create toggleable sidebar */
+
+.sidebar {
+    margin-top: 96px;
     height: 100%;
-    width: 260px;
+    width: 0;
     position: fixed;
     z-index: 1;
-    top: 80px;
+    top: 0;
     left: 0;
     background-color: #111;
     overflow-x: hidden;
-    padding-top: 20px;
+    transition: 0.5s;
+    /*     padding-top: 60px; */
 }
 
-.sidenav a {
-    padding: 6px 8px 6px 16px;
+.sidebar a {
+    padding: 8px 8px 8px 32px;
     text-decoration: none;
     font-size: 25px;
     color: #ff7800;
     display: block;
+    transition: 0.3s;
 }
 
-.sidenav a:hover {
+.sidebar a:hover {
     color: #f1f1f1;
+    text-decoration: underline;
+}
+
+.sidebar .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+/* Got a question? */
+
+#question {
+    position: absolute;
+    width: 60px;
+    transition: all .3s ease;
+}
+
+#question * {
+    transition: all .3s ease;
+    cursor: pointer;
+}
+
+#question:hover circle {
+    fill: white;
+}
+
+#question:hover:hover {
+    transform: scale(1.2);
 }

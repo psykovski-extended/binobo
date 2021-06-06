@@ -6,13 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class InfoPagesController {
 
-    @RequestMapping(value = "")
+    @RequestMapping({"", "/home"})
     public String toIndex(){
-        return "index";
-    }
-
-    @RequestMapping(value = "/home")
-    public String toHome(){
         return "index";
     }
 

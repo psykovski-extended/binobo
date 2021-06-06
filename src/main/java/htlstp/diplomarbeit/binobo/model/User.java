@@ -34,12 +34,14 @@ public class User implements UserDetails {
     @NotNull
     private String password;
     @OneToMany(mappedBy = "user")
-    List<Post> posts = new ArrayList<>();
+    private List<Post> posts = new ArrayList<>();
+    @OneToMany(mappedBy = "user")
+    private List<Comment> comments = new ArrayList<>();
     @OneToOne
     @JoinColumn(name = "role_id")
-    Role role;
+    private Role role;
     @Column(nullable = false)
-    private boolean activated = true;
+    private boolean activated = false;
 
     public User(){}
 
@@ -133,5 +135,21 @@ public class User implements UserDetails {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
+    public boolean isActivated() {
+        return activated;
+    }
+
+    public void setActivated(boolean activated) {
+        this.activated = activated;
     }
 }

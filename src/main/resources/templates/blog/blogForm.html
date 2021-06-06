@@ -1,82 +1,94 @@
 <!DOCTYPE html>
 <html lang="de" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="layout :: head('Blog Form')">
-<!--  replace with current operator  -->
+    <!--  replace with current operator  -->
 </head>
 <body>
+<!--<div class="sidenav">-->
+<!--    <a href="demo.showdownjs.com/" target="_blank">Markdown</a>-->
+<!--    <a href="https://katex.org/docs/supported.html" target="_blank">Formulas</a>-->
+<!--    <a href="https://de.imgbb.com" target="_blank">Images</a>-->
+<!--</div>-->
 
 <!-- Content -->
-<header th:replace="layout :: nav">
-</header>
 <link rel="stylesheet" th:href="@{/styles/textFieldStyle.css}"/>
 
-<div class="sidenav">
-    <a href="https://docs.mathjax.org/en/latest/index.html" target="_blank">Using Formulas</a>
-    <a href="https://highlightjs.org" target="_blank">Using Highlighting</a>
+<div id="helpSideBar" class="sidebar">
+    <a href="http://demo.showdownjs.com/" target="_blank">Markdown</a>
+    <a href="https://katex.org/docs/supported.html" target="_blank">Formulas</a>
+    <a href="https://de.imgbb.com" target="_blank">Images</a>
 </div>
 
+<header th:replace="layout :: nav"></header>
+
 <div class="blog_form_wrapper">
+    <svg id="question" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg" onclick="openNav()"
+         viewBox="0 0 389.941 422.308">
+        <defs>
+            <style>
+                .a1ac3f62-c324-4e39-a96b-827eee10cfcc{
+                    fill:#ff7800;
+                }
+                .ad05f4a4-29f7-4bad-a903-9be684723590{
+                    font-size:360px;
+                    font-family:"Nunito-SemiBold", "Nunito", sans-serif;
+                    font-weight:600;
+                }
+            </style>
+        </defs>
+        <title>question</title>
+        <circle class="a1ac3f62-c324-4e39-a96b-827eee10cfcc" cx="194.974" cy="194.844" r="182.967"/>
+        <path d="M421.4,249.835a167.222,167.222,0,0,1-8.482,53.372,170.121,170.121,0,0,1-23.648,46.506A160.5,160.5,0,0,1,373.61,368.4a189.372,189.372,0,0,1-19.079,17.178,175.585,175.585,0,0,1-45.048,24.794,172.527,172.527,0,0,1-191.39-52.2A184.521,184.521,0,0,1,92.52,315.719a174.71,174.71,0,0,1-12.533-51.914A171.262,171.262,0,0,1,180.115,93.882C211.6,79.4,250.166,75.164,284.279,82.191a171.407,171.407,0,0,1,135.259,141.83,184.848,184.848,0,0,1,1.858,25.814c.058,15.44,24.058,15.471,24,0-.152-40.255-12.55-80.345-36.17-113.055A198.326,198.326,0,0,0,316.49,66.385C240.708,38.657,152.011,62.8,100.705,125.029A197.2,197.2,0,0,0,55.987,235.866,194.881,194.881,0,0,0,83.653,350.872c20.11,33.047,50.241,60.257,85.553,76.189a198.183,198.183,0,0,0,120.122,13.83c78.212-15.474,141.626-81.28,153.563-160.213a211.292,211.292,0,0,0,2.5-30.843C445.454,234.39,421.454,234.369,421.4,249.835Z"
+              transform="translate(-55.454 -54.991)"/>
+        <text class="ad05f4a4-29f7-4bad-a903-9be684723590" id="op_Or_cl" transform="translate(116.403 322.59)">?</text>
+    </svg>
     <div class="blog_form_wrapper_inner">
         <h1 th:text="${heading}" class="form_action_heading"></h1>
+        <div th:replace="layout :: flash_err"></div>
+        <div th:replace="layout :: flash_succ"></div>
+        <div th:replace="layout :: flash_warn"></div>
+        <div th:replace="layout :: flash_info"></div>
         <form th:action="@{${action}}" method="post" th:object="${post}">
             <input type="hidden" th:field="*{id}"/>
+            <input type="hidden" th:field="*{username}"/>
             <div class="form_element" id="title">
                 <label for="heading" class="post_title">Title:</label>
-                <textarea id="heading" name="" rows="1" cols="64" required onkeyup="render_Post()" th:field="*{title}" spellcheck="false"></textarea>
+                <textarea id="heading" name="" minlength="12" maxlength="64" rows="1" cols="64" required
+                          onkeyup="render_Post()" th:field="*{title}" spellcheck="false"></textarea>
             </div>
-            <div class="form_element" id="content_wrapper">
-                <label for="content" class="post_content">Content:</label>
-                <div class="btn-nav">
-                    <ul class="blog-formatting-functions">
-                        <li id="strong"><img th:src="@{/pictures/bold.png}" alt="" onclick="format('strong')"/></li>
-                        <li id="italic"><img th:src="@{/pictures/italic.png}" alt="" onclick="format('italic')"/></li>
-                        <li id="strikeout"><img th:src="@{/pictures/strikeout.png}" alt="" onclick="format('strikeout')"/></li>
-                        <li id="blank1"><img th:src="@{/pictures/blank.png}"/></li>
-                        <li id="code"><img th:src="@{/pictures/code.png}" alt="" onclick="format('code')"/></li>
-                        <li id="link"><img th:src="@{/pictures/link.png}" alt="" onclick="format('link')"/></li>
-                        <li id="blank2"><img th:src="@{/pictures/blank.png}"/></li>
-                        <li id="ul"><img th:src="@{/pictures/ul_icon.png}" alt="" onclick="format('ul')"/></li>
-                        <li id="ol"><img th:src="@{/pictures/ol_icon.png}" alt="" onclick="format('ol')"/></li>
-                        <li id="blank3"><img th:src="@{/pictures/blank.png}"/></li>
-                        <li id="h2"><img th:src="@{/pictures/heading2.png}" alt="" onclick="format('h2')"/></li>
-                        <li id="h3"><img th:src="@{/pictures/heading3.png}" alt="" onclick="format('h3')"/></li>
-                        <li id="blank4"><img th:src="@{/pictures/blank.png}"/></li>
-                        <li id="formula"><img th:src="@{/pictures/formula.png}" alt="" onclick="format('formula')"/></li>
-                    </ul>
-                </div>
-                <div>
-                    <textarea id="content" name="" rows="20" cols="64" required onkeyup="render_Post()" th:field="*{content}" spellcheck="false"></textarea>
-                </div>
-            </div>
+            <div th:replace="layout :: editor('Content:')"></div>
 
             <!--       Here will the rendered content will get added to for instant response         -->
             <div class="rendered_Content" id="rendered_content">
 
             </div>
 
-            <div class="form_element flex" id="buttons">
-                <div>
-                    <input type="submit" id="submit" value="Submit"/>
-                </div>
-                <div>
-                    <button onclick="document.location='/blog'" class="cancel-btn">Cancel</button>
-                </div>
-            </div>
+            <div th:replace="layout :: buttons"></div>
         </form>
-
     </div>
-
 </div>
 
 <!-- Additional files and styles -->
-<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-<script type="text/javascript" id="MathJax-script" async
-        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
-</script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/darcula.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
+<div th:replace="layout :: editor_scripts"></div>
 <script rel="script" th:src="@{/scripts/onscroll.js}"></script>
-<script rel="script" th:src="@{/scripts/renderBlogPost.js}"></script>
-
+<script>
+    let padding = document.getElementsByClassName("blog_form_wrapper")[0].style.padding;
+    let width = document.getElementsByClassName("blog_form_wrapper_inner")[0].style.width;
+    function openNav() {
+        document.getElementById("helpSideBar").style.width = "220px";
+        document.getElementsByClassName("blog_form_wrapper")[0].style.marginLeft = "220px";
+        document.getElementsByClassName("blog_form_wrapper")[0].style.padding = "65px";
+        document.getElementsByClassName("blog_form_wrapper")[0].style.paddingTop = "30px";
+        document.getElementsByClassName("blog_form_wrapper_inner")[0].style.width = "78%";
+        document.querySelector("#question").onclick = closeNav;
+    }
+    function closeNav() {
+        document.getElementById("helpSideBar").style.width = "0";
+        document.getElementsByClassName("blog_form_wrapper")[0].style.marginLeft = "0";
+        document.getElementsByClassName("blog_form_wrapper")[0].style.padding = padding;
+        document.getElementsByClassName("blog_form_wrapper_inner")[0].style.width = width;
+        document.querySelector("#question").onclick = openNav;
+    }
+</script>
 </body>
 </html>

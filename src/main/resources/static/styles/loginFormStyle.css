@@ -1,8 +1,7 @@
 .form_wrapper {
     transition: all 0.3s ease 0s;
     background-size: cover;
-    background: linear-gradient(to left, rgba(0, 0, 170, 0.6), rgba(0, 160, 100, 0.6)), url("../pictures/Hexadings2.png") no-repeat center;
-    border-radius: 30px;
+    background: url("../pictures/login_bg.jpg") no-repeat center fixed;
     width: 100%;
     padding: 30px 5%;
 }
@@ -13,10 +12,16 @@ body {
     padding-bottom: 1px;
 }
 
+.main_wrapper {
+    padding: 0;
+    margin: 0;
+    width: 100%
+}
+
 .form_visible {
     width: 85%;
     border-radius: 35px;;
-    background-color: #22222290;
+    background-color: #2222229a;
     padding: 0 10% 1%;
     margin: auto;
 }
@@ -149,6 +154,10 @@ input[type="submit"], input[type="button"] {
 
 .sign_in {
     display: none;
+}
+
+.error, .error:hover {
+    border-color: red;
 }
 
 /* on media */

@@ -19,6 +19,7 @@ img, svg {
     height: auto;
     alignment: center;
     background-color: transparent;
+    overflow: unset;
 }
 
 li, a, button {
@@ -154,11 +155,12 @@ ul.navigation li:last-child {
     display: none;
     position: absolute;
     background-color: #222;
-    min-width: 150px;;
+    min-width: 230px;
+    width:auto;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-    /*     z-index: 1; */
-    border: solid 3px #ff7200;
+    border: solid 2px #ff7200;
     padding: 0 20px 15px 30px;
+    transform: translateX(-50px) translateY(-10px);
 }
 
 .userDropdown:hover .dropdown-content {
@@ -170,11 +172,52 @@ ul.navigation li:last-child {
 }
 
 .dropdown-content ul li {
-    padding-top: 15px;
+    padding-top: 5px;
 }
 
 .dropdown-content ul li form button {
     border: none;
+}
+
+.dropdown-content ul li div .svg_wrapper svg {
+    width: 45px;
+    height: auto;
+}
+
+.dropdown-content ul li div .svg_wrapper svg:hover g path,
+svg:hover #a19e8a2a-dee2-4892-b9e5-c1524623bea8 path,
+svg:hover #a50946a6-bab6-407a-ada1-612b8d1cafb1 path,
+#e9a7774a-393c-4a51-a44e-9cd7c1481cd9:hover path{
+    fill: #77e;
+    border-color: #778;
+}
+
+.dropdown-content ul li div .svg_wrapper svg g path,
+.dropdown-content ul li form .svg_wrapper svg g path,
+#e9a7774a-393c-4a51-a44e-9cd7c1481cd9 path  {
+    transition: all 0.3s ease 0s;
+}
+
+.dropdown-content ul li form svg {
+    width: 40px;
+}
+
+.dropdown-content ul li div .link a {
+    margin: 20px 10px 10px;
+    text-align: center;
+}
+
+.dropdown-content ul li div,
+.dropdown-content ul li form {
+    display: flex;
+}
+
+.dropdown-content ul li div .svg_wrapper{
+    margin-right: 5px;
+}
+
+.dropdown-content ul li form .svg_wrapper {
+    margin-right: 17px;
 }
 
 /* responsive layout */

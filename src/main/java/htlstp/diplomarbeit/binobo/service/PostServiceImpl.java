@@ -6,7 +6,6 @@ import htlstp.diplomarbeit.binobo.repositories.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -21,14 +20,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public List<Post> findByUser(User user) {
-        Iterable<Post> posts = postRepository.findAll();
-        List<Post> foundPosts = new ArrayList<>();
-
-        posts.forEach(p -> {
-            if(p.getUser().equals(user))foundPosts.add(p);
-        });
-
-        return foundPosts;
+        return postRepository.findAllByUser(user);
     }
 
     @Override
@@ -51,5 +43,10 @@ public class PostServiceImpl implements PostService {
     @Override
     public Post findById(Long postId) {
         return postRepository.findById(postId).orElse(new Post());
+    }
+
+    @Override
+    public void deleteAllByUser(User user) {
+        postRepository.deleteAllByUser(user);
     }
 }

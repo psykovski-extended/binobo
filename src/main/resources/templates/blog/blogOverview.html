@@ -6,13 +6,77 @@
 <header th:replace="layout :: nav">
 
 </header>
+<!--  Add-button for adding new entry, responsive!
+      Button for scrolling up  -->
 <main class="main_wrapper">
-    <a th:href="@{/blog/new}">
+    <div th:replace="layout :: flash_err"></div>
+    <div th:replace="layout :: flash_succ"></div>
+    <div th:replace="layout :: flash_warn"></div>
+    <div th:replace="layout :: flash_info"></div>
+    <a th:href="@{blog/new}">
         <div class="new_entry">
-
+            <div class="svg_wrapper">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 498.9 497.76">
+                    <defs>
+                        <style>
+                            .f1eb5d6a-958b-48c8-949f-4912caa59b47{
+                                fill:#ff7200;
+                            }
+                            .a75cd25f-b6ec-49b7-a0ef-1998d491e2d3{
+                                fill:#222;
+                            }
+                        </style>
+                    </defs>
+                    <title>add_post</title>
+                    <g id="b6390696-6155-408b-b28d-25968ed2bdc8" data-name="Ebene 1">
+                        <ellipse class="f1eb5d6a-958b-48c8-949f-4912caa59b47" cx="249.45" cy="248.88" rx="249.45" ry="248.88"/>
+                    </g>
+                    <g id="a21ded3c-7073-463b-a0c3-b865f91bd475" data-name="Ebene 2">
+                        <path class="a75cd25f-b6ec-49b7-a0ef-1998d491e2d3"
+                              d="M220.73,133.2l-.29,78.27L220,336.08l-.11,28.43c-.06,15.7,13.84,30.73,30,30s29.94-13.18,30-30l.3-78.26.47-124.62.1-28.43c.06-15.69-13.84-30.72-30-30s-29.93,13.19-30,30Z"
+                              transform="translate(-1.11 -0.54)"/>
+                        <path class="a75cd25f-b6ec-49b7-a0ef-1998d491e2d3"
+                              d="M134.21,279.73H365.08c15.69,0,30.73-13.8,30-30s-13.18-30-30-30H134.21c-15.69,0-30.73,13.8-30,30s13.18,30,30,30Z"
+                              transform="translate(-1.11 -0.54)"/>
+                    </g>
+                </svg>
+            </div>
+            <div class="title_add">
+                <h2>
+                    Enter A New Blog-Entry
+                </h2>
+            </div>
         </div>
     </a>
+    <a th:each="post : ${posts}" th:href="@{|/blog/${post.id}|}">
+        <div  class="entry_wrapper">
+            <div class="heading">
+                <h3 th:text="${post.title}"></h3>
+            </div>
+            <div class="details_wrapper flex">
+                <div class="hr">
+                    <hr>
+                </div>
+                <div>
+                    <div class="username">
+                        <p th:text="${post.username}"></p>
+                    </div>
+                    <hr>
+                    <div class="date_time">
+                        <em th:text="${post.createdOn.toString().replaceAll('T', ' ')}"></em>
+                    </div>
+                </div>
 
+            </div>
+        </div>
+    </a>
 </main>
+<!--  scripts  -->
+<script rel="script" th:src="@{/scripts/onscroll.js}"></script>
+<link rel="stylesheet" th:href="@{/styles/blog_style.css}"/>
+<script>
+    document.querySelector("#flash").style.backgroundColor = "#1c9513";
+    document.getElementsByClassName("strong")[0].style.backgroundColor = "#1c9513"
+</script>
 </body>
 </html>
