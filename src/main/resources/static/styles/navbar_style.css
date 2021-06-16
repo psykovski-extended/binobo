@@ -7,7 +7,6 @@
     margin: 0;
     padding: 0;
     background-color: transparent;
-    color: white;
 }
 
 body {
@@ -26,8 +25,7 @@ li, a, button {
     font-family: 'Nunito', sans-serif;
     font-weight: 900;
     font-size: 17px;
-    color: #ff7800;/*#ae5507;*/
-    /*     width: 100px; */
+    color: #ff7800;
 }
 
 header, ul, li, h1, a {
