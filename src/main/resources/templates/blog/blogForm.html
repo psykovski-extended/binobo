@@ -13,10 +13,10 @@
 <!-- Content -->
 <link rel="stylesheet" th:href="@{/styles/textFieldStyle.css}"/>
 
-<div id="helpSideBar" class="sidebar">
-    <a href="http://demo.showdownjs.com/" target="_blank">Markdown</a>
+<div id="helpSideBar" class="sidebar nunito_font">
+    <a href="https://pandao.github.io/editor.md/en.html" target="_blank">Markdown</a>
     <a href="https://katex.org/docs/supported.html" target="_blank">Formulas</a>
-    <a href="https://de.imgbb.com" target="_blank">Images</a>
+    <a href="https://postimages.org/de/" target="_blank">Images</a>
 </div>
 
 <header th:replace="layout :: nav"></header>
@@ -43,7 +43,7 @@
         <text class="ad05f4a4-29f7-4bad-a903-9be684723590" id="op_Or_cl" transform="translate(116.403 322.59)">?</text>
     </svg>
     <div class="blog_form_wrapper_inner">
-        <h1 th:text="${heading}" class="form_action_heading"></h1>
+        <h1 th:text="${heading}" class="form_action_heading nunito_font"></h1>
         <div th:replace="layout :: flash_err"></div>
         <div th:replace="layout :: flash_succ"></div>
         <div th:replace="layout :: flash_warn"></div>
@@ -51,18 +51,22 @@
         <form th:action="@{${action}}" method="post" th:object="${post}">
             <input type="hidden" th:field="*{id}"/>
             <input type="hidden" th:field="*{username}"/>
-            <div class="form_element" id="title">
-                <label for="heading" class="post_title">Title:</label>
+            <div class="form_element nunito_font" id="title">
+                <label for="heading" class="post_title label_custom">Title:</label>
                 <textarea id="heading" name="" minlength="12" maxlength="64" rows="1" cols="64" required
-                          onkeyup="render_Post()" th:field="*{title}" spellcheck="false"></textarea>
+                          th:field="*{title}" spellcheck="false" class="textarea_custom"></textarea>
             </div>
             <div th:replace="layout :: editor('Content:')"></div>
 
-            <!--       Here will the rendered content will get added to for instant response         -->
-            <div class="rendered_Content" id="rendered_content">
+            <input type="hidden" th:field="*{content}" id="raw_content">
+            <input type="hidden" th:field="*{renderedContent}" id="rendered_content">
 
+            <div class="category_select_wrapper nunito_font font_color_ff7800">
+                <select class="category_select" th:field="*{category.id}">
+                    <option value="" disabled>Choose a category:</option>
+                    <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}" th:style="|color:${category.colorCode}|"></option>
+                </select>
             </div>
-
             <div th:replace="layout :: buttons"></div>
         </form>
     </div>
@@ -71,6 +75,7 @@
 <!-- Additional files and styles -->
 <div th:replace="layout :: editor_scripts"></div>
 <script rel="script" th:src="@{/scripts/onscroll.js}"></script>
+<link rel="stylesheet" th:href="@{/styles/blog_style.css}"/>
 <script>
     let padding = document.getElementsByClassName("blog_form_wrapper")[0].style.padding;
     let width = document.getElementsByClassName("blog_form_wrapper_inner")[0].style.width;

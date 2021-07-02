@@ -10,14 +10,23 @@ svg {
 
 .form_action_heading, .form_action_heading:hover {
     color: #ff7800;
+    text-align: center;
+    font-weight: 900;
+    font-size: 50px;
 }
 
-textarea#heading {
+#mainHeader {
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+#heading {
     text-align: center;
     font-weight: 400;
 }
-
-textarea {
+/*new*/
+.textarea_custom {
     outline: none;
     font-family: 'JetBrains Mono', monospace;
     font-weight: 200;
@@ -33,19 +42,20 @@ textarea {
     padding-left: 20px;
     resize: none;
 }
-
-textarea:hover {
+/*new*/
+.textarea_custom:hover {
     border-color: #ff7800;
 }
 
-li img {
-    cursor: pointer;
-}
+/*li img {*/
+/*    cursor: pointer;*/
+/*}*/
 
 .blog_form_wrapper {
     /*transition: margin-left .5s;*/
     transition: margin .5s, padding .5s;
     width:100%;
+    height:100%;
     padding: 30px 10%;
     /*     padding-left:300px;
         padding-top: 30px;
@@ -56,68 +66,20 @@ li img {
     background: url("../pictures/abstract_bg.png") fixed;
     overflow: hidden;
 }
-
-label {
+/*new*/
+.label_custom {
     font-size: 40px;
     padding-left: 3%;
     color: #ff7800;
 }
-
-form, label {
+/*new*/
+.form_transparent_bg, .label_custom {
     background: transparent;
-}
-
-#content {
-    padding: 4%;
-    font-size: 20px;
-    color: #ccc;
-    border-width: 3px 0 3px 0;
-
-    border-radius: 0 0 30px 30px;
-}
-
-code, span {
-    font-family: 'JetBrains Mono', monospace;
-    font-weight: 200;
-}
-
-span {
-    background-color: transparent;
-}
-
-code, pre {
-    border-radius: 30px;
-}
-
-div.rendered_Content {
-    border-radius: 30px;
-    background-color: #333;
-    padding: 20px;
-}
-
-#rendered_content, strong, em, del, s {
-    font-family: 'JetBrains Mono', serif;
-    background-color: #333;
-    font-size: 20px;
-}
-
-#rendered_content, em, del, s {
-    font-weight: 100;
-
-    margin-top: 25px;
-}
-
-strong s {
-    font-weight: bold;
-}
-
-#rendered_content p img {
-    width: 100%;
-    border-radius:20px;
 }
 
 div.blog_form_wrapper_inner {
     width: 100%;
+    height: 100%;
     background-color: #222222b0;
     padding-left: 5%;
     padding-right: 5%;
@@ -127,50 +89,8 @@ div.blog_form_wrapper_inner {
     transition: width .5s;
 }
 
-.blog-formatting-functions{
-    display: flex;
-    list-style: none;
-    padding: 10px;
-    background-color: transparent;
-    /*     width: 50%; */
-}
-
-.blog-formatting-functions li{
-    margin-left: 20px;
-    opacity: 0.5;
-    transition: all 0.3s ease 0s;
-    display: flex;
-}
-
-.blog-formatting-functions li:hover{
-    background-color: #111;
-    border-radius: 5px;
-    opacity: 1;
-}
-
-#blank1, #blank2, #blank3, #blank4, #blank5 {
-    opacity: 0;
-    width: 10px;
-}
-
-div.btn-nav {
-    background-color: #222222;
-    border-radius: 30px 30px 0 0;
-}
-
-#mainHeader {
-    z-index: 99999999;
-    padding-left: 20px;
-    padding-right: 20px;
-}
-
-#rendered_content ul, #rendered_content ol,
-#rendered_content ul li, #rendered_content ol li{
-    background-color: #333333;
-    color: #fff8dc;
-    font-family: 'JetBrains Mono', monospace;
-    font-weight: 200;
-    margin-left: 20px;
+.form_100per_height {
+    height: 100%;
 }
 
 #buttons{
@@ -186,8 +106,8 @@ div.btn-nav {
     display: flex;
     justify-content: space-around;
 }
-
-input, .cancel-btn {
+/*new*/
+.input_custom, .cancel-btn {
     width: 100%;
     font-size: 25px;
     border-radius: 30px;
@@ -197,17 +117,11 @@ input, .cancel-btn {
     transition: all 0.3s ease 0s;
     color: #ff7200;
 }
-
-input:hover, #buttons div .cancel-btn:hover {
+/*new*/
+.input_custom:hover, #buttons div .cancel-btn:hover {
     border-color: #ff7200;
     color: #ff7200;
     text-decoration: none;
-}
-
-p {
-    background-color: #333333;
-    font-family: 'JetBrains Mono', monospace;
-    font-weight: 100;
 }
 
 #rendered_content p a, #rendered_content a {
@@ -218,59 +132,13 @@ p {
     background-color: transparent;
 }
 
-h2, h3, h4, h5, h6 {
-    background-color: transparent;
-    font-family: inherit;
-}
-
 #post-heading, #post-heading:hover {
     font-family: inherit;
     color: white;
 }
 
-#formula img {
-    width: 25px;
-    padding-top:5px;
-}
-
 .dropdown-content {
     transform: translateX(-160px);
-}
-
-/* Table-styling */
-
-table {
-    margin-top: 20px;
-    width: 100%;
-}
-
-table * {
-    font-family: 'JetBrains mono', monospace;
-}
-
-th, td {
-    padding: 10px;
-}
-
-thead {
-    background-color: #444;
-}
-
-tbody tr:nth-child(odd) {
-    background-color: #666;
-}
-
-tbody tr:nth-child(even) {
-    background-color: #888;
-}
-
-tbody tr *, thead tr * {
-    transition: all 0.3s ease 0s;
-    background-color: transparent
-}
-
-td:hover {
-    background-color: #445;
 }
 
 /* tooltip test */
@@ -330,14 +198,14 @@ td:hover {
 .sidebar a {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
-    font-size: 25px;
+    font-size: 25px!important;
     color: #ff7800;
     display: block;
     transition: 0.3s;
 }
 
 .sidebar a:hover {
-    color: #f1f1f1;
+    color: #f1f1f1!important;
     text-decoration: underline;
 }
 
@@ -368,4 +236,108 @@ td:hover {
 
 #question:hover:hover {
     transform: scale(1.2);
+}
+
+/* post-preview */
+
+.main_wrapper_blog {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    margin: auto;
+
+    background: url("../pictures/blog_preview_bg.jpg") no-repeat center fixed;
+    background-size: auto 100%;
+}
+
+.rendered_comments {
+    background: linear-gradient(to left, #1a1a17f0, #37214af0);
+}
+
+.rendered_post, .rendered_comments {
+    width: 50%;
+    padding: 15px;
+}
+
+.rendered_post {
+    height: calc(100vh - 96px);
+    position: sticky;
+    top: 96px;
+    background: linear-gradient(to left, #293823f0, #1a1a17f0);
+
+}
+
+.mark_inc_dec_wrapper {
+    width: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.post_title {
+    padding-left: 10px;
+}
+
+.mark_inc_dec_wrapper *, .post_title_wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.post_title_wrapper {
+    justify-content: space-evenly;
+    flex-direction: row-reverse;
+}
+
+.mark_inc_dec {
+    border-width: 0;
+}
+
+.mark_inc_dec_wrapper form button svg * {
+    transition: all .3s ease;
+}
+
+.mark_inc_dec_wrapper form button svg {
+    height: auto;
+    width: 40px;
+}
+
+.mark_inc_dec_wrapper form button svg:hover * {
+    fill: #ff7800;
+    stroke: #ff7800;
+}
+
+.vertical_hr {
+    height: 60px;
+    border-style: solid;
+    border-color: #ff7800;
+}
+
+
+.edit_post, .delete_post {
+    position: absolute;
+    z-index: 99999;
+    background-color: #422849;
+    border-radius: 50%;
+    height: 60px;
+    width: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translate(-10px, -60px);
+    transition: all .3s ease;
+}
+
+.delete_post {
+    margin-left: 100%;
+    transform: translate(-80px, -60px);
+}
+
+.edit_post:hover, .delete_post:hover {
+    background-color: #ff7800;
+    cursor: pointer;
 }

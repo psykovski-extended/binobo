@@ -13,4 +13,6 @@ public interface PostService {
     void deletePost(Post post);
     Post findById(Long postId);
     void deleteAllByUser(User user);
+    void incrementMarks(Post post);
+    void decrementMarks(Post post);
 }

@@ -51,7 +51,7 @@ public class AuthController {
             eventPublisher.publishEvent(new OnRegistrationCompleteEvent(user,
                     request.getLocale(), appUrl));
             redirectAttributes.addFlashAttribute("flash_info",
-                    new FlashMessage("Please verify your Email before you can sign in!", FlashMessage.Status.INFO));
+                    new FlashMessage("Please verify your Email before you next sign in!", FlashMessage.Status.INFO));
         }catch (Exception exception){
             redirectAttributes.addFlashAttribute("flash_err", new FlashMessage(exception.getMessage(), FlashMessage.Status.FAILURE));
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.userDTO",errors);

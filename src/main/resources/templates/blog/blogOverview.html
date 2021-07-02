@@ -49,7 +49,7 @@
         </div>
     </a>
     <a th:each="post : ${posts}" th:href="@{|/blog/${post.id}|}">
-        <div  class="entry_wrapper">
+        <div  class="entry_wrapper" th:style="|border-color:${post.category.colorCode}|">
             <div class="heading">
                 <h3 th:text="${post.title}"></h3>
             </div>
@@ -57,7 +57,7 @@
                 <div class="hr">
                     <hr>
                 </div>
-                <div>
+                <div class="nunito_font font_weight800 font_color_ff7800">
                     <div class="username">
                         <p th:text="${post.username}"></p>
                     </div>

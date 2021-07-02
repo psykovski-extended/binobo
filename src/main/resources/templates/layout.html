@@ -8,23 +8,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600&display=swap" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/styles/navbar_style.css}"/>
     <link rel="stylesheet" th:href="@{/styles/mainStyle.css}"/>
-    <link rel="stylesheet" th:href="@{/styles/flash_error.css}"/>
+    <link rel="stylesheet" th:href="@{/styles/flash.css}"/>
     <link rel="icon" th:href="@{/pictures/icon_v2_or.svg}" type="image/icon type"/>
 </head>
 <body>
-<div th:fragment="flash_err" th:if="${flash_err != null}" class=" flash flash_error" id="flash_err">
+<div th:fragment="flash_err" th:if="${flash_err != null}" class="font_weight800 font_jetbrains_mono flash flash_error" id="flash_err">
     <strong class="strong" th:text="${flash_err.message}"></strong>
 </div>
-<div th:fragment="flash_succ" th:if="${flash_succ != null}" class=" flash flash_success" id="flash_succ">
+<div th:fragment="flash_succ" th:if="${flash_succ != null}" class="font_weight800 font_jetbrains_mono flash flash_success" id="flash_succ">
     <strong class="strong" th:text="${flash_succ.message}"></strong>
 </div>
-<div th:fragment="flash_warn" th:if="${flash_warn != null}" class=" flash flash_warn" id="flash_warn">
+<div th:fragment="flash_warn" th:if="${flash_warn != null}" class="font_weight800 font_jetbrains_mono flash flash_warn" id="flash_warn">
     <strong class="strong" th:text="${flash_warn.message}"></strong>
 </div>
-<div th:fragment="flash_info" th:if="${flash_info != null}" class=" flash flash_info" id="flash_info">
+<div th:fragment="flash_info" th:if="${flash_info != null}" class="font_weight800 font_jetbrains_mono flash flash_info" id="flash_info">
     <strong class="strong" th:text="${flash_info.message}"></strong>
 </div>
-<header th:fragment="nav" class="main_header" id="mainHeader">
+<header th:fragment="nav" class="main_header navbar_header font_weight900_17px nunito_font" id="mainHeader">
     <div>
         <img th:src="@{/pictures/icon_v2_or.svg}" alt="picture" class="icon"/>
         <svg id="Ebene_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 965.88 307.22" class="logo">
@@ -56,13 +56,13 @@
     </div>
     <nav class="innerNav">
         <ul class="navigation">
-            <li><a th:href="@{/home}">Home</a></li>
-            <li><a th:href="@{/project}">Projekt</a></li>
-            <li><a th:href="@{/simulator3D}">3D - Simulator</a></li>
-            <li><a th:href="@{/developer}">Entwickler</a></li>
-            <li><a th:href="@{/sponsoring}">Sponsoren</a></li>
-            <li sec:authorize="isAnonymous()"><a th:href="@{/login}">Login</a></li>
-            <li sec:authorize="isAuthenticated()"><a th:href="@{/blog}">Blog</a></li>
+            <li><a th:href="@{/home}" class="anker_plain">Home</a></li>
+            <li><a th:href="@{/project}" class="anker_plain">Projekt</a></li>
+            <li><a th:href="@{/simulator3D}" class="anker_plain">3D - Simulator</a></li>
+            <li><a th:href="@{/developer}" class="anker_plain">Entwickler</a></li>
+            <li><a th:href="@{/sponsoring}" class="anker_plain">Sponsoren</a></li>
+            <li sec:authorize="isAnonymous()"><a th:href="@{/login}" class="anker_plain">Login</a></li>
+            <li sec:authorize="isAuthenticated()"><a th:href="@{/blog}" class="anker_plain">Blog</a></li>
             <li id="on_media_icon"><img th:src="@{/pictures/on_media_navbar_icon.svg}"/></li>
         </ul>
         <div class="userDropdown" sec:authorize="isAuthenticated()">
@@ -197,7 +197,7 @@
                                 </svg>
                             </div>
                             <div class="link">
-                                <a th:href="@{/user/settings}">Settings</a>
+                                <a th:href="@{/user/settings}" class="anker_plain">Profile</a>
                             </div>
                         </div>
                     </li>
@@ -264,7 +264,7 @@
                                 </svg>
                             </div>
                             <div class="link">
-                                <a th:href="@{/blog/user/entries}">My Posts</a>
+                                <a th:href="@{/blog/user/entries}" class="anker_plain">My Posts</a>
                             </div>
                         </div>
                     </li>
@@ -326,7 +326,7 @@
                                 </svg>
                             </div>
                             <div class="link">
-                                <a th:href="@{/admin/listAllUsers}">Admin</a>
+                                <a th:href="@{/admin/listAllUsers}" class="anker_plain">Admin</a>
                             </div>
                         </div>
                     </li>
@@ -362,7 +362,7 @@
                                 </svg>
                             </div>
                             <div class="link">
-                                <button type="submit">Logout</button>
+                                <button type="submit" class="anker_plain">Logout</button>
                             </div>
                         </form>
                     </li>
@@ -372,90 +372,16 @@
     </nav>
 </header>
 
-<div th:fragment="editor(action)" class="form_element" id="content_wrapper">
-    <label for="content" class="post_content" th:text="${action}">Content:</label>
-    <div class="btn-nav">
-        <ul class="blog-formatting-functions">
-            <li id="strong" class="tooltip">
-                <img th:src="@{/pictures/bold.png}" alt="" onclick="format('strong')"/>
-                <span class="tooltiptext">Bold text</span>
-            </li>
-            <li id="italic" class="tooltip">
-                <img th:src="@{/pictures/italic.png}" alt="" onclick="format('italic')"/>
-                <span class="tooltiptext">Italic text</span>
-            </li>
-            <li id="strikeout" class="tooltip">
-                <img th:src="@{/pictures/strikeout.png}" alt="" onclick="format('strikeout')"/>
-                <span class="tooltiptext">Struck-out text</span>
-            </li>
-            <li id="blank1">
-                <img th:src="@{/pictures/blank.png}"/>
-            </li>
-            <li id="code" class="tooltip">
-                <img th:src="@{/pictures/code.png}" alt="" onclick="format('code')"/>
-                <span class="tooltiptext">Code</span>
-            </li>
-            <li id="link" class="tooltip">
-                <img th:src="@{/pictures/link.png}" alt="" onclick="format('link')"/>
-                <span class="tooltiptext">Link</span>
-            </li>
-            <li id="img" class="tooltip">
-                <img th:src="@{/pictures/img.png}" alt="" onclick="format('img')"/>
-                <span class="tooltiptext">Image</span>
-            </li>
-            <li id="blank2">
-                <img th:src="@{/pictures/blank.png}"/>
-            </li>
-            <li id="ul" class="tooltip">
-                <img th:src="@{/pictures/ul_icon.png}" alt="" onclick="format('ul')"/>
-                <span class="tooltiptext">Unordered list</span>
-            </li>
-            <li id="ol" class="tooltip">
-                <img th:src="@{/pictures/ol_icon.png}" alt="" onclick="format('ol')"/>
-                <span class="tooltiptext">Ordered list</span>
-            </li>
-            <li id="blank3">
-                <img th:src="@{/pictures/blank.png}"/>
-            </li>
-            <li id="h2" class="tooltip">
-                <img th:src="@{/pictures/heading2.png}" alt="" onclick="format('h2')"/>
-                <span class="tooltiptext">Sub-heading</span>
-            </li>
-            <li id="h3" class="tooltip">
-                <img th:src="@{/pictures/heading3.png}" alt="" onclick="format('h3')"/>
-                <span class="tooltiptext">Sub-sub-heading</span>
-            </li>
-            <li id="blank4">
-                <img th:src="@{/pictures/blank.png}"/>
-            </li>
-            <li id="formula" class="tooltip">
-                <img th:src="@{/pictures/formula.png}" alt="" onclick="format('formula')"/>
-                <span class="tooltiptext">Formula</span>
-            </li>
-            <li id="katex_inline" class="tooltip">
-                <img th:src="@{/pictures/inline_equation.png}" alt="" onclick="format('katex_inline')"/>
-                <span class="tooltiptext">Inline-formula</span>
-            </li>
-            <li id="blank5">
-                <img th:src="@{/pictures/blank.png}"/>
-            </li>
-            <li id="table" class="tooltip">
-                <img th:src="@{/pictures/table.png}" alt="" onclick="format('table')"/>
-                <span class="tooltiptext">Table</span>
-            </li>
-        </ul>
-    </div>
-    <div>
-        <textarea id="content" name="" rows="20" cols="64" required
-                  onkeyup="render_Post(document.querySelector('#content').value, document.getElementById('rendered_content'))"
-                  th:field="*{content}" spellcheck="false" minlength="20" maxlength="23000">
-        </textarea>
+<div th:fragment="editor(action)" id="content_wrapper">
+    <label for="content" class="post_content label_custom nunito_font" th:text="${action}">Content:</label>
+    <div id="content">
+        <textarea style="display: none;"></textarea>
     </div>
 </div>
 
-<div th:fragment="buttons" class="form_element flex" id="buttons">
+<div th:fragment="buttons" class="form_element flex nunito_font" id="buttons">
     <div>
-        <input type="submit" id="submit" value="Submit"/>
+        <input class="input_custom" type="submit" id="submit" value="Submit"/>
     </div>
     <div>
         <button onclick="document.location='/blog'" class="cancel-btn">Cancel</button>
@@ -463,25 +389,38 @@
 </div>
 
 <div th:fragment="editor_scripts">
-    <!--- KaTeX --->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css"
-          integrity="sha384-Um5gpz1odJg5Z4HAmzPtgZKdTBHZdw8S29IecapCSB31ligYPhHQZMIlWLYQGVoc" crossorigin="anonymous">
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js"
-            integrity="sha384-YNHdsYkH6gMx9y3mRkmcJ2mFUjTd0qNQQvY9VYZgQd7DcN7env35GzlmFaZ23JGp"
-            crossorigin="anonymous"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/contrib/auto-render.min.js"
-            integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl"
-            crossorigin="anonymous"></script>
-    <!--  highlight.js  -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/darcula.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
-    <!--  showdown.js  -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.js"
-            integrity="sha512-bvV1V1YSjP1fbfKJjTlNmdnUO2XpsLYUdKwmz5UXBi5U+x40rx9JpA0ooQUMZfpz1MaaBC0ydNLoC6r0sitPUQ=="
-            crossorigin="anonymous">
+    <a id="linkToEditorRoot" th:href="@{/scripts/editor/editor/lib/}"></a>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.0/zepto.js" integrity="sha512-+ab24sSOgbciah+hyqPk/XqGOooAInsofud5JB4AdrRfahahDA/WWnnm6dS/bl7UmN8RW8ZGp85EoWU/aFTUhA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js" integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script  th:src="@{/scripts/editor/editor/editormd.js}"></script>
+    <script  th:src="@{/scripts/editor/editor/languages/en.js}"></script>
+    <link rel="stylesheet" th:href="@{/scripts/editor/editor/css/editormd.css}">
+    <script>
+        let editor = editormd("content", {
+            width                : "100%",
+            height               : "700px",
+            path                 : document.getElementById('linkToEditorRoot').href,
+            theme                : "dark",
+            editorTheme          : "monokai",
+            previewTheme         : "dark",
+            saveHTMLToTextarea   : true,
+            emoji                : true,
+            tex                  : true,
+            taskList : true,
+            flowChart : true,
+            sequenceDiagram : true,
+            // toc : true,
+            tocm : true,
+            tocDropdown : true,
+            markdown : document.getElementById('raw_content') !== null ? document.getElementById('raw_content').value : document.getElementById('raw_content_comment').value,
+            onchange             : function () {
+                // TODO insert value, when input contains errors
+                document.getElementById('raw_content').value = this.getMarkdown();
+                document.getElementById('rendered_content').value = this.getHTML();
+            }
+        });
     </script>
-    <!--  render entered content!  -->
-    <script rel="script" th:src="@{/scripts/renderBlogPost.js}"></script>
 </div>
 </body>
 </html>

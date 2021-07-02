@@ -37,6 +37,8 @@ public class User implements UserDetails {
     private List<Post> posts = new ArrayList<>();
     @OneToMany(mappedBy = "user")
     private List<Comment> comments = new ArrayList<>();
+    @OneToMany(mappedBy = "user")
+    private List<SubComment> subComments;
     @OneToOne
     @JoinColumn(name = "role_id")
     private Role role;
@@ -151,5 +153,13 @@ public class User implements UserDetails {
 
     public void setActivated(boolean activated) {
         this.activated = activated;
+    }
+
+    public List<SubComment> getSubComments() {
+        return subComments;
+    }
+
+    public void setSubComments(List<SubComment> subComments) {
+        this.subComments = subComments;
     }
 }

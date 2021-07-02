@@ -6,10 +6,12 @@ import htlstp.diplomarbeit.binobo.model.User;
 import htlstp.diplomarbeit.binobo.repositories.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional
 public class CommentServiceImpl implements CommentService{
 
     @Autowired
@@ -26,12 +28,46 @@ public class CommentServiceImpl implements CommentService{
     }
 
     @Override
+    public Comment findById(Long id) {
+        return commentRepository.findById(id).orElse(null);
+    }
+
+    @Override
     public void deleteAllByUser(User user) {
         commentRepository.deleteAllByUser(user);
     }
 
     @Override
+    public void deleteAllByPost(Post post) {
+        commentRepository.deleteAllByPost(post);
+    }
+
+    @Override
     public void delete(Comment comment) {
         commentRepository.delete(comment);
+    }
+
+    @Override
+    public void saveComment(Comment comment) {
+        commentRepository.save(comment);
+    }
+
+    @Override
+    public void deleteComment(Comment comment) {
+        commentRepository.delete(comment);
+    }
+
+    @Override
+    public void incrementMarks(Comment comment) throws NullPointerException {
+        if(comment == null)throw new NullPointerException("Post may not be null");
+        comment.setMarks(comment.getMarks() + 1);
+        commentRepository.save(comment);
+    }
+
+    @Override
+    public void decrementMarks(Comment comment) throws NullPointerException {
+        if(comment == null)throw new NullPointerException("Post may not be null");
+        comment.setMarks(comment.getMarks() - 1);
+        commentRepository.save(comment);
     }
 }

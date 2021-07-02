@@ -1,7 +1,10 @@
 package htlstp.diplomarbeit.binobo.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 public class Comment {
@@ -15,13 +18,22 @@ public class Comment {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+    @OneToMany(mappedBy = "comment")
+    private List<SubComment> subComments;
     @Column
     private LocalDateTime createdOn = LocalDateTime.now();
-    @Column(nullable = false)
+    @Column(length = 65535)
+    @NotNull
+    @Size(min = 20, max = 65535)
+    @Lob
     private String content;
-
-//    for sub-sub-comment functionality --> layout problem --> funktioniert das überhaupt so?
-//    private Comment subComment;
+    @Column(length = 65535)
+    @NotNull
+    @Size(min = 20, max = 65535)
+    @Lob
+    private String renderedContent;
+    @Column
+    private Long marks = 0L;
 
     public Comment(){}
 
@@ -63,5 +75,29 @@ public class Comment {
 
     public void setContent(String comment) {
         this.content = comment;
+    }
+
+    public String getRenderedContent() {
+        return renderedContent;
+    }
+
+    public void setRenderedContent(String renderedContent) {
+        this.renderedContent = renderedContent;
+    }
+
+    public Long getMarks() {
+        return marks;
+    }
+
+    public void setMarks(Long marks) {
+        this.marks = marks;
+    }
+
+    public List<SubComment> getSubComments() {
+        return subComments;
+    }
+
+    public void setSubComments(List<SubComment> subComments) {
+        this.subComments = subComments;
     }
 }

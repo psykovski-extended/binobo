@@ -21,7 +21,7 @@ public class Category {
     @NotNull
     @Pattern(regexp = "#[0-9a-fA-F]{6}")
     private String colorCode;
-    @OneToMany(mappedBy = "category") //init with Hibernate.initialize(category.getPosts());
+    @OneToMany(mappedBy = "category")
     private List<Post> posts = new ArrayList<>();
 
     public Category(){}

@@ -5,40 +5,40 @@
 <body>
     <header th:replace="layout :: nav">
     </header>
-    <main class="main_wrapper" id="main_wrapper_on_media">
+    <main class="main_wrapper font_weight900_17px" id="main_wrapper_on_media">
         <header class="content-element thumbnail">
-            <h1>
+            <h1 class="hover_h1 nunito_font">
                 Bionische Roboterhand - Diplomarbeit
             </h1>
         </header>
         <div class="developer">
-            <section class="content-element dominik">
+            <section class="content-element dominik nunito_font">
                 <div class="name">
-                    <h1>Dominik Lovetinsky</h1>
+                    <h1 class="hover_h1">Dominik Lovetinsky</h1>
                 </div>
                 <div class="innerWrapper">
-                    <ul class="u_dominik skills">
+                    <ul class="u_dominik skills" id="skills1">
                         <li>Java</li>
                         <li>Python</li>
                         <li>Web-Development</li>
                         <li>Mathematik</li>
                         <li>Elektronik</li>
-                        <li><a class="linkToDevs" th:href="@{/developer}">Mehr erfahren</a></li>
+                        <li><a class="linkToDevs anker_plain" th:href="@{/developer}">Mehr erfahren</a></li>
                     </ul>
                 </div>
             </section>
-            <section class="content-element philipp">
+            <section class="content-element philipp nunito_font">
                 <div class="name">
-                    <h1>Philipp Maschayechi</h1>
+                    <h1 class="hover_h1">Philipp Maschayechi</h1>
                 </div>
                 <div class="innerWrapper">
-                    <ul class="u_philipp skills">
+                    <ul class="u_philipp skills" id="skills2">
                         <li>Blender</li>
                         <li>C#-Development</li>
                         <li>Raumfahrt</li>
                         <li>Unity</li>
                         <li>Physik</li>
-                        <li><a class="linkToDevs" th:href="@{/developer}">Mehr erfahren</a></li>
+                        <li><a class="linkToDevs anker_plain" th:href="@{/developer}">Mehr erfahren</a></li>
                     </ul>
                 </div>
             </section>

@@ -91,3 +91,23 @@ div.svg_wrapper {
 .entry_wrapper div.details_wrapper .date_time em {
     font-family: "JetBrains mono", monospace;
 }
+
+.category_select_wrapper, .category_select {
+    width: 100%;
+}
+
+.category_select {
+    padding: 10px 10px 10px 50px;
+    border-color: #5a2c03;
+    border-radius: 30px;
+    background-color: #222;
+    border-width: 0 0 3px 0;
+    transition: all .3s ease;
+    font-size: 24px;
+    outline: none;
+}
+
+.category_select:hover {
+    border-color: #ff7800;
+}
+

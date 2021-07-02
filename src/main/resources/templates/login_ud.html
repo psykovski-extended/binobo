@@ -10,21 +10,21 @@
     <link rel="stylesheet" th:href="@{/styles/navbar_style.css}"/>
     <link rel="stylesheet" th:href="@{/styles/mainStyle.css}"/>
     <link rel="stylesheet" th:href="@{/styles/loginFormStyle.css}"/>
-    <link rel="stylesheet" th:href="@{/styles/flash_error.css}"/>
+    <link rel="stylesheet" th:href="@{/styles/flash.css}"/>
     <link rel="icon" th:href="@{/pictures/icon_v2_or.svg}" type="image/icon type"/>
 </head>
 <body>
 <header th:replace="layout :: nav">
 </header>
 
-<main class="main_wrapper" id="main_wrapper_on_media">
+<main class="main_wrapper nunito_font" id="main_wrapper_on_media">
     <div class="form_wrapper">
         <div class="form_visible">
             <div class="flex loginHeader_Wrapper">
                 <div class="loginHeader_Wrapper">
                     <h1 class="loginHeader">Sign</h1>
                 </div>
-                <div class="onoffswitch">
+                <div class="onoffswitch nunito_font">
                     <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" tabindex="0" checked/>
                     <label class="onoffswitch-label" for="myonoffswitch" onclick="changeForm()">
                         <span class="onoffswitch-inner"></span>
@@ -37,7 +37,7 @@
             <div th:replace="layout :: flash_warn"></div>
             <div th:replace="layout :: flash_info"></div>
             <!--          Register Form            -->
-            <form class="form register" id="register" th:action="@{/login/register}" method="post" th:object="${userDTO}">
+            <form class="form register nunito_font" id="register" th:action="@{/login/register}" method="post" th:object="${userDTO}">
                 <div class="flex on_media_flex">
                     <div class="first_name sign_up" id="fn">
                         <label for="first_name" class="label_inner">Vorname:</label><br>
@@ -85,7 +85,7 @@
                 </div>
             </form>
             <!--          Login Form            -->
-            <form class="form login" id="login" th:action="@{/login}" method="post" th:object="${user}">
+            <form class="form login nunito_font" id="login" th:action="@{/login}" method="post" th:object="${user}">
                 <div class="username">
                     <label for="username" class="label_inner">Username:</label><br/>
                     <input th:field="*{username}" type="text" id="username1" name="username" placeholder="BinoboIsAwesome" required/>

@@ -22,21 +22,31 @@ public class Post {
     private String title;
     @Column(length = 65535)
     @NotNull
-    @Size(min = 20, max=45000)
+    @Size(min = 20, max = 65535)
+    @Lob
     private String content;
+    @Column(length = 65535)
+    @NotNull
+    @Size(min = 20, max = 65535)
+    @Lob
+    private String renderedContent;
     @Column
     @NotNull
     private LocalDateTime createdOn = LocalDateTime.now();
     @Column
     private LocalDateTime updatedOn;
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
+//    @NotNull
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
-    @OneToMany(mappedBy = "post")
+    @OneToMany(mappedBy = "post", cascade = {CascadeType.ALL})
     private List<Comment> comments = new ArrayList<>();
+    @Column
+    private Long marks = 0L;
 
     public Post(){}
 
@@ -110,5 +120,21 @@ public class Post {
 
     public void setComments(List<Comment> comments) {
         this.comments = comments;
+    }
+
+    public String getRenderedContent() {
+        return renderedContent;
+    }
+
+    public void setRenderedContent(String renderedContent) {
+        this.renderedContent = renderedContent;
+    }
+
+    public Long getMarks() {
+        return marks;
+    }
+
+    public void setMarks(Long marks) {
+        this.marks = marks;
     }
 }

@@ -1,12 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@600;800;900&display=swap');
 
 * {
-    font-family: 'Nunito', sans-serif;
-    font-weight: 800;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
     background-color: transparent;
+}
+
+/*new*/
+.nunito_font, .nunito_font * {
+    font-family: 'Nunito', sans-serif;
+    /*font-weight: 800;*/
+}
+
+.nunito_font_solo {
+    font-family: 'Nunito', sans-serif;
 }
 
 body {
@@ -21,16 +29,18 @@ img, svg {
     overflow: unset;
 }
 
-li, a, button {
-    font-family: 'Nunito', sans-serif;
+/*new*/
+.font_weight900_17px, .font_weight900_17px * {
     font-weight: 900;
     font-size: 17px;
     color: #ff7800;
+    background-color: transparent;
 }
 
-header, ul, li, h1, a {
+/*new*/
+.navbar_header {
     background-color: #222222;
-    z-index: 999999;
+    z-index: 9999999;
 }
 
 ul.navigation{
@@ -73,7 +83,8 @@ ul.navigation{
     alignment: center;
 }
 
-div {
+/*new*/
+.gray_bg {
     background-color: #222;
 }
 
@@ -99,18 +110,16 @@ div {
     transition: all 0.3s ease 0s;
 }
 
-.navigation li a:hover, a:hover, button:hover {
+.navigation li a:hover, .anker_plain:hover, button:hover {
     color: white;
     text-decoration: underline;
-    padding-top: -4px;
 }
-
-a {
+/*new*/
+.anker_plain {
     text-decoration: none;
 }
 
-h1 {
-    font-family: 'Nunito', sans-serif;
+.h1_bold {
     font-weight: 900;
 }
 

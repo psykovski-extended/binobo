@@ -5,10 +5,12 @@ import htlstp.diplomarbeit.binobo.model.User;
 import htlstp.diplomarbeit.binobo.repositories.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional
 public class PostServiceImpl implements PostService {
     @Autowired
     private PostRepository postRepository;
@@ -48,5 +50,19 @@ public class PostServiceImpl implements PostService {
     @Override
     public void deleteAllByUser(User user) {
         postRepository.deleteAllByUser(user);
+    }
+
+    @Override
+    public void incrementMarks(Post post) throws NullPointerException {
+        if(post == null)throw new NullPointerException("Post may not be null");
+        post.setMarks(post.getMarks() + 1);
+        postRepository.save(post);
+    }
+
+    @Override
+    public void decrementMarks(Post post) throws NullPointerException {
+        if(post == null)throw new NullPointerException("Post may not be null");
+        post.setMarks(post.getMarks() - 1);
+        postRepository.save(post);
     }
 }

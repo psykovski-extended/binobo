@@ -6,6 +6,4 @@ public class UserAlreadyExistException extends Exception {
         super(message);
     }
 
-    // TODO implement User already exists exception
-
 }

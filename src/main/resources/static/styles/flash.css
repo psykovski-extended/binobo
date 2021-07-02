@@ -1,4 +1,4 @@
-.flash_error {
+.flash {
     padding: 10px;
     border-radius: 35px;
     margin-top: 10px;
@@ -8,13 +8,26 @@
     border: solid #222 3px;
     font-size: 30px;
 }
-
-.flash_error .strong {
+/*TODO*/
+.flash .strong {
     text-align:center;
+    color: #222;
 }
 
-.flash_error, .strong {
+.flash_success, .flash_success .strong {
+    background-color: #0E9A00;
+}
+
+.flash_info, .flash_info .strong {
+    background-color: #0E0EFF;
+}
+
+.flash_error, .flash_error .strong {
     background-color: #983111;
+}
+
+.flash_warn, .flash_warn .strong {
+    background-color: #7d9726;
 }
 
 .field_error {

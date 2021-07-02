@@ -1,12 +1,10 @@
-- Script schreiben, um code-blöcke an execution zu hindern
-- visual feedback und submit-blocker einbauen wenn code-block erkannt wurde
-- vl regEx verwenden, akzeptable tags definieren, alle anderen werden geblockt (<br>, alle anderen werden verboten)
+- css und html umschreiben, damit editor.md nicht durch diese beeinflusst wird
 
 - rest-controller schreiben für simulator und werteerfassung (delete-funktion einbauen damit datenbank nicht zu groß wird)
 
 - exploit schutz einbauen (mit werner reden):
     - sql-injection
-    
+  
 - blog fertigstellen
 - admin-pages fertigstellen
 - email-verification einbauen! (email-server aufsetzten)
@@ -19,7 +17,3 @@
   
 - Sponsoren-seite machen
 - Projektübersicht machen, so weit wie möglich zur Zeit
-
-```javascript
-let i = 10;
-```

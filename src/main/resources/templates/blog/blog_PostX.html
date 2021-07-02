@@ -1,39 +1,311 @@
 <!DOCTYPE html>
-<html lang="de" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="layout :: head('Blog')">
-<!--  Replace with current blog id  -->
+<html lang="de" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout :: head(${post.title})">
+    <!--  Replace with current blog id  -->
 </head>
 <link rel="stylesheet" th:href="@{/styles/textFieldStyle.css}"/>
 <body>
 <header th:replace="layout :: nav">
 </header>
-<main class="main_wrapper">
-    <input type="hidden" th:value="${post.content}" id="raw_content">
-    <!--        <input type="hidden" th:value="${post.title}" id="title">-->
-    <input type="hidden" th:value="${user.username}" id="user">
+<div th:replace="layout :: flash_err"></div>
+<div th:replace="layout :: flash_succ"></div>
+<div th:replace="layout :: flash_warn"></div>
+<div th:replace="layout :: flash_info"></div>
+<div id="post_metadata">
+    <input type="hidden" th:value="${post.content}" id="content_post">
+    <input type="hidden" th:value="*{post.username}" id="user">
+</div>
+<main class="main_wrapper_blog">
 
-    <div>
-        <h1 id="post_heading" th:text="${post.title}"></h1>
+    <div class="rendered_post">
+        <div class="post_title_wrapper">
+            <div class="post_title font_jetbrains_mono">
+                <h1 class="font_color_ff7800 font_weight800" th:text="${post.title}"></h1>
+            </div>
+            <div class="mark_inc_dec_wrapper font_jetbrains_mono">
+                <!--                TODO change with svg  -->
+                <form th:action="@{|/blog/${post.id}/incrementMark|}" method="post">
+                    <button type="submit" class="mark_inc_dec">
+                        <svg id="bebdedb3-8fed-42d7-9f02-97a7d9a946b4" data-name="Ebene 1"
+                             xmlns="http://www.w3.org/2000/svg"
+                             viewBox="0 0 412.071 245.596">
+                            <defs>
+                                <style>.b8e47e87-f380-4d52-ba88-752db27c399d {
+                                    fill: #999;
+                                    stroke: #999;
+                                    stroke-miterlimit: 10;
+                                    stroke-width: 5px;
+                                }
+                                </style>
+                            </defs>
+                            <title>This is a useful post!</title>
+                            <polygon class="b8e47e87-f380-4d52-ba88-752db27c399d"
+                                     points="206.036 3.536 6.036 203.536 406.036 203.536 206.036 3.536"/>
+                            <rect class="b8e47e87-f380-4d52-ba88-752db27c399d" x="106.036" y="180.459" width="200"
+                                  height="62.637"/>
+                        </svg>
+                    </button>
+                </form>
+                <div class="marks">
+                    <p class="font_color_ff7800 font_weight900_17px" th:text="${post.marks}"></p>
+                </div>
+                <form th:action="@{|/blog/${post.id}/decrementMark|}" method="post">
+                    <button type="submit" class="mark_inc_dec">
+                        <svg id="b245a661-8f97-48b2-bf33-69cf27d346e6" data-name="Ebene 1"
+                             xmlns="http://www.w3.org/2000/svg"
+                             viewBox="0 0 412.071 245.596">
+                            <defs>
+                                <style>.e8156cb9-9a48-44fd-9110-d4e7012063b9 {
+                                    fill: #999;
+                                    stroke: #999;
+                                    stroke-miterlimit: 10;
+                                    stroke-width: 5px;
+                                }
+                                </style>
+                            </defs>
+                            <title>This post is not useful!</title>
+                            <polygon class="e8156cb9-9a48-44fd-9110-d4e7012063b9"
+                                     points="206.036 242.06 6.036 42.06 406.036 42.06 206.036 242.06"/>
+                            <rect class="e8156cb9-9a48-44fd-9110-d4e7012063b9" x="106.036" y="2.5" width="200"
+                                  height="62.637"/>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div id="rendered_content_div">
+            <textarea style="display: none;"></textarea>
+        </div>
+        <div class="edit_post" th:if="${#authentication.getName()} == ${post.getUsername()}">
+            <a th:href="@{|/blog/${post.id}/edit|}">
+                <svg id="edit_post" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg"
+                     viewBox="0 0 356.678 356.143">
+                    <title>edit</title>
+                    <path d="M232.978,171.131l86.953,87.434,12.5,12.566V254.16L279.7,307.1l-84.058,84.4-19.322,19.4c-10.913,10.956,6.031,27.912,16.97,16.97l36.678-36.689L308.7,312.43l74.046-74.069c17.383-17.388,35.912-33.02,42.879-57.814,8.158-29.034-.34-61.677-22.348-82.474-21.986-20.777-55.029-28.2-83.721-18.263-23.44,8.122-39.157,26.931-56.14,43.914l-74.392,74.392L110.641,276.5,84.775,302.363c-4.835,4.835-11.993,10.061-12.4,17.384-.665,11.969,0,24.166,0,36.149v63.838l20.485-8.486-.5-.493L83.876,431.24l88.682,0h12.591c15.443,0,15.469-24,0-24l-88.682,0H83.876c-10.347,0-15.9,13.157-8.485,20.485l.5.494c7.374,7.291,20.485,1.957,20.485-8.485v-100l-3.515,8.485,28-28,63.606-63.606,69.871-69.871,45.688-45.688c5.027-5.027,9.666-9.6,15.545-13.127a59.488,59.488,0,0,1,60.114-.709c19.461,11.211,29.92,32.183,28.967,53.869a59.966,59.966,0,0,1-9.923,29.9,48.654,48.654,0,0,1-6.325,7.765c-12.049,12.225-24.274,24.281-36.41,36.42L285.03,302.158l-67.549,67.57L178.2,409.02l-1.876,1.877,16.97,16.97,52.725-52.937,84.057-84.4,19.323-19.4a12.19,12.19,0,0,0,0-16.971l-86.954-87.434-12.5-12.566c-10.906-10.966-27.879,6-16.97,16.971Z"
+                          transform="translate(-71.989 -75.443)"/>
+                </svg>
+            </a>
+        </div>
+        <div class="delete_post" th:if="${#authentication.getName()} == ${post.getUsername()}">
+            <a th:href="@{|/blog/${post.id}/delete|}">
+                <svg id="delete_post" data-name="Ebene 2" xmlns="http://www.w3.org/2000/svg"
+                     viewBox="0 0 261.561 323.701">
+                    <defs>
+                        <style>.fea202c4-e885-4ab2-934e-a2621f8da147{fill:#a30000;}</style>
+                    </defs>
+                    <title>delete</title>
+                    <path class="fea202c4-e885-4ab2-934e-a2621f8da147"
+                          d="M190.178,226.707V359.056c0,15.443,24,15.469,24,0V226.707c0-15.443-24-15.469-24,0Z"
+                          transform="translate(-120.73 -88.071)"/>
+                    <path class="fea202c4-e885-4ab2-934e-a2621f8da147"
+                          d="M289,226.637v132.35c0,15.443,24,15.468,24,0V226.637c0-15.442-24-15.468-24,0Z"
+                          transform="translate(-120.73 -88.071)"/>
+                    <path class="fea202c4-e885-4ab2-934e-a2621f8da147"
+                          d="M239.335,227.747V360.1c0,15.443,24,15.468,24,0V227.747c0-15.443-24-15.468-24,0Z"
+                          transform="translate(-120.73 -88.071)"/>
+                    <path class="fea202c4-e885-4ab2-934e-a2621f8da147"
+                          d="M136.35,199.238l6.087,136.615,1.544,34.649c.454,10.207.121,20.454,6.389,29.12,3.061,4.232,7.245,7.977,12.275,9.662,3.282,1.1,6.947,1.145,10.409,1.319,10,.5,20.039.565,30.048.773,28.629.6,57.243.458,85.872,0q13.5-.217,27-.444c10.593-.172,21.264.457,30.522-5.629a33.3,33.3,0,0,0,15.081-23.854c1.01-8.366.967-16.836,1.256-25.251q2.665-77.784,5.333-155.568c.53-15.447-23.471-15.427-24,0l-4.41,128.643-1.094,31.911c-.171,4.974-.153,10-.513,14.958-.07.964-.2,1.925-.305,2.885-.064.606-.1,1.27-.2,1.878.677-3.906.093-.588-.245-.115-1.051,1.47.741-1.35-.272.406-.081.141-1.51,2.272-.933,1.528a16.489,16.489,0,0,1-2.444,2.261c-3.546,2.476-5.392,1.75-9.493,1.814q-13.422.213-26.845.439c-25.225.417-50.443.747-75.672.451-17.25-.2-34.5-.57-51.739-1.265-4.006-.162,2.1.3,1.339.817-.452.307-2.24-2.675-2.144-2.482a13.005,13.005,0,0,1-.713-2.631c.086.369.2,2.116.016.021-.226-2.541-.227-5.133-.341-7.682l-1.411-31.679-6.4-143.545c-.288-6.476-5.309-12-12-12-6.276,0-12.29,5.494-12,12Z"
+                          transform="translate(-120.73 -88.071)"/>
+                    <path class="fea202c4-e885-4ab2-934e-a2621f8da147"
+                          d="M357.4,201.817c5.174-.086,11.2-.741,15.689-3.552,6.253-3.915,8.341-10.135,8.8-17.148.653-9.954.648-20.428-1.089-30.289a27.945,27.945,0,0,0-20.04-21.856,37.711,37.711,0,0,0-9.147-.731c-17.628-.109-35.259-.028-52.887,0q-69.239.109-138.478.341c-4.793.015-9.7-.219-14.458.4-12.723,1.649-21.516,10.125-23.918,22.757-1.869,9.83-1,20.37-.5,30.317.769,15.335,24,15.551,24,0h-24c.789,9.264,6.237,17.138,15.7,19.2a42.714,42.714,0,0,0,9.6.764c3.871-.041,7.743-.053,11.615-.066q23.552-.081,47.1-.078,59.745-.05,119.489-.038c10.84,0,21.681.043,32.521-.022,15.439-.092,15.472-24.092,0-24-25.708.154-51.422.024-77.131.029q-55.764.009-111.527.08-8.9.019-17.8.061c-1.554.009-3.107.028-4.66.039-.358,0-.716.023-1.073.021-.634,0-1.291-.049-1.925-.029-1.525.048-.749-.534-.274.1,1.184,1.587,2.184,1.8,2.365,3.932-.549-6.457-5.122-12-12-12a12.156,12.156,0,0,0-12,12h24c-.371-7.411-.629-14.9-.386-22.313a10.174,10.174,0,0,1,.536-3.935,9.625,9.625,0,0,1,.9-2.538c-.561.735-1.072-.237.609-.279-.186,0-2.4.7.429-.052.707-.187,1.409-.325,2.126-.459-2.774.519-.335.1.314.113,2.805.071,5.618.006,8.423,0q25.126-.076,50.253-.144c43.808-.118,87.616-.273,131.424-.233,4.973,0,10.035-.244,15,.063.087,0,.175,0,.262,0-2.173-.174.277.092.411.229-1.02-1.052,1.926,2.711.385.344,2.1,3.22,1.569,3.954,1.842,8.284.341,5.419.27,10.815.118,16.238-.028.986-.035,1.973-.088,2.958q-.049,1.222-.179,2.439.093-3.736,3.069-4.884l1.3-.727q-1.055.3-2.132.493a18.183,18.183,0,0,1-2.584.164C341.974,178.075,341.926,202.076,357.4,201.817Z"
+                          transform="translate(-120.73 -88.071)"/>
+                    <path class="fea202c4-e885-4ab2-934e-a2621f8da147"
+                          d="M223.577,130.115l-.055-10.437c-.007-1.434-.143-2.916-.034-4.347-.177,2.32.239-.913.064-.564.812-1.62.224-.544,1.282-1.977,1.387-1.879.467.4-.3-.113q-1.522.489.743-.208l.993-.226c-2.646.6-.1.055.636.08,13.858.471,27.8.114,41.664.171,2.278.009,4.555-.054,6.824.163,1.777.169,1.12-.225,2.544.612-1.321-.776,1,.931,1.269,1.233-1.045-1.161.1.193.489.779,1.148,1.743,1.1.6.333.232a9.921,9.921,0,0,1,.383,1.149q.4,1.513-.129-1.634c.6.1.121,13.8.121,14.775,0,15.443,24,15.469,24,0,0-6.93.938-14.93-1.583-21.512-2.6-6.775-7.365-12.9-13.853-16.339-6.228-3.3-13.517-3.43-20.4-3.458l-26.161-.108c-7.566-.031-16.12-1.12-23.512.94a26.614,26.614,0,0,0-16.666,14.661c-3.776,8.173-2.7,17.362-2.655,26.128.08,15.439,24.081,15.472,24,0Z"
+                          transform="translate(-120.73 -88.071)"/>
+                </svg>
+            </a>
+        </div>
+<!--    ---------------------------------------------------------------    -->
+        <div class="edit_post" sec:authorize="hasAnyRole('ADMIN', 'OPERATOR')" th:if="${#authentication.getName()} != ${post.getUsername()}">
+            <a th:href="@{|/blog/${post.id}/edit|}">
+                <svg id="edit_post" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg"
+                     viewBox="0 0 356.678 356.143">
+                    <title>edit</title>
+                    <path d="M232.978,171.131l86.953,87.434,12.5,12.566V254.16L279.7,307.1l-84.058,84.4-19.322,19.4c-10.913,10.956,6.031,27.912,16.97,16.97l36.678-36.689L308.7,312.43l74.046-74.069c17.383-17.388,35.912-33.02,42.879-57.814,8.158-29.034-.34-61.677-22.348-82.474-21.986-20.777-55.029-28.2-83.721-18.263-23.44,8.122-39.157,26.931-56.14,43.914l-74.392,74.392L110.641,276.5,84.775,302.363c-4.835,4.835-11.993,10.061-12.4,17.384-.665,11.969,0,24.166,0,36.149v63.838l20.485-8.486-.5-.493L83.876,431.24l88.682,0h12.591c15.443,0,15.469-24,0-24l-88.682,0H83.876c-10.347,0-15.9,13.157-8.485,20.485l.5.494c7.374,7.291,20.485,1.957,20.485-8.485v-100l-3.515,8.485,28-28,63.606-63.606,69.871-69.871,45.688-45.688c5.027-5.027,9.666-9.6,15.545-13.127a59.488,59.488,0,0,1,60.114-.709c19.461,11.211,29.92,32.183,28.967,53.869a59.966,59.966,0,0,1-9.923,29.9,48.654,48.654,0,0,1-6.325,7.765c-12.049,12.225-24.274,24.281-36.41,36.42L285.03,302.158l-67.549,67.57L178.2,409.02l-1.876,1.877,16.97,16.97,52.725-52.937,84.057-84.4,19.323-19.4a12.19,12.19,0,0,0,0-16.971l-86.954-87.434-12.5-12.566c-10.906-10.966-27.879,6-16.97,16.971Z"
+                          transform="translate(-71.989 -75.443)"/>
+                </svg>
+            </a>
+        </div>
+        <div class="delete_post" sec:authorize="hasAnyRole('OPERATOR')" th:if="${#authentication.getName()} != ${post.getUsername()}">
+            <a th:href="@{|/blog/${post.id}/delete|}">
+                <svg id="delete_post" data-name="Ebene 2" xmlns="http://www.w3.org/2000/svg"
+                     viewBox="0 0 261.561 323.701">
+                    <defs>
+                        <style>.fea202c4-e885-4ab2-934e-a2621f8da147{fill:#a30000;}</style>
+                    </defs>
+                    <title>delete</title>
+                    <path class="fea202c4-e885-4ab2-934e-a2621f8da147"
+                          d="M190.178,226.707V359.056c0,15.443,24,15.469,24,0V226.707c0-15.443-24-15.469-24,0Z"
+                          transform="translate(-120.73 -88.071)"/>
+                    <path class="fea202c4-e885-4ab2-934e-a2621f8da147"
+                          d="M289,226.637v132.35c0,15.443,24,15.468,24,0V226.637c0-15.442-24-15.468-24,0Z"
+                          transform="translate(-120.73 -88.071)"/>
+                    <path class="fea202c4-e885-4ab2-934e-a2621f8da147"
+                          d="M239.335,227.747V360.1c0,15.443,24,15.468,24,0V227.747c0-15.443-24-15.468-24,0Z"
+                          transform="translate(-120.73 -88.071)"/>
+                    <path class="fea202c4-e885-4ab2-934e-a2621f8da147"
+                          d="M136.35,199.238l6.087,136.615,1.544,34.649c.454,10.207.121,20.454,6.389,29.12,3.061,4.232,7.245,7.977,12.275,9.662,3.282,1.1,6.947,1.145,10.409,1.319,10,.5,20.039.565,30.048.773,28.629.6,57.243.458,85.872,0q13.5-.217,27-.444c10.593-.172,21.264.457,30.522-5.629a33.3,33.3,0,0,0,15.081-23.854c1.01-8.366.967-16.836,1.256-25.251q2.665-77.784,5.333-155.568c.53-15.447-23.471-15.427-24,0l-4.41,128.643-1.094,31.911c-.171,4.974-.153,10-.513,14.958-.07.964-.2,1.925-.305,2.885-.064.606-.1,1.27-.2,1.878.677-3.906.093-.588-.245-.115-1.051,1.47.741-1.35-.272.406-.081.141-1.51,2.272-.933,1.528a16.489,16.489,0,0,1-2.444,2.261c-3.546,2.476-5.392,1.75-9.493,1.814q-13.422.213-26.845.439c-25.225.417-50.443.747-75.672.451-17.25-.2-34.5-.57-51.739-1.265-4.006-.162,2.1.3,1.339.817-.452.307-2.24-2.675-2.144-2.482a13.005,13.005,0,0,1-.713-2.631c.086.369.2,2.116.016.021-.226-2.541-.227-5.133-.341-7.682l-1.411-31.679-6.4-143.545c-.288-6.476-5.309-12-12-12-6.276,0-12.29,5.494-12,12Z"
+                          transform="translate(-120.73 -88.071)"/>
+                    <path class="fea202c4-e885-4ab2-934e-a2621f8da147"
+                          d="M357.4,201.817c5.174-.086,11.2-.741,15.689-3.552,6.253-3.915,8.341-10.135,8.8-17.148.653-9.954.648-20.428-1.089-30.289a27.945,27.945,0,0,0-20.04-21.856,37.711,37.711,0,0,0-9.147-.731c-17.628-.109-35.259-.028-52.887,0q-69.239.109-138.478.341c-4.793.015-9.7-.219-14.458.4-12.723,1.649-21.516,10.125-23.918,22.757-1.869,9.83-1,20.37-.5,30.317.769,15.335,24,15.551,24,0h-24c.789,9.264,6.237,17.138,15.7,19.2a42.714,42.714,0,0,0,9.6.764c3.871-.041,7.743-.053,11.615-.066q23.552-.081,47.1-.078,59.745-.05,119.489-.038c10.84,0,21.681.043,32.521-.022,15.439-.092,15.472-24.092,0-24-25.708.154-51.422.024-77.131.029q-55.764.009-111.527.08-8.9.019-17.8.061c-1.554.009-3.107.028-4.66.039-.358,0-.716.023-1.073.021-.634,0-1.291-.049-1.925-.029-1.525.048-.749-.534-.274.1,1.184,1.587,2.184,1.8,2.365,3.932-.549-6.457-5.122-12-12-12a12.156,12.156,0,0,0-12,12h24c-.371-7.411-.629-14.9-.386-22.313a10.174,10.174,0,0,1,.536-3.935,9.625,9.625,0,0,1,.9-2.538c-.561.735-1.072-.237.609-.279-.186,0-2.4.7.429-.052.707-.187,1.409-.325,2.126-.459-2.774.519-.335.1.314.113,2.805.071,5.618.006,8.423,0q25.126-.076,50.253-.144c43.808-.118,87.616-.273,131.424-.233,4.973,0,10.035-.244,15,.063.087,0,.175,0,.262,0-2.173-.174.277.092.411.229-1.02-1.052,1.926,2.711.385.344,2.1,3.22,1.569,3.954,1.842,8.284.341,5.419.27,10.815.118,16.238-.028.986-.035,1.973-.088,2.958q-.049,1.222-.179,2.439.093-3.736,3.069-4.884l1.3-.727q-1.055.3-2.132.493a18.183,18.183,0,0,1-2.584.164C341.974,178.075,341.926,202.076,357.4,201.817Z"
+                          transform="translate(-120.73 -88.071)"/>
+                    <path class="fea202c4-e885-4ab2-934e-a2621f8da147"
+                          d="M223.577,130.115l-.055-10.437c-.007-1.434-.143-2.916-.034-4.347-.177,2.32.239-.913.064-.564.812-1.62.224-.544,1.282-1.977,1.387-1.879.467.4-.3-.113q-1.522.489.743-.208l.993-.226c-2.646.6-.1.055.636.08,13.858.471,27.8.114,41.664.171,2.278.009,4.555-.054,6.824.163,1.777.169,1.12-.225,2.544.612-1.321-.776,1,.931,1.269,1.233-1.045-1.161.1.193.489.779,1.148,1.743,1.1.6.333.232a9.921,9.921,0,0,1,.383,1.149q.4,1.513-.129-1.634c.6.1.121,13.8.121,14.775,0,15.443,24,15.469,24,0,0-6.93.938-14.93-1.583-21.512-2.6-6.775-7.365-12.9-13.853-16.339-6.228-3.3-13.517-3.43-20.4-3.458l-26.161-.108c-7.566-.031-16.12-1.12-23.512.94a26.614,26.614,0,0,0-16.666,14.661c-3.776,8.173-2.7,17.362-2.655,26.128.08,15.439,24.081,15.472,24,0Z"
+                          transform="translate(-120.73 -88.071)"/>
+                </svg>
+            </a>
+        </div>
     </div>
-    <div class="rendered_Content" id="rendered_content_div">
+    <div class="rendered_comments">
+        <div class="comments" th:each="comment : ${comments}">
+            <div class="post_title_wrapper">
+                <div class="post_title font_jetbrains_mono">
+                    <h4 class="font_color_ff7800 font_weight800" th:text="${comment.createdOn.toString().replaceAll('T', ' ')}"></h4>
+                </div>
+                <hr class="vertical_hr">
+                <div class="post_title font_jetbrains_mono">
+                    <h2 class="font_color_ff7800 font_weight800" th:text="${comment.user.username}"></h2>
+                </div>
+                <div class="mark_inc_dec_wrapper font_jetbrains_mono">
+                    <!--                TODO only display, if this belongs to currently logged in user or if the ranking
+                                        TODO of the logged in person is admin or operator -> op: delete and edit posts, admin: only edit posts  -->
+                    <form th:action="@{|/blog/${comment.id}/incrementMarkComment|}" method="post">
+                        <button type="submit" class="mark_inc_dec">
+                            <svg id="bebdedb3-8fed-42d7-9f02-97a7d9a946b4" data-name="Ebene 1"
+                                 xmlns="http://www.w3.org/2000/svg"
+                                 viewBox="0 0 412.071 245.596">
+                                <defs>
+                                    <style>
+                                        .b8e47e87-f380-4d52-ba88-752db27c399d {
+                                            fill: #999;
+                                            stroke: #999;
+                                            stroke-miterlimit: 10;
+                                            stroke-width: 5px;
+                                        }
+                                    </style>
+                                </defs>
+                                <title>This comment is useful!</title>
+                                <polygon class="b8e47e87-f380-4d52-ba88-752db27c399d"
+                                         points="206.036 3.536 6.036 203.536 406.036 203.536 206.036 3.536"/>
+                                <rect class="b8e47e87-f380-4d52-ba88-752db27c399d" x="106.036" y="180.459" width="200"
+                                      height="62.637"/>
+                            </svg>
+                        </button>
+                    </form>
+                    <div class="marks">
+                        <p class="font_color_ff7800 font_weight900_17px" th:text="${comment.marks}"></p>
+                    </div>
+                    <form th:action="@{|/blog/${comment.id}/decrementMarkComment|}" method="post">
+                        <button type="submit" class="mark_inc_dec">
+                            <svg id="b245a661-8f97-48b2-bf33-69cf27d346e6" data-name="Ebene 1"
+                                 xmlns="http://www.w3.org/2000/svg"
+                                 viewBox="0 0 412.071 245.596">
+                                <defs>
+                                    <style>.e8156cb9-9a48-44fd-9110-d4e7012063b9 {
+                                        fill: #999;
+                                        stroke: #999;
+                                        stroke-miterlimit: 10;
+                                        stroke-width: 5px;
+                                    }
+                                    </style>
+                                </defs>
+                                <title>This comment is not useful!</title>
+                                <polygon class="e8156cb9-9a48-44fd-9110-d4e7012063b9"
+                                         points="206.036 242.06 6.036 42.06 406.036 42.06 206.036 242.06"/>
+                                <rect class="e8156cb9-9a48-44fd-9110-d4e7012063b9" x="106.036" y="2.5" width="200"
+                                      height="62.637"/>
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div th:id="|rendered_comment_${comment.id}|" class="rendered_comments_inner">
+                <textarea style="display: none;"></textarea>
+                <input type="hidden" th:value="${comment.content}">
+            </div>
+            <hr class="hr_blog_preview">
+        </div>
+<!--        <hr class="hr_blog_preview">-->
+        <form method="post" th:action="@{|/blog/post/${post.id}/addComment|}" th:object="${comment}">
+            <div th:replace="layout :: editor('Post An Answer:')"></div>
+            <!--       Here will the rendered content get added to for instant response         -->
+            <div class="rendered_Content" id="rendered_content"></div>
+            <div th:replace="layout :: buttons"></div>
 
+            <input type="hidden" th:field="*{content}" id="raw_content_comment">
+            <input type="hidden" th:field="*{renderedContent}" id="rendered_content_comment">
+            <input type="hidden" th:field="*{user.username}" id="user_comment">
+        </form>
     </div>
-    <form method="post" th:action="@{|/blog/post/${post.id}/addComment|}" th:object="${comment}">
-        <div th:replace="layout :: editor('Add a Comment:')"></div>
-        <!--       Here will the rendered content will get added to for instant response         -->
-        <div class="rendered_Content" id="rendered_content"></div>
-        <div th:replace="layout :: buttons"></div>
-    </form>
 </main>
 
 <div th:replace="layout :: editor_scripts"></div>
-
 <script>
-    let content = document.querySelector("#raw_content").value;
-    let username = document.querySelector("#user").value;
-    let outputTo = document.querySelector("#rendered_content_div");
+    <!--  editor for previewing post entry  -->
+    let editor_post_rendered = editormd('rendered_content_div', {
+        width: "100%",
+        height: "700px",
+        path: "../scripts/editor/editor/lib/",
+        theme: "dark",
+        editorTheme: "monokai",
+        previewTheme: "dark",
+        readOnly: true,
+        tex: true,
+        taskList : true,
+        flowChart : true,
+        sequenceDiagram : true,
+        // toc : true,
+        tocm : true,
+        tocDropdown : true,
+        markdown : document.querySelector('#content_post').value,
+        onload: function () {
+            // this.insertValue(document.querySelector('#content_post').value);
+            let username = document.querySelector('#user').value;
 
-    render_Post(content, outputTo);
+            let node = document.querySelector('#post_metadata');
+
+            node.parentNode.removeChild(node);
+            this.previewing();
+        }
+    });
+
+    // editor for adding a new comment
+    editor.settings.onchange = function () {
+        document.querySelector('#raw_content_comment').value = editor.getMarkdown();
+        document.querySelector('#rendered_content_comment').value = editor.getHTML();
+    }
+
+    // query for all rendered comments
+    let rendered_comments = document.getElementsByClassName('rendered_comments_inner');
+    for(let i of rendered_comments) {
+        let input = i.getElementsByTagName('input')[0];
+
+        editormd(i.id, {
+            width: "100%",
+            height: "700px",
+            path: "../scripts/editor/editor/lib/",
+            theme: "dark",
+            editorTheme: "monokai",
+            previewTheme: "dark",
+            readOnly: true,
+            tex: true,
+            taskList : true,
+            flowChart : true,
+            sequenceDiagram : true,
+            // toc : true,
+            tocm : true,
+            tocDropdown : true,
+            markdown : unescape(input.value),
+            onload: function () {
+                input.parentNode.removeChild(input);
+                this.previewing();
+            }
+        });
+    }
+
 </script>
+
+<!--  scripts  -->
+<script rel="script" th:src="@{/scripts/onscroll.js}"></script>
 </body>
 </html>
