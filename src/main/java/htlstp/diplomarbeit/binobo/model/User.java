@@ -1,5 +1,6 @@
 package htlstp.diplomarbeit.binobo.model;
 
+import htlstp.diplomarbeit.binobo.model.robo.RobotData;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -39,6 +40,8 @@ public class User implements UserDetails {
     private List<Comment> comments = new ArrayList<>();
     @OneToMany(mappedBy = "user")
     private List<SubComment> subComments;
+//    @OneToMany(mappedBy = "user")
+//    private List<RobotData> robotData;
     @OneToOne
     @JoinColumn(name = "role_id")
     private Role role;
@@ -162,4 +165,12 @@ public class User implements UserDetails {
     public void setSubComments(List<SubComment> subComments) {
         this.subComments = subComments;
     }
+
+//    public List<RobotData> getRobotData() {
+//        return robotData;
+//    }
+//
+//    public void setRobotData(List<RobotData> robotData) {
+//        this.robotData = robotData;
+//    }
 }
