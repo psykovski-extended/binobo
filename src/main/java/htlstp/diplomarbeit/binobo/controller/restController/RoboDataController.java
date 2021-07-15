@@ -13,14 +13,14 @@ import java.util.List;
 @ResponseBody
 @RequestMapping(value = "/roboData/rest_api")
 public class RoboDataController { // TODO implement all functions
-
+    // FIXME change dependency injection to constructor-based-injection
     @Autowired
     RobotDataService robotDataService;
 
-    // Funktion to watch the timestamp, if older than 5mins, then it must be deleted
-    // some way for recognizing if Binobo is actually connected to the server
-
-    // client-side: retrieve data from this rest-api with ajax and jQuery
+//     Funktion to watch the timestamp, if older than 5mins, then it must be deleted
+//     some way for recognizing if Binobo is actually connected to the server
+//
+//     client-side: retrieve data from this rest-api with ajax and jQuery
 
     public static Double generateRandomNumberFromTo(double min, double max){
         return min + (max - min) * Math.random();
@@ -28,7 +28,7 @@ public class RoboDataController { // TODO implement all functions
 
     @GetMapping(value = "/generate_random_data/{nums}")
     public ResponseEntity<List<RobotData>> generateRandom(@PathVariable Long nums){
-        for(int i = 0; i < nums; i++){
+        for(int i = 0; i < nums; i++){ // TODO change to linear gradient because of wtf-reaction
             RobotData rd = new RobotData();
             rd.setLf_tip(generateRandomNumberFromTo(0, 360));
             rd.setLf_middle(generateRandomNumberFromTo(0, 360));
@@ -57,6 +57,8 @@ public class RoboDataController { // TODO implement all functions
 
             rd.setAj_lr(generateRandomNumberFromTo(0, 360));
             rd.setAj_bf(generateRandomNumberFromTo(0, 360));
+
+            rd.setSampling_rate(20);
 
             robotDataService.save(rd);
         }

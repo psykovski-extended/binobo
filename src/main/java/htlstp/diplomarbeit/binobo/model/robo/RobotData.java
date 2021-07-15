@@ -21,9 +21,14 @@ public class RobotData {
 //    private String username;
 //    @Column
 //    @NotNull
-//    @CreationTimestamp
-//    private final LocalDateTime uploadedOn = LocalDateTime.now();
-
+    @CreationTimestamp
+    private final LocalDateTime uploadedOn = LocalDateTime.now();
+    @Column
+    private Boolean isExpired;
+    // current sampling-rate
+    @Column
+    private Integer sampling_rate;
+    // Little-Finger
     @Column
     private Double lf_tip;
     @Column
@@ -32,6 +37,7 @@ public class RobotData {
     private Double lf_base;
     @Column
     private Double lf_base_rot;
+    // Ring-Finger
     @Column
     private Double rf_tip;
     @Column
@@ -40,6 +46,7 @@ public class RobotData {
     private Double rf_base;
     @Column
     private Double rf_base_rot;
+    // Middle-Finger
     @Column
     private Double mf_tip;
     @Column
@@ -48,6 +55,7 @@ public class RobotData {
     private Double mf_base;
     @Column
     private Double mf_base_rot;
+    // Pointer-Finger
     @Column
     private Double pf_tip;
     @Column
@@ -56,6 +64,7 @@ public class RobotData {
     private Double pf_base;
     @Column
     private Double pf_base_rot;
+    // Thumb
     @Column
     private Double th_tip;
     @Column
@@ -64,9 +73,6 @@ public class RobotData {
     private Double th_rot_orthogonal;
     @Column
     private Double th_rot_palm;
-//    @Column
-//    @Lob
-//    RobotFinger rb_test;
 
     // arm - joint
     @Column
@@ -297,7 +303,15 @@ public class RobotData {
         this.th_rot_palm = th_rot_palm;
     }
 
-//    public User getUser() {
+    public Integer getSampling_rate() {
+        return sampling_rate;
+    }
+
+    public void setSampling_rate(Integer sampling_rate) {
+        this.sampling_rate = sampling_rate;
+    }
+
+    //    public User getUser() {
 //        return user;
 //    }
 //
@@ -313,7 +327,15 @@ public class RobotData {
 //        this.username = username;
 //    }
 //
-//    public LocalDateTime getUploadedOn() {
-//        return uploadedOn;
-//    }
+    public LocalDateTime getUploadedOn() {
+        return uploadedOn;
+    }
+
+    public Boolean getExpired() {
+        return isExpired;
+    }
+
+    public void setExpired(Boolean expired) {
+        isExpired = expired;
+    }
 }
