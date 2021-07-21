@@ -1,11 +1,8 @@
 package htlstp.diplomarbeit.binobo.model.robo;
 
-import htlstp.diplomarbeit.binobo.model.User;
-import org.hibernate.annotations.CreationTimestamp;
+import htlstp.diplomarbeit.binobo.model.DataAccessToken;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
 
 @Entity
 public class RobotData {
@@ -13,18 +10,12 @@ public class RobotData {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-//    @ManyToOne
-//    @JoinColumn(name = "user_id")
-//    private User user;
-//    @NotNull
-//    @Column
-//    private String username;
-//    @Column
-//    @NotNull
-    @CreationTimestamp
-    private final LocalDateTime uploadedOn = LocalDateTime.now();
+    @ManyToOne
+    private DataAccessToken dataAccessToken;
     @Column
-    private Boolean isExpired;
+    private final Long uploadedOn = System.currentTimeMillis();
+    @Column
+    private Boolean expired = false;
     // current sampling-rate
     @Column
     private Integer sampling_rate;
@@ -311,31 +302,23 @@ public class RobotData {
         this.sampling_rate = sampling_rate;
     }
 
-    //    public User getUser() {
-//        return user;
-//    }
-//
-//    public void setUser(User user) {
-//        this.user = user;
-//    }
-//
-//    public String getUsername() {
-//        return username;
-//    }
-//
-//    public void setUsername(String username) {
-//        this.username = username;
-//    }
-//
-    public LocalDateTime getUploadedOn() {
+    public Long getUploadedOn() {
         return uploadedOn;
     }
 
-    public Boolean getExpired() {
-        return isExpired;
+    public Boolean isExpired() {
+        return expired;
     }
 
     public void setExpired(Boolean expired) {
-        isExpired = expired;
+        this.expired = expired;
+    }
+
+    public DataAccessToken getDataAccessToken() {
+        return dataAccessToken;
+    }
+
+    public void setDataAccessToken(DataAccessToken dataAccessToken) {
+        this.dataAccessToken = dataAccessToken;
     }
 }

@@ -5,7 +5,6 @@ import htlstp.diplomarbeit.binobo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.event.AuthenticationSuccessEvent;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -19,8 +18,14 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
     @Autowired
     private UserService userService;
+//
+//    @Autowired
+//    public SecurityConfig(UserService userService){
+//        this.userService = userService;
+//    }
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
@@ -37,7 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         httpSecurity.authorizeRequests()
                 .antMatchers("/home", "/project", "/developer", "/sponsoring").permitAll()
                 .antMatchers("/blog/**", "/user/**").hasAnyRole("USER", "ADMIN")
-                .antMatchers("/admin/**", "/simulator3D").hasRole("ADMIN")
+                .antMatchers("/admin/**", "/simulator3D").hasAnyRole("ADMIN", "OPERATOR") // this is because rest-api is not secured!
         .and()
             .formLogin().loginPage("/login")
             .permitAll()

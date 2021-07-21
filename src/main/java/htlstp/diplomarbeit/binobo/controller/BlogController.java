@@ -11,10 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
@@ -24,18 +21,24 @@ import java.util.List;
 
 @Controller
 public class BlogController {
-    @Autowired
-    PostService postService;
-    @Autowired
-    UserService userService;
-    @Autowired
-    CommentService commentService;
-    @Autowired
-    SubCommentService subCommentService;
-    @Autowired
-    CategoryService categoryService;
 
-    @RequestMapping(value = "/blog")
+    private final PostService postService;
+    private final UserService userService;
+    private final CommentService commentService;
+    private final SubCommentService subCommentService;
+    private final CategoryService categoryService;
+
+    @Autowired
+    public BlogController(PostService postService, UserService userService, CommentService commentService,
+                          SubCommentService subCommentService, CategoryService categoryService) {
+        this.postService = postService;
+        this.userService = userService;
+        this.commentService = commentService;
+        this.subCommentService = subCommentService;
+        this.categoryService = categoryService;
+    }
+
+    @GetMapping(value = "/blog")
     public String listAllBlogs(Model model){
         List<Post> posts = postService.findAll();
         model.addAttribute("posts", posts);
@@ -43,7 +46,7 @@ public class BlogController {
         return "blog/blogOverview";
     }
 
-    @RequestMapping(value = "/blog/{postId}")
+    @GetMapping(value = "/blog/{postId}")
     public String postX(@PathVariable Long postId, Model model, Principal principal){
         Post post = postService.findById(postId);
         User user = (User)((UsernamePasswordAuthenticationToken)principal).getPrincipal();
@@ -57,7 +60,7 @@ public class BlogController {
         return "blog/blog_PostX";
     }
 
-    @RequestMapping(value = "/blog/new")
+    @GetMapping(value = "/blog/new")
     public String newBlogPost(Model model){
         if(!model.containsAttribute("post")){
             model.addAttribute("post", new Post());
@@ -66,11 +69,12 @@ public class BlogController {
         model.addAttribute("submit", "Upload");
         model.addAttribute("action", "/blog");
         model.addAttribute("categories", categoryService.findAll());
+        model.addAttribute("method", "post");
 
         return "blog/blogForm";
     }
 
-    @RequestMapping(value = "/blog/{blogId}/edit")
+    @GetMapping(value = "/blog/{blogId}/edit")
     public String formEditBlogEntry(@PathVariable Long blogId, Model model, Principal principal){
         Post p = postService.findById(blogId);
         User user = (User)((UsernamePasswordAuthenticationToken)principal).getPrincipal();
@@ -83,6 +87,7 @@ public class BlogController {
             model.addAttribute("action", String.format("/blog/%s", blogId));
             model.addAttribute("submit", "Update");
             model.addAttribute("categories", categoryService.findAll());
+            model.addAttribute("method", "patch");
 
             return "blog/blogForm";
         }
@@ -90,7 +95,7 @@ public class BlogController {
         return "redirect:/blog";
     }
 
-    @RequestMapping(value = "/blog/{blogId}", method = RequestMethod.POST)
+    @PatchMapping(value = "/blog/{blogId}")
     public String updateBlogEntry(@Valid @ModelAttribute("post") Post post, BindingResult errors, RedirectAttributes redirectAttributes, Principal principal){// BindingResults
         User user = (User)((UsernamePasswordAuthenticationToken)principal).getPrincipal();
 
@@ -112,7 +117,7 @@ public class BlogController {
         return "redirect:/blog";
     }
 
-    @RequestMapping(value = "/blog", method = RequestMethod.POST)
+    @PostMapping(value = "/blog")
     public String addBlogEntry(@Valid @ModelAttribute("post") Post post, BindingResult errors, RedirectAttributes redirectAttributes, Principal principal){
         if(errors.hasErrors()){
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.post",errors);
@@ -137,14 +142,14 @@ public class BlogController {
         return "redirect:/blog";
     }
 
-    @RequestMapping(value = "/blog/user/entries")
+    @GetMapping(value = "/blog/user/entries")
     public String getAllPostsFromUser(Model model, Principal principal){
         User user = (User)((UsernamePasswordAuthenticationToken)principal).getPrincipal();
         model.addAttribute("posts", postService.findByUser(user));
         return "blog/blogOverview";
     }
 
-    @RequestMapping(value = "/blog/post/{postId}/addComment", method = RequestMethod.POST)
+    @PostMapping(value = "/blog/post/{postId}/addComment")
     public String addComment(@PathVariable Long postId, @Valid @ModelAttribute("comment") Comment comment, BindingResult errors, RedirectAttributes redirectAttributes, Principal principal){
         if(errors.hasErrors()){
              redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.comment",errors);
@@ -163,7 +168,7 @@ public class BlogController {
         return String.format("redirect:/blog/%s", postId);
     }
 
-    @RequestMapping(value = "/blog/{postId}/delete")
+    @GetMapping(value = "/blog/{postId}/delete")
     public String deletePost(@PathVariable Long postId, Principal principal, RedirectAttributes redirectAttributes) {
         User user = (User)((UsernamePasswordAuthenticationToken)principal).getPrincipal();
         Post post = postService.findById(postId);
@@ -182,7 +187,9 @@ public class BlogController {
         return "redirect:/blog";
     }
 
-    @RequestMapping(value = "/blog/{postId}/incrementMark", method = RequestMethod.POST)
+    // patch?
+
+    @PostMapping(value = "/blog/{postId}/incrementMark")
     public String incrementMark(@PathVariable Long postId){
         try {
             postService.incrementMarks(postService.findById(postId));
@@ -192,7 +199,7 @@ public class BlogController {
         return String.format("redirect:/blog/%s", postId);
     }
 
-    @RequestMapping(value = "/blog/{postId}/decrementMark", method = RequestMethod.POST)
+    @PostMapping(value = "/blog/{postId}/decrementMark")
     public String decrementMark(@PathVariable Long postId){
         try {
             postService.decrementMarks(postService.findById(postId));
@@ -202,7 +209,7 @@ public class BlogController {
         return String.format("redirect:/blog/%s", postId);
     }
 
-    @RequestMapping(value = "/blog/{commentId}/incrementMarkComment", method = RequestMethod.POST)
+    @PostMapping(value = "/blog/{commentId}/incrementMarkComment")
     public String incrementMarkComment(@PathVariable Long commentId){
         Comment comment = commentService.findById(commentId);
         try {
@@ -213,7 +220,7 @@ public class BlogController {
         return String.format("redirect:/blog/%s", comment.getPost().getId());
     }
 
-    @RequestMapping(value = "/blog/{commentId}/decrementMarkComment", method = RequestMethod.POST)
+    @PostMapping(value = "/blog/{commentId}/decrementMarkComment")
     public String decrementMarkComment(@PathVariable Long commentId){
         Comment comment = commentService.findById(commentId);
         try {

@@ -42,7 +42,7 @@
         <div th:replace="layout :: flash_succ"></div>
         <div th:replace="layout :: flash_warn"></div>
         <div th:replace="layout :: flash_info"></div>
-        <form th:action="@{${action}}" method="post" th:object="${post}">
+        <form th:action="@{${action}}" th:method="${method}" th:object="${post}">
             <input type="hidden" th:field="*{id}"/>
             <input type="hidden" th:field="*{username}"/>
             <div class="form_element nunito_font" id="title">

@@ -4,7 +4,9 @@ import htlstp.diplomarbeit.binobo.controller.util.FlashMessage;
 import htlstp.diplomarbeit.binobo.dto.RegisterRequest;
 import htlstp.diplomarbeit.binobo.event.OnRegistrationCompleteEvent;
 import htlstp.diplomarbeit.binobo.model.ConfirmationToken;
+import htlstp.diplomarbeit.binobo.model.DataAccessToken;
 import htlstp.diplomarbeit.binobo.model.User;
+import htlstp.diplomarbeit.binobo.service.RobotDataService;
 import htlstp.diplomarbeit.binobo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
@@ -26,6 +28,8 @@ import java.util.Calendar;
 public class AuthController {
     @Autowired
     UserService userService;
+    @Autowired
+    RobotDataService robotDataService;
     @Autowired
     ApplicationEventPublisher eventPublisher;
 
@@ -77,6 +81,10 @@ public class AuthController {
         }
 
         user.setActivated(true);
+
+        DataAccessToken dat = new DataAccessToken();
+        user.setDataAccessToken(robotDataService.saveDataAccessToken(dat));
+
         userService.save(user);
         userService.deleteToken(confirmationToken);
 

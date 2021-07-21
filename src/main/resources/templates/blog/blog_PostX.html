@@ -23,7 +23,6 @@
                 <h1 class="font_color_ff7800 font_weight800" th:text="${post.title}"></h1>
             </div>
             <div class="mark_inc_dec_wrapper font_jetbrains_mono">
-                <!--                TODO change with svg  -->
                 <form th:action="@{|/blog/${post.id}/incrementMark|}" method="post">
                     <button type="submit" class="mark_inc_dec">
                         <svg id="bebdedb3-8fed-42d7-9f02-97a7d9a946b4" data-name="Ebene 1"
@@ -167,8 +166,6 @@
                     <h2 class="font_color_ff7800 font_weight800" th:text="${comment.user.username}"></h2>
                 </div>
                 <div class="mark_inc_dec_wrapper font_jetbrains_mono">
-                    <!--                TODO only display, if this belongs to currently logged in user or if the ranking
-                                        TODO of the logged in person is admin or operator -> op: delete and edit posts, admin: only edit posts  -->
                     <form th:action="@{|/blog/${comment.id}/incrementMarkComment|}" method="post">
                         <button type="submit" class="mark_inc_dec">
                             <svg id="bebdedb3-8fed-42d7-9f02-97a7d9a946b4" data-name="Ebene 1"

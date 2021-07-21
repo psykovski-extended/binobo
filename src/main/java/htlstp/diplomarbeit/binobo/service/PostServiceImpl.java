@@ -12,8 +12,13 @@ import java.util.List;
 @Service
 @Transactional
 public class PostServiceImpl implements PostService {
+
+    private final PostRepository postRepository;
+
     @Autowired
-    private PostRepository postRepository;
+    public PostServiceImpl(PostRepository postRepository) {
+        this.postRepository = postRepository;
+    }
 
     @Override
     public List<Post> findAll() {

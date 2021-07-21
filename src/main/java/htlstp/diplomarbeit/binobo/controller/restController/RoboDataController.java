@@ -1,34 +1,39 @@
 package htlstp.diplomarbeit.binobo.controller.restController;
 
+import htlstp.diplomarbeit.binobo.controller.util.FlashMessage;
+import htlstp.diplomarbeit.binobo.model.DataAccessToken;
 import htlstp.diplomarbeit.binobo.model.robo.RobotData;
 import htlstp.diplomarbeit.binobo.service.RobotDataService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.rest.webmvc.ResourceNotFoundException;
+import org.springframework.dao.DataAccessResourceFailureException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @ResponseBody
 @RequestMapping(value = "/roboData/rest_api")
-public class RoboDataController { // TODO implement all functions
-    // FIXME change dependency injection to constructor-based-injection
-    @Autowired
-    RobotDataService robotDataService;
+public class RoboDataController {
 
-//     Funktion to watch the timestamp, if older than 5mins, then it must be deleted
-//     some way for recognizing if Binobo is actually connected to the server
-//
-//     client-side: retrieve data from this rest-api with ajax and jQuery
+    private final RobotDataService robotDataService;
+
+    @Autowired
+    public RoboDataController(RobotDataService robotDataService){
+        this.robotDataService = robotDataService;
+    }
 
     public static Double generateRandomNumberFromTo(double min, double max){
         return min + (max - min) * Math.random();
     }
 
-    @GetMapping(value = "/generate_random_data/{nums}")
-    public ResponseEntity<List<RobotData>> generateRandom(@PathVariable Long nums){
-        for(int i = 0; i < nums; i++){ // TODO change to linear gradient because of wtf-reaction
+    @PutMapping(value = "/{token}/generate_random_data/{nums}")
+    public ResponseEntity<?> generateRandom(@PathVariable(name = "nums") Long nums, @PathVariable(name = "token") String token){
+        DataAccessToken dat;
+        try {
+            dat = robotDataService.findDATByToken(token);
+        } catch (NullPointerException npe) {
+            return ResponseEntity.badRequest().body(new FlashMessage("Invalid token! Access denied!", FlashMessage.Status.FAILURE));
+        }
+        for(int i = 0; i < nums; i++){ // change to linear gradient because of wtf-reaction
             RobotData rd = new RobotData();
             rd.setLf_tip(generateRandomNumberFromTo(0, 360));
             rd.setLf_middle(generateRandomNumberFromTo(0, 360));
@@ -59,30 +64,53 @@ public class RoboDataController { // TODO implement all functions
             rd.setAj_bf(generateRandomNumberFromTo(0, 360));
 
             rd.setSampling_rate(20);
+            rd.setDataAccessToken(dat);
 
             robotDataService.save(rd);
         }
-        return ResponseEntity.accepted().body(robotDataService.findAll());
+        return ResponseEntity.accepted().body(robotDataService.findAllByDataAccessToken(token));
     }
 
-    @GetMapping(value = "/retrieve_all_data")
-    public ResponseEntity<List<RobotData>> getAllEntries(){
-        return ResponseEntity.accepted().body(robotDataService.findAll());
-    }
-
-    @GetMapping(value = "/retrieve_data")
-    public ResponseEntity<RobotData> getLatestRoboData() throws ResourceNotFoundException {
-        RobotData rdx = robotDataService.findTopByOrderByIdAsc();
+    @GetMapping(value = "/{token}/retrieve_all_data")
+    public ResponseEntity<?> getAllEntries(@PathVariable String token){
         try {
-            robotDataService.delete(rdx);
-            return ResponseEntity.ok().body(rdx);
-        }catch (Exception iae) {
-            return ResponseEntity.badRequest().body(new RobotData());
+            return ResponseEntity.accepted().body(robotDataService.findAllByDataAccessToken(token));
+        }catch (NullPointerException npe){
+            return ResponseEntity.badRequest().body(new FlashMessage(npe.getMessage(), FlashMessage.Status.FAILURE));
         }
     }
 
-    @PostMapping(value = "/upload_data")
-    public ResponseEntity<RobotData> insertData(@RequestBody RobotData robotData){
-        return ResponseEntity.ok().body(robotDataService.save(robotData));
+    @GetMapping(value = "/{token}/retrieve_data")
+    public ResponseEntity<?> getLatestRoboData(@PathVariable String token) {
+        try {
+            RobotData rdx = robotDataService.findTopByDataAccessToken(token);
+            robotDataService.delete(rdx);
+            return ResponseEntity.accepted().body(rdx);
+        }catch (DataAccessResourceFailureException accessExc) {
+            return ResponseEntity.badRequest().body(new FlashMessage(accessExc.getMessage(), FlashMessage.Status.FAILURE));
+        }catch (NullPointerException npe) {
+            return ResponseEntity.badRequest().body(new FlashMessage(npe.getMessage(), FlashMessage.Status.FAILURE));
+        }
+    }
+
+    @PostMapping(value = "/{token}/upload_data")
+    public ResponseEntity<?> insertData(@RequestBody RobotData robotData, @PathVariable String token){
+        try {
+            DataAccessToken dat = robotDataService.findDATByToken(token);
+            robotData.setDataAccessToken(dat);
+            return ResponseEntity.accepted().body(robotDataService.save(robotData));
+        } catch (NullPointerException npe) {
+            return ResponseEntity.badRequest().body(new FlashMessage(npe.getMessage(), FlashMessage.Status.FAILURE));
+        }
+    }
+
+    @DeleteMapping(value = "/{token}/delete_all_to_synchronize")
+    public ResponseEntity<?> deleteAllByToken(@PathVariable String token){
+        try {
+            robotDataService.deleteAllByDataAccessToken(token);
+            return ResponseEntity.accepted().body(new FlashMessage("Data got successfully deleted", FlashMessage.Status.SUCCESS));
+        } catch (NullPointerException npe){
+            return ResponseEntity.badRequest().body(new FlashMessage(npe.getMessage(), FlashMessage.Status.FAILURE));
+        }
     }
 }

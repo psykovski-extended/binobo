@@ -1,25 +1,30 @@
 package htlstp.diplomarbeit.binobo.service;
 
+import htlstp.diplomarbeit.binobo.model.DataAccessToken;
 import htlstp.diplomarbeit.binobo.model.robo.RobotData;
+import htlstp.diplomarbeit.binobo.repositories.DATRepository;
 import htlstp.diplomarbeit.binobo.repositories.RobotDataRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessResourceFailureException;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 @Service
+@Transactional
 public class RobotDataServiceImpl implements RobotDataService {
 
-    RobotDataRepository roboRepository;
+    private final RobotDataRepository roboRepository;
+    private final DATRepository datRepository;
 
     @Autowired
-    public RobotDataServiceImpl(RobotDataRepository robotDataRepository){
+    public RobotDataServiceImpl(RobotDataRepository robotDataRepository, DATRepository datRepository){
         this.roboRepository = robotDataRepository;
+        this.datRepository = datRepository;
     }
 
     @Override
@@ -43,35 +48,51 @@ public class RobotDataServiceImpl implements RobotDataService {
     }
 
     @Override
+    public List<RobotData> findAllByDataAccessToken(String token) throws NullPointerException{
+        DataAccessToken dat = findDATByToken(token);
+        return roboRepository.findAllByDataAccessToken(dat);
+    }
+
+    @Override
     @Async
     public CompletableFuture<RobotData> checkIfExpired() {
         RobotData earliest = findTopByOrderByIdAsc();
-        LocalDateTime createdOn = earliest.getUploadedOn();
-        LocalDateTime expiresOn = LocalDateTime.of(createdOn.getYear(), createdOn.getMonth(), createdOn.getDayOfMonth(), createdOn.getHour(), createdOn.getMinute() + 5, createdOn.getSecond());
+        try {
+            double uploadedOn = earliest.getUploadedOn() / 1000.0;
+            earliest.setExpired(System.currentTimeMillis() / 1000.0 - uploadedOn >= 300);
+            save(earliest);
 
-        LocalDateTime tempDateTime = LocalDateTime.from( createdOn );
-
-        long years = tempDateTime.until( expiresOn, ChronoUnit.YEARS );
-        tempDateTime = tempDateTime.plusYears( years );
-
-        long months = tempDateTime.until( expiresOn, ChronoUnit.MONTHS );
-        tempDateTime = tempDateTime.plusMonths( months );
-
-        long days = tempDateTime.until( expiresOn, ChronoUnit.DAYS );
-        tempDateTime = tempDateTime.plusDays( days );
-
-        long hours = tempDateTime.until( expiresOn, ChronoUnit.HOURS );
-        tempDateTime = tempDateTime.plusHours( hours );
-
-        long minutes = tempDateTime.until( expiresOn, ChronoUnit.MINUTES );
-        tempDateTime = tempDateTime.plusMinutes( minutes );
-
-        long seconds = tempDateTime.until( expiresOn, ChronoUnit.SECONDS );
-        tempDateTime = tempDateTime.plusSeconds(seconds);
-
-        earliest.setExpired(tempDateTime.getMinute() >= 5 || tempDateTime.getHour() >= 1);
-        save(earliest);
-
-        return CompletableFuture.completedFuture(earliest);
+            return CompletableFuture.completedFuture(earliest);
+        } catch (Exception e){
+            return CompletableFuture.completedFuture(new RobotData());
+        }
     }
+
+    @Override
+    public RobotData findTopByDataAccessToken(String token) throws NullPointerException, DataAccessResourceFailureException{
+        DataAccessToken dataAccessToken = findDATByToken(token);
+        RobotData rb = roboRepository.findTopByDataAccessToken(dataAccessToken).orElse(null);
+        if(rb == null) throw new DataAccessResourceFailureException("Database is empty, please make sure you are connected!");
+        return rb;
+    }
+
+    @Override
+    public DataAccessToken saveDataAccessToken(DataAccessToken dat) {
+        return datRepository.save(dat);
+    }
+
+    @Override
+    public void deleteAllByDataAccessToken(String token) throws NullPointerException{
+        DataAccessToken dat = datRepository.findByToken(token).orElse(null);
+        if(dat == null) throw new NullPointerException("Token is invalid! Access denied!");
+        roboRepository.deleteAllByDataAccessToken(dat);
+    }
+
+    @Override
+    public DataAccessToken findDATByToken(String token) throws NullPointerException {
+        DataAccessToken dat = datRepository.findByToken(token).orElse(null);
+        if(dat == null) throw new NullPointerException("Token is invalid! Access denied!");
+        return dat;
+    }
+
 }

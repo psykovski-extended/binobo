@@ -40,13 +40,14 @@ public class User implements UserDetails {
     private List<Comment> comments = new ArrayList<>();
     @OneToMany(mappedBy = "user")
     private List<SubComment> subComments;
-//    @OneToMany(mappedBy = "user")
-//    private List<RobotData> robotData;
     @OneToOne
     @JoinColumn(name = "role_id")
     private Role role;
     @Column(nullable = false)
     private boolean activated = false;
+    @OneToOne
+    @JoinColumn(name = "dataAccessToken_id")
+    private DataAccessToken dataAccessToken;
 
     public User(){}
 
@@ -166,11 +167,11 @@ public class User implements UserDetails {
         this.subComments = subComments;
     }
 
-//    public List<RobotData> getRobotData() {
-//        return robotData;
-//    }
-//
-//    public void setRobotData(List<RobotData> robotData) {
-//        this.robotData = robotData;
-//    }
+    public DataAccessToken getDataAccessToken() {
+        return dataAccessToken;
+    }
+
+    public void setDataAccessToken(DataAccessToken dataAccessToken) {
+        this.dataAccessToken = dataAccessToken;
+    }
 }

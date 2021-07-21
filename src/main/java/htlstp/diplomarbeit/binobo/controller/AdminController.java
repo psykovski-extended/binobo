@@ -1,11 +1,14 @@
 package htlstp.diplomarbeit.binobo.controller;
 
+import htlstp.diplomarbeit.binobo.components.RobotDataWatcher;
 import htlstp.diplomarbeit.binobo.model.Role;
 import htlstp.diplomarbeit.binobo.model.User;
 import htlstp.diplomarbeit.binobo.service.CommentService;
 import htlstp.diplomarbeit.binobo.service.PostService;
 import htlstp.diplomarbeit.binobo.service.RoleService;
 import htlstp.diplomarbeit.binobo.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Controller;
@@ -19,14 +22,20 @@ import java.util.List;
 
 @Controller
 public class AdminController {
+
+    private final UserService userService;
+    private final PostService postService;
+    private final CommentService commentService;
+    private final RoleService roleService;
+    private static final Logger logger = LoggerFactory.getLogger(RobotDataWatcher.class);
+
     @Autowired
-    UserService userService;
-    @Autowired
-    PostService postService;
-    @Autowired
-    CommentService commentService;
-    @Autowired
-    RoleService roleService;
+    public AdminController(UserService userService, PostService postService, CommentService commentService, RoleService roleService){
+        this.userService = userService;
+        this.postService = postService;
+        this.commentService = commentService;
+        this.roleService = roleService;
+    }
 
     // TODO establish log-system to log all admin-modification
     @RequestMapping(value = "/admin/listAllUsers")
@@ -53,6 +62,7 @@ public class AdminController {
     @RequestMapping(value = "/admin/setRoleOfUser/{user_id}/{role_id}", method = RequestMethod.PATCH)
     String setRoleOfUserToRole(@PathVariable("user_id") Long user_id, @PathVariable("role_id") Long role_id, Principal principal){
         Role role = roleService.findById(role_id); // could be null, so keep attention
+        if(role == null) return "redirect:/admin/listAllUsers";
         User user = (User)((UsernamePasswordAuthenticationToken)principal).getPrincipal();
         User userToUpgrade = userService.findById(user_id);
 
