@@ -26,12 +26,17 @@ import java.util.Calendar;
 
 @Controller
 public class AuthController {
+
+    private final UserService userService;
+    private final RobotDataService robotDataService;
+    private final ApplicationEventPublisher eventPublisher;
+
     @Autowired
-    UserService userService;
-    @Autowired
-    RobotDataService robotDataService;
-    @Autowired
-    ApplicationEventPublisher eventPublisher;
+    public AuthController(UserService userService, RobotDataService robotDataService, ApplicationEventPublisher eventPublisher){
+        this.userService = userService;
+        this.robotDataService = robotDataService;
+        this.eventPublisher = eventPublisher;
+    }
 
     @RequestMapping("/login")
     public String getLoginForm(Model model){
@@ -76,7 +81,8 @@ public class AuthController {
         User user = confirmationToken.getUser();
         Calendar cal = Calendar.getInstance();
         if ((confirmationToken.getExpiryDate().getTime() - cal.getTime().getTime()) <= 0) {
-            redirectAttributes.addFlashAttribute("flash_err", new FlashMessage("Confirmation-Token has expired!", FlashMessage.Status.FAILURE)); // TODO: send Email again
+            // TODO: send Email again
+            redirectAttributes.addFlashAttribute("flash_err", new FlashMessage("Confirmation-Token has expired!", FlashMessage.Status.FAILURE));
             return "redirect:/login";
         }
 

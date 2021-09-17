@@ -13,7 +13,7 @@ public class RobotData {
     @ManyToOne
     private DataAccessToken dataAccessToken;
     @Column
-    private final Long uploadedOn = System.currentTimeMillis();
+    private Long uploadedOn = System.currentTimeMillis();
     @Column
     private Boolean expired = false;
     // current sampling-rate
@@ -21,55 +21,55 @@ public class RobotData {
     private Integer sampling_rate;
     // Little-Finger
     @Column
-    private Double lf_tip;
+    private Integer lf_tip;
     @Column
-    private Double lf_middle;
+    private Integer lf_middle;
     @Column
-    private Double lf_base;
+    private Integer lf_base;
     @Column
-    private Double lf_base_rot;
+    private Integer lf_base_rot;
     // Ring-Finger
     @Column
-    private Double rf_tip;
+    private Integer rf_tip;
     @Column
-    private Double rf_middle;
+    private Integer rf_middle;
     @Column
-    private Double rf_base;
+    private Integer rf_base;
     @Column
-    private Double rf_base_rot;
+    private Integer rf_base_rot;
     // Middle-Finger
     @Column
-    private Double mf_tip;
+    private Integer mf_tip;
     @Column
-    private Double mf_middle;
+    private Integer mf_middle;
     @Column
-    private Double mf_base;
+    private Integer mf_base;
     @Column
-    private Double mf_base_rot;
+    private Integer mf_base_rot;
     // Pointer-Finger
     @Column
-    private Double pf_tip;
+    private Integer pf_tip;
     @Column
-    private Double pf_middle;
+    private Integer pf_middle;
     @Column
-    private Double pf_base;
+    private Integer pf_base;
     @Column
-    private Double pf_base_rot;
+    private Integer pf_base_rot;
     // Thumb
     @Column
-    private Double th_tip;
+    private Integer th_tip;
     @Column
-    private Double th_base;
+    private Integer th_base;
     @Column
-    private Double th_rot_orthogonal;
+    private Integer th_rot_orthogonal;
     @Column
-    private Double th_rot_palm;
+    private Integer th_rot_palm;
 
     // arm - joint
     @Column
-    private Double aj_bf;
+    private Integer aj_bf;
     @Column
-    private Double aj_lr;
+    private Integer aj_lr;
 
     // TODO adaptive: add elbow and shoulder variables
 
@@ -118,179 +118,179 @@ public class RobotData {
         this.id = id;
     }
 
-    public Double getAj_bf() {
+    public Integer getAj_bf() {
         return aj_bf;
     }
 
-    public void setAj_bf(Double aj_bf) {
+    public void setAj_bf(Integer aj_bf) {
         this.aj_bf = aj_bf;
     }
 
-    public Double getAj_lr() {
+    public Integer getAj_lr() {
         return aj_lr;
     }
 
-    public void setAj_lr(Double aj_lr) {
+    public void setAj_lr(Integer aj_lr) {
         this.aj_lr = aj_lr;
     }
 
-    public Double getLf_tip() {
+    public Integer getLf_tip() {
         return lf_tip;
     }
 
-    public void setLf_tip(Double lf_tip) {
+    public void setLf_tip(Integer lf_tip) {
         this.lf_tip = lf_tip;
     }
 
-    public Double getLf_middle() {
+    public Integer getLf_middle() {
         return lf_middle;
     }
 
-    public void setLf_middle(Double lf_middle) {
+    public void setLf_middle(Integer lf_middle) {
         this.lf_middle = lf_middle;
     }
 
-    public Double getLf_base() {
+    public Integer getLf_base() {
         return lf_base;
     }
 
-    public void setLf_base(Double lf_base) {
+    public void setLf_base(Integer lf_base) {
         this.lf_base = lf_base;
     }
 
-    public Double getLf_base_rot() {
+    public Integer getLf_base_rot() {
         return lf_base_rot;
     }
 
-    public void setLf_base_rot(Double lf_base_rot) {
+    public void setLf_base_rot(Integer lf_base_rot) {
         this.lf_base_rot = lf_base_rot;
     }
 
-    public Double getRf_tip() {
+    public Integer getRf_tip() {
         return rf_tip;
     }
 
-    public void setRf_tip(Double rf_tip) {
+    public void setRf_tip(Integer rf_tip) {
         this.rf_tip = rf_tip;
     }
 
-    public Double getRf_middle() {
+    public Integer getRf_middle() {
         return rf_middle;
     }
 
-    public void setRf_middle(Double rf_middle) {
+    public void setRf_middle(Integer rf_middle) {
         this.rf_middle = rf_middle;
     }
 
-    public Double getRf_base() {
+    public Integer getRf_base() {
         return rf_base;
     }
 
-    public void setRf_base(Double rf_base) {
+    public void setRf_base(Integer rf_base) {
         this.rf_base = rf_base;
     }
 
-    public Double getRf_base_rot() {
+    public Integer getRf_base_rot() {
         return rf_base_rot;
     }
 
-    public void setRf_base_rot(Double rf_base_rot) {
+    public void setRf_base_rot(Integer rf_base_rot) {
         this.rf_base_rot = rf_base_rot;
     }
 
-    public Double getMf_tip() {
+    public Integer getMf_tip() {
         return mf_tip;
     }
 
-    public void setMf_tip(Double mf_tip) {
+    public void setMf_tip(Integer mf_tip) {
         this.mf_tip = mf_tip;
     }
 
-    public Double getMf_middle() {
+    public Integer getMf_middle() {
         return mf_middle;
     }
 
-    public void setMf_middle(Double mf_middle) {
+    public void setMf_middle(Integer mf_middle) {
         this.mf_middle = mf_middle;
     }
 
-    public Double getMf_base() {
+    public Integer getMf_base() {
         return mf_base;
     }
 
-    public void setMf_base(Double mf_base) {
+    public void setMf_base(Integer mf_base) {
         this.mf_base = mf_base;
     }
 
-    public Double getMf_base_rot() {
+    public Integer getMf_base_rot() {
         return mf_base_rot;
     }
 
-    public void setMf_base_rot(Double mf_base_rot) {
+    public void setMf_base_rot(Integer mf_base_rot) {
         this.mf_base_rot = mf_base_rot;
     }
 
-    public Double getPf_tip() {
+    public Integer getPf_tip() {
         return pf_tip;
     }
 
-    public void setPf_tip(Double pf_tip) {
+    public void setPf_tip(Integer pf_tip) {
         this.pf_tip = pf_tip;
     }
 
-    public Double getPf_middle() {
+    public Integer getPf_middle() {
         return pf_middle;
     }
 
-    public void setPf_middle(Double pf_middle) {
+    public void setPf_middle(Integer pf_middle) {
         this.pf_middle = pf_middle;
     }
 
-    public Double getPf_base() {
+    public Integer getPf_base() {
         return pf_base;
     }
 
-    public void setPf_base(Double pf_base) {
+    public void setPf_base(Integer pf_base) {
         this.pf_base = pf_base;
     }
 
-    public Double getPf_base_rot() {
+    public Integer getPf_base_rot() {
         return pf_base_rot;
     }
 
-    public void setPf_base_rot(Double pf_base_rot) {
+    public void setPf_base_rot(Integer pf_base_rot) {
         this.pf_base_rot = pf_base_rot;
     }
 
-    public Double getTh_tip() {
+    public Integer getTh_tip() {
         return th_tip;
     }
 
-    public void setTh_tip(Double th_tip) {
+    public void setTh_tip(Integer th_tip) {
         this.th_tip = th_tip;
     }
 
-    public Double getTh_base() {
+    public Integer getTh_base() {
         return th_base;
     }
 
-    public void setTh_base(Double th_base) {
+    public void setTh_base(Integer th_base) {
         this.th_base = th_base;
     }
 
-    public Double getTh_rot_orthogonal() {
+    public Integer getTh_rot_orthogonal() {
         return th_rot_orthogonal;
     }
 
-    public void setTh_rot_orthogonal(Double th_rot_orthogonal) {
+    public void setTh_rot_orthogonal(Integer th_rot_orthogonal) {
         this.th_rot_orthogonal = th_rot_orthogonal;
     }
 
-    public Double getTh_rot_palm() {
+    public Integer getTh_rot_palm() {
         return th_rot_palm;
     }
 
-    public void setTh_rot_palm(Double th_rot_palm) {
+    public void setTh_rot_palm(Integer th_rot_palm) {
         this.th_rot_palm = th_rot_palm;
     }
 
@@ -320,5 +320,9 @@ public class RobotData {
 
     public void setDataAccessToken(DataAccessToken dataAccessToken) {
         this.dataAccessToken = dataAccessToken;
+    }
+
+    public void setUploadedOn(Long uploadedOn) {
+        this.uploadedOn = uploadedOn;
     }
 }

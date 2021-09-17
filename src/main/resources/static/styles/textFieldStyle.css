@@ -321,7 +321,7 @@ div.blog_form_wrapper_inner {
 .edit_post, .delete_post {
     position: absolute;
     z-index: 99999;
-    background-color: #422849;
+    background-color: #222;
     border-radius: 50%;
     height: 60px;
     width: 60px;
@@ -330,6 +330,7 @@ div.blog_form_wrapper_inner {
     align-items: center;
     transform: translate(-10px, -60px);
     transition: all .3s ease;
+    padding-top: 3px;
 }
 
 .delete_post {
@@ -338,6 +339,6 @@ div.blog_form_wrapper_inner {
 }
 
 .edit_post:hover, .delete_post:hover {
-    background-color: #ff7800;
+    background-color: #333;
     cursor: pointer;
 }

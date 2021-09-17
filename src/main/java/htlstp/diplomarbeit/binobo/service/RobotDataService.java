@@ -17,4 +17,6 @@ public interface RobotDataService {
     RobotData findTopByDataAccessToken(String token);
     DataAccessToken saveDataAccessToken(DataAccessToken dat);
     void deleteAllByDataAccessToken(String token);
+    void deleteAllMatching(List<RobotData> robotData);
+    void saveAll(Iterable<RobotData> robotData);
 }

@@ -15,17 +15,19 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
+/**
+ * This class configures Spring's Security Plugin, telling it, how the Filter Chain hast to work, and which patters shall
+ * be ignored an which not.
+ * This class is annotated with @Configuration and @EnableWebSecurity, telling the JVM that it has to be evaluated
+ * on Runtime, as well as that this will configure the Spring environment and that Spring has to enable the Security Plugin.
+ */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    // Autowiring throws exception when changed to constructor-based-approach
     @Autowired
     private UserService userService;
-//
-//    @Autowired
-//    public SecurityConfig(UserService userService){
-//        this.userService = userService;
-//    }
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
@@ -62,7 +64,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     public AuthenticationFailureHandler loginFailureHandler(){
         return ((request, response, exception) -> {
-            request.getSession().setAttribute("flash", new FlashMessage("Incorrect data parsed!", FlashMessage.Status.FAILURE));
+            request.getSession().setAttribute("flash_err", new FlashMessage("Incorrect data parsed!", FlashMessage.Status.FAILURE));
             response.sendRedirect("/login");
         });
     }

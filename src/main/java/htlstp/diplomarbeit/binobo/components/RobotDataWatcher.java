@@ -11,6 +11,10 @@ import org.springframework.stereotype.Component;
 
 import java.util.concurrent.CompletableFuture;
 
+/**
+ * This class runs asynchronous to the main thread in an endless loop, where it checks every minute, if saved RobotData
+ * is older than 5 minutes, if yes, they get deleted, so that the database will not become too big.
+ */
 @Component
 public class RobotDataWatcher implements CommandLineRunner {
 
@@ -24,8 +28,13 @@ public class RobotDataWatcher implements CommandLineRunner {
         this.robotDataService = robotDataService;
     }
 
+    /**
+     * Endlessly retrieves oldest data in database and checks the timestamp
+     * @param args optional arguments - not needed in this case
+     * @throws Exception throws an Exception if stuck or interrupted
+     */
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String...args) throws Exception {
         while(true) {
             CompletableFuture<RobotData> robotData = robotDataService.checkIfExpired();
 

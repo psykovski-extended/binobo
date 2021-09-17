@@ -9,11 +9,12 @@
 <main class="main_wrapper" id="main_wrapper_on_media">
     <canvas id="c"></canvas>
 </main>
-<footer>
-
-</footer>
 <!--  scripts  -->
-<script rel="script" th:src="@{/scripts/onscroll.js}"></script>
-<script type="module" th:src="@{scripts/simulator.js}"></script>
+<script th:src="@{/scripts/onscroll.js}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"
+        integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script th:src="@{/scripts/lib/three.js-master/build/three.js}"></script>
+<script type="module" th:src="@{scripts/simulator3D.js}"></script>
 </body>
 </html>

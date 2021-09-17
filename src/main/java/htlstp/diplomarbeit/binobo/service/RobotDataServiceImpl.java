@@ -50,7 +50,11 @@ public class RobotDataServiceImpl implements RobotDataService {
     @Override
     public List<RobotData> findAllByDataAccessToken(String token) throws NullPointerException{
         DataAccessToken dat = findDATByToken(token);
-        return roboRepository.findAllByDataAccessToken(dat);
+        List<RobotData> robotDataList = roboRepository.findAllByDataAccessToken(dat);
+
+        if(robotDataList == null) throw new NullPointerException("Database is empty, please make sure you are connected!");
+
+        return robotDataList;
     }
 
     @Override
@@ -86,6 +90,16 @@ public class RobotDataServiceImpl implements RobotDataService {
         DataAccessToken dat = datRepository.findByToken(token).orElse(null);
         if(dat == null) throw new NullPointerException("Token is invalid! Access denied!");
         roboRepository.deleteAllByDataAccessToken(dat);
+    }
+
+    @Override
+    public void deleteAllMatching(List<RobotData> robotData) {
+        roboRepository.deleteAll(robotData);
+    }
+
+    @Override
+    public void saveAll(Iterable<RobotData> robotData) {
+        roboRepository.saveAll(robotData);
     }
 
     @Override

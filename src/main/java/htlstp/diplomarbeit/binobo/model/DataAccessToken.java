@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
-public class DataAccessToken { // TODO
+public class DataAccessToken {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

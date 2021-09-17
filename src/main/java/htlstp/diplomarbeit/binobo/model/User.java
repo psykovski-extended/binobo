@@ -1,6 +1,5 @@
 package htlstp.diplomarbeit.binobo.model;
 
-import htlstp.diplomarbeit.binobo.model.robo.RobotData;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,8 +15,8 @@ import java.util.List;
 public class User implements UserDetails {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     @Column(unique = true, nullable = false)
     @NotEmpty
     @NotNull
@@ -40,22 +39,22 @@ public class User implements UserDetails {
     private List<Comment> comments = new ArrayList<>();
     @OneToMany(mappedBy = "user")
     private List<SubComment> subComments;
+    @Column(nullable = false)
+    private boolean activated = false;
     @OneToOne
     @JoinColumn(name = "role_id")
     private Role role;
-    @Column(nullable = false)
-    private boolean activated = false;
     @OneToOne
     @JoinColumn(name = "dataAccessToken_id")
     private DataAccessToken dataAccessToken;
 
     public User(){}
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -174,4 +173,5 @@ public class User implements UserDetails {
     public void setDataAccessToken(DataAccessToken dataAccessToken) {
         this.dataAccessToken = dataAccessToken;
     }
+
 }

@@ -25,4 +25,5 @@ public class InfoPagesController {
     public String sponsors(){
         return "sponsoren";
     }
+
 }

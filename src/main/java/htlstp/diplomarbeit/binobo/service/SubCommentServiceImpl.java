@@ -13,8 +13,13 @@ import java.util.List;
 @Service
 @Transactional
 public class SubCommentServiceImpl implements SubCommentService{
+
+    private final SubCommentRepository subCommentRepository;
+
     @Autowired
-    SubCommentRepository subCommentRepository;
+    public SubCommentServiceImpl(SubCommentRepository subCommentRepository){
+        this.subCommentRepository = subCommentRepository;
+    }
 
     @Override
     public List<SubComment> findAllByComment(Comment comment) {

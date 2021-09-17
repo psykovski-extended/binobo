@@ -30,8 +30,20 @@ spring.mail.username=your.email@something.co
 spring.mail.password=<your-pw>
 spring.mail.properties.mail.smtp.auth=true
 spring.mail.properties.mail.smtp.starttls.enable=true
+
+# configuring ssl
+server.ssl.key-store=keystore.p12
+server.ssl.key-store-password=<PW_FROM_YOUR_CERTIFICATE>
+server.ssl.keyStoreType=PKCS12
+server.ssl.keyAlias=binobo-diplomarbeit
 ```
-You also must have MySQL-Server installed on your machine and before first starting the project, you must create a table called `binobo_db`. Once this is done, you are ready to go!
+You also must have MySQL-Server installed on your machine and before first starting the project, you must create a table called `binobo_db`. Once this is done, you are nearly ready to go!
+
+To enable https, you have to generate an `ssl-certificate`:
+```bash
+keytool -genkeypair -alias binobo-diplomarbeit -keyalg RSA -keysize 4096 -storetype JKS -keystore springboot.jks -validity 3650 -storepass <PW_FROM_YOUR_CERTIFICATE>
+```
+**Run this command in the root directory of this project, and https is enabled.**
 
 This project is completely open-source, so if you want to change anything in this source-code, just do so by creating a new branch and making a push-request.
 

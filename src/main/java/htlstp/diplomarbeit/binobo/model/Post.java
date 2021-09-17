@@ -11,7 +11,7 @@ import java.util.List;
 public class Post {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column
     @NotNull
@@ -39,7 +39,6 @@ public class Post {
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
-//    @NotNull
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
