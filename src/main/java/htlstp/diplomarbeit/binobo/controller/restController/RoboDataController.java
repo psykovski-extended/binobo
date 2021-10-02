@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Vector;
 
 @RestController
 @ResponseBody
@@ -49,33 +50,33 @@ public class RoboDataController { // TODO establish log-system
         }
         for(int i = 0; i < nums; i++){ // change to linspace because of wtf-reaction
             RobotData rd = new RobotData();
-            rd.setLf_tip(generateRandomNumberFromTo(0, 360));
-            rd.setLf_middle(generateRandomNumberFromTo(0, 360));
-            rd.setLf_base(generateRandomNumberFromTo(0, 360));
-            rd.setLf_base_rot(generateRandomNumberFromTo(0, 360));
+            rd.setP_tip(generateRandomNumberFromTo(0, 90));
+            rd.setP_middle(generateRandomNumberFromTo(0, 90));
+            rd.setP_base(generateRandomNumberFromTo(0, 90));
+            rd.setP_base_rot(generateRandomNumberFromTo(0, 90));
 
-            rd.setRf_tip(generateRandomNumberFromTo(0, 360));
-            rd.setRf_middle(generateRandomNumberFromTo(0, 360));
-            rd.setRf_base(generateRandomNumberFromTo(0, 360));
-            rd.setRf_base_rot(generateRandomNumberFromTo(0, 360));
+            rd.setRf_tip(generateRandomNumberFromTo(0, 90));
+            rd.setRf_middle(generateRandomNumberFromTo(0, 90));
+            rd.setRf_base(generateRandomNumberFromTo(0, 90));
+            rd.setRf_base_rot(generateRandomNumberFromTo(0, 90));
 
-            rd.setMf_tip(generateRandomNumberFromTo(0, 360));
-            rd.setMf_middle(generateRandomNumberFromTo(0, 360));
-            rd.setMf_base(generateRandomNumberFromTo(0, 360));
-            rd.setMf_base_rot(generateRandomNumberFromTo(0, 360));
+            rd.setMf_tip(generateRandomNumberFromTo(0, 90));
+            rd.setMf_middle(generateRandomNumberFromTo(0, 90));
+            rd.setMf_base(generateRandomNumberFromTo(0, 90));
+            rd.setMf_base_rot(generateRandomNumberFromTo(0, 90));
 
-            rd.setPf_tip(generateRandomNumberFromTo(0, 360));
-            rd.setPf_middle(generateRandomNumberFromTo(0, 360));
-            rd.setPf_base(generateRandomNumberFromTo(0, 360));
-            rd.setPf_base_rot(generateRandomNumberFromTo(0, 360));
+            rd.setIf_tip(generateRandomNumberFromTo(0, 90));
+            rd.setIf_middle(generateRandomNumberFromTo(0, 90));
+            rd.setIf_base(generateRandomNumberFromTo(0, 90));
+            rd.setIf_base_rot(generateRandomNumberFromTo(0, 90));
 
-            rd.setTh_tip(generateRandomNumberFromTo(0, 360));
-            rd.setTh_base(generateRandomNumberFromTo(0, 360));
-            rd.setTh_rot_orthogonal(generateRandomNumberFromTo(0, 360));
-            rd.setTh_rot_palm(generateRandomNumberFromTo(0, 360));
+            rd.setTh_tip(generateRandomNumberFromTo(0, 90));
+            rd.setTh_base(generateRandomNumberFromTo(0, 90));
+            rd.setTh_rot_orthogonal(generateRandomNumberFromTo(0, 90));
+            rd.setTh_rot_palm(generateRandomNumberFromTo(0, 90));
 
-            rd.setAj_lr(generateRandomNumberFromTo(0, 360));
-            rd.setAj_bf(generateRandomNumberFromTo(0, 360));
+            rd.setWr_lr(generateRandomNumberFromTo(0, 90));
+            rd.setWr_bf(generateRandomNumberFromTo(0, 90));
 
             rd.setSampling_rate(20);
             rd.setDataAccessToken(dat);
@@ -103,7 +104,7 @@ public class RoboDataController { // TODO establish log-system
     }
 
     /**
-     * Retrieves oldest database entry, matching parsed token
+     * Retrieves the oldest database entry, matching parsed token
      * @param token DAT of user
      * @return Returns the retrieved entry, or an error
      */
@@ -113,10 +114,8 @@ public class RoboDataController { // TODO establish log-system
             RobotData rdx = robotDataService.findTopByDataAccessToken(token);
             robotDataService.delete(rdx);
             return ResponseEntity.accepted().body(rdx);
-        }catch (DataAccessResourceFailureException accessExc) {
+        }catch (DataAccessResourceFailureException | NullPointerException accessExc) {
             return ResponseEntity.badRequest().body(new FlashMessage(accessExc.getMessage(), FlashMessage.Status.FAILURE));
-        }catch (NullPointerException npe) {
-            return ResponseEntity.badRequest().body(new FlashMessage(npe.getMessage(), FlashMessage.Status.FAILURE));
         }
     }
 
@@ -134,6 +133,60 @@ public class RoboDataController { // TODO establish log-system
                 p.setUploadedOn(System.currentTimeMillis());
                 p.setDataAccessToken(dat);
             });
+            robotDataService.saveAll(robotData);
+            return ResponseEntity.accepted().body(new FlashMessage("Successfully inserted data list!", FlashMessage.Status.SUCCESS));
+        } catch (NullPointerException npe) {
+            return ResponseEntity.badRequest().body(new FlashMessage(npe.getMessage(), FlashMessage.Status.FAILURE));
+        }
+    }
+
+    /**
+     * Uploads a set of data with the parsed token
+     * @param rawData Data to be uploaded - in raw format
+     * @param token DAT of user
+     * @return Returns Success or Error Message
+     */
+    @PostMapping(value = "/{token}/upload_many_raw_data")
+    public ResponseEntity<?> insertManyRawData(@RequestBody List<Integer> rawData, @PathVariable String token){
+        try {
+            DataAccessToken dat = robotDataService.findDATByToken(token);
+            List<RobotData> robotData = new Vector<>();
+            for(int i = 0; i < rawData.size(); i+=22){
+                RobotData temp = new RobotData();
+                temp.setUploadedOn(System.currentTimeMillis());
+                temp.setDataAccessToken(dat);
+
+                temp.setP_tip(rawData.get(i));
+                temp.setP_middle(rawData.get(i + 1));
+                temp.setP_base(rawData.get(i + 2));
+                temp.setP_base_rot(rawData.get(i + 3));
+
+                temp.setRf_tip(rawData.get(i + 4));
+                temp.setRf_middle(rawData.get(i + 5));
+                temp.setRf_base(rawData.get(i + 6));
+                temp.setRf_base_rot(rawData.get(i + 7));
+
+                temp.setMf_tip(rawData.get(i + 8));
+                temp.setMf_middle(rawData.get(i + 9));
+                temp.setMf_base(rawData.get(i + 10));
+                temp.setMf_base_rot(rawData.get(i + 11));
+
+                temp.setIf_tip(rawData.get(i + 12));
+                temp.setIf_middle(rawData.get(i + 13));
+                temp.setIf_base(rawData.get(i + 14));
+                temp.setIf_base_rot(rawData.get(i + 15));
+
+                temp.setTh_tip(rawData.get(i + 16));
+                temp.setTh_base(rawData.get(i + 17));
+                temp.setTh_rot_orthogonal(rawData.get(i + 18));
+                temp.setTh_rot_palm(rawData.get(i + 19));
+
+
+                temp.setWr_bf(rawData.get(i + 20));
+                temp.setWr_lr(rawData.get(i + 21));
+
+                robotData.add(temp);
+            }
             robotDataService.saveAll(robotData);
             return ResponseEntity.accepted().body(new FlashMessage("Successfully inserted data list!", FlashMessage.Status.SUCCESS));
         } catch (NullPointerException npe) {

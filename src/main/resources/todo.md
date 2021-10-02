@@ -13,6 +13,9 @@
 - generell weitere funktionen einbauen?
 - javadoc!
 - sign in with token
+- organize css files
+- clean up html-trash, rename some files etc
+- sorting all files
 
 - 3D-Simulator fertigstellen (Philipp nerven!)
   - ajax implementieren

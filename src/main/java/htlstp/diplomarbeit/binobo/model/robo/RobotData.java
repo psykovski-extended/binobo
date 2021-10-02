@@ -19,15 +19,15 @@ public class RobotData {
     // current sampling-rate
     @Column
     private Integer sampling_rate;
-    // Little-Finger
+    // Pinky
     @Column
-    private Integer lf_tip;
+    private Integer p_tip;
     @Column
-    private Integer lf_middle;
+    private Integer p_middle;
     @Column
-    private Integer lf_base;
+    private Integer p_base;
     @Column
-    private Integer lf_base_rot;
+    private Integer p_base_rot;
     // Ring-Finger
     @Column
     private Integer rf_tip;
@@ -46,15 +46,15 @@ public class RobotData {
     private Integer mf_base;
     @Column
     private Integer mf_base_rot;
-    // Pointer-Finger
+    // Index-Finger
     @Column
-    private Integer pf_tip;
+    private Integer if_tip;
     @Column
-    private Integer pf_middle;
+    private Integer if_middle;
     @Column
-    private Integer pf_base;
+    private Integer if_base;
     @Column
-    private Integer pf_base_rot;
+    private Integer if_base_rot;
     // Thumb
     @Column
     private Integer th_tip;
@@ -65,11 +65,11 @@ public class RobotData {
     @Column
     private Integer th_rot_palm;
 
-    // arm - joint
+    // wrist
     @Column
-    private Integer aj_bf;
+    private Integer wr_bf;
     @Column
-    private Integer aj_lr;
+    private Integer wr_lr;
 
     // TODO adaptive: add elbow and shoulder variables
 
@@ -80,10 +80,10 @@ public class RobotData {
         // will not be returned --> would slow the process down
         return "{\n" +
                 "\"little_finger\":" + "{\n" +
-                    "\"tip\":" + lf_tip + ",\n" +
-                    "\"middle\":" + lf_middle + ",\n" +
-                    "\"base\":" + lf_base + ",\n" +
-                    "\"rotation\":" + lf_base_rot + "\n},\n" +
+                    "\"tip\":" + p_tip + ",\n" +
+                    "\"middle\":" + p_middle + ",\n" +
+                    "\"base\":" + p_base + ",\n" +
+                    "\"rotation\":" + p_base_rot + "\n},\n" +
                 "\"ring_finger\":" + "{\n" +
                     "\"tip\":" + rf_tip + ",\n" +
                     "\"middle\":" + rf_middle + ",\n" +
@@ -95,18 +95,18 @@ public class RobotData {
                     "\"base\":" + mf_base + ",\n" +
                     "\"rotation\":" + mf_base + "\n},\n" +
                 "\"pointer_finger\":" + "{\n" +
-                    "\"tip\":" + pf_tip + ",\n" +
-                    "\"middle\":" + pf_middle + ",\n" +
-                    "\"base\":" + pf_base + ",\n" +
-                    "\"rotation\":" + pf_base_rot + "\n},\n" +
+                    "\"tip\":" + if_tip + ",\n" +
+                    "\"middle\":" + if_middle + ",\n" +
+                    "\"base\":" + if_base + ",\n" +
+                    "\"rotation\":" + if_base_rot + "\n},\n" +
                 "\"thumb\":" + "{\n" +
                     "\"tip\":" + th_tip + ",\n" +
                     "\"base\":" + th_base + ",\n" +
                     "\"rot_orthogonal\":" + th_rot_orthogonal + ",\n" +
                     "\"rot_palm\":" + th_rot_palm + "\n},\n" +
                 "\"arm_joint\": {\n" +
-                    "\"fw_bw_rot\":" + aj_bf + ",\n" +
-                    "\"le_re_rot\":" + aj_lr + "\n}\n" +
+                    "\"fw_bw_rot\":" + wr_bf + ",\n" +
+                    "\"le_re_rot\":" + wr_lr + "\n}\n" +
                 "}\n";
     }
 
@@ -118,52 +118,52 @@ public class RobotData {
         this.id = id;
     }
 
-    public Integer getAj_bf() {
-        return aj_bf;
+    public Integer getWr_bf() {
+        return wr_bf;
     }
 
-    public void setAj_bf(Integer aj_bf) {
-        this.aj_bf = aj_bf;
+    public void setWr_bf(Integer aj_bf) {
+        this.wr_bf = aj_bf;
     }
 
-    public Integer getAj_lr() {
-        return aj_lr;
+    public Integer getWr_lr() {
+        return wr_lr;
     }
 
-    public void setAj_lr(Integer aj_lr) {
-        this.aj_lr = aj_lr;
+    public void setWr_lr(Integer aj_lr) {
+        this.wr_lr = aj_lr;
     }
 
-    public Integer getLf_tip() {
-        return lf_tip;
+    public Integer getP_tip() {
+        return p_tip;
     }
 
-    public void setLf_tip(Integer lf_tip) {
-        this.lf_tip = lf_tip;
+    public void setP_tip(Integer lf_tip) {
+        this.p_tip = lf_tip;
     }
 
-    public Integer getLf_middle() {
-        return lf_middle;
+    public Integer getP_middle() {
+        return p_middle;
     }
 
-    public void setLf_middle(Integer lf_middle) {
-        this.lf_middle = lf_middle;
+    public void setP_middle(Integer lf_middle) {
+        this.p_middle = lf_middle;
     }
 
-    public Integer getLf_base() {
-        return lf_base;
+    public Integer getP_base() {
+        return p_base;
     }
 
-    public void setLf_base(Integer lf_base) {
-        this.lf_base = lf_base;
+    public void setP_base(Integer lf_base) {
+        this.p_base = lf_base;
     }
 
-    public Integer getLf_base_rot() {
-        return lf_base_rot;
+    public Integer getP_base_rot() {
+        return p_base_rot;
     }
 
-    public void setLf_base_rot(Integer lf_base_rot) {
-        this.lf_base_rot = lf_base_rot;
+    public void setP_base_rot(Integer lf_base_rot) {
+        this.p_base_rot = lf_base_rot;
     }
 
     public Integer getRf_tip() {
@@ -230,36 +230,36 @@ public class RobotData {
         this.mf_base_rot = mf_base_rot;
     }
 
-    public Integer getPf_tip() {
-        return pf_tip;
+    public Integer getIf_tip() {
+        return if_tip;
     }
 
-    public void setPf_tip(Integer pf_tip) {
-        this.pf_tip = pf_tip;
+    public void setIf_tip(Integer pf_tip) {
+        this.if_tip = pf_tip;
     }
 
-    public Integer getPf_middle() {
-        return pf_middle;
+    public Integer getIf_middle() {
+        return if_middle;
     }
 
-    public void setPf_middle(Integer pf_middle) {
-        this.pf_middle = pf_middle;
+    public void setIf_middle(Integer pf_middle) {
+        this.if_middle = pf_middle;
     }
 
-    public Integer getPf_base() {
-        return pf_base;
+    public Integer getIf_base() {
+        return if_base;
     }
 
-    public void setPf_base(Integer pf_base) {
-        this.pf_base = pf_base;
+    public void setIf_base(Integer pf_base) {
+        this.if_base = pf_base;
     }
 
-    public Integer getPf_base_rot() {
-        return pf_base_rot;
+    public Integer getIf_base_rot() {
+        return if_base_rot;
     }
 
-    public void setPf_base_rot(Integer pf_base_rot) {
-        this.pf_base_rot = pf_base_rot;
+    public void setIf_base_rot(Integer pf_base_rot) {
+        this.if_base_rot = pf_base_rot;
     }
 
     public Integer getTh_tip() {

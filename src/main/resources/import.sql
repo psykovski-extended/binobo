@@ -7,3 +7,4 @@ insert into category (name, color_code) values ('Mathematics', '#6a7758');
 insert into category (name, color_code) values ('Troubleshooting', '#ff4c4c');
 insert into category (name, color_code) values ('Science', '#ae60bf');
 insert into category (name, color_code) values ('Coding', '#911973');
+insert into category (name, color_code) values ('Other', '#999999');

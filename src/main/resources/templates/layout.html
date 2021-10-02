@@ -57,10 +57,9 @@
     <nav class="innerNav">
         <ul class="navigation">
             <li><a th:href="@{/home}" class="anker_plain">Home</a></li>
-            <li><a th:href="@{/project}" class="anker_plain">Projekt</a></li>
-            <li><a th:href="@{/simulator3D}" class="anker_plain">3D - Simulator</a></li>
-            <li><a th:href="@{/developer}" class="anker_plain">Entwickler</a></li>
-            <li><a th:href="@{/sponsoring}" class="anker_plain">Sponsoren</a></li>
+            <li><a th:href="@{/project}" class="anker_plain">Project</a></li>
+            <li><a th:href="@{/emulator3D}" class="anker_plain">3D - Emulator</a></li>
+            <li><a th:href="@{/developer}" class="anker_plain">Developer</a></li>
             <li sec:authorize="isAnonymous()"><a th:href="@{/login}" class="anker_plain">Login</a></li>
             <li sec:authorize="isAuthenticated()"><a th:href="@{/blog}" class="anker_plain">Blog</a></li>
             <li id="on_media_icon"><img th:src="@{/pictures/on_media_navbar_icon.svg}"/></li>
