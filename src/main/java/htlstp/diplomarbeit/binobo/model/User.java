@@ -47,6 +47,8 @@ public class User implements UserDetails {
     @OneToOne
     @JoinColumn(name = "dataAccessToken_id")
     private DataAccessToken dataAccessToken;
+    @OneToMany(mappedBy = "user")
+    private List<Bookmark> bookmarks;
 
     public User(){}
 

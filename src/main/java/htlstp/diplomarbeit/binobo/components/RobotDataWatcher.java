@@ -36,16 +36,20 @@ public class RobotDataWatcher implements CommandLineRunner {
     @Override
     public void run(String...args) throws Exception {
         while(true) {
-            CompletableFuture<RobotData> robotData = robotDataService.checkIfExpired();
+            try {
+                CompletableFuture<RobotData> robotData = robotDataService.checkIfExpired();
 
-            CompletableFuture.allOf(robotData).join();
+                CompletableFuture.allOf(robotData).join();
 
-            if(robotData.get().isExpired()){
-                robotDataRepository.delete(robotData.get());
-                logger.info("Data expired --> Therefore it got deleted!");
+                if(robotData.get().isExpired()){
+                    robotDataRepository.delete(robotData.get());
+                    logger.info("Data expired --> Therefore it got deleted!");
+                }
+
+                Thread.sleep(1000L);
+            } catch (Exception e){
+                logger.warn("Error occurred: " + e.getMessage());
             }
-
-            Thread.sleep(1000L);
         }
     }
 }

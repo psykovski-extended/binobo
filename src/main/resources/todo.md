@@ -11,22 +11,24 @@
 - coole plugins einbauen (js-libs, ...)
 - Plotting-seite einbauen? (-Funktion?)
 - generell weitere funktionen einbauen?
+- webjars!!
 - javadoc!
-- sign in with token
 - organize css files
 - clean up html-trash, rename some files etc
 - sorting all files
 
-- 3D-Simulator fertigstellen (Philipp nerven!)
-  - ajax implementieren
-  - Struktur für 3D-Skript überlegen
+- 3D-Simulator:
+  - websockets
 
 - home page fertig designen
 - Entwicklerseite schreiben
     - Fotos von mir und philipp
-  
-- Sponsoren-seite machen?
 - Projektübersicht machen, so weit wie möglich zur Zeit
+
+### Firmware TODO
+
+- connect to websocket endpoint from server --> python server needed, cuz of stomp
+- v0.1 alpha fertig stellen
 
 ## Zweitrangige Ziele
 
@@ -74,6 +76,7 @@ Fertigstellung des Ganzem wär so Ende September super, August wär auch gut, ab
 - Aufbau der wichtigsten Komponenten:
   - Server: (+ Flussdiagramme)
     - REST API
+    - WebSockets (STOMP)
     - Blog
     - Simulator
     - Spring
@@ -91,3 +94,8 @@ Fertigstellung des Ganzem wär so Ende September super, August wär auch gut, ab
   - Asynchrones Programmieren
   - Android App:
     - Warum?
+- Kontroller:
+  - Funktionsweise
+  - Kalibration
+  - Konnex zu Firmware erklären
+  - Blender statt Inventor?

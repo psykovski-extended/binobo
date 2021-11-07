@@ -14,8 +14,6 @@ public class DataAccessToken {
     private Long id;
     @Column
     private final String token = UUID.randomUUID().toString();
-    @OneToMany
-    private List<RobotData> robotDataList;
 
     public DataAccessToken(){}
 
@@ -31,11 +29,4 @@ public class DataAccessToken {
         return token;
     }
 
-    public List<RobotData> getRobotDataList() {
-        return robotDataList;
-    }
-
-    public void setRobotDataList(List<RobotData> robotDataList) {
-        this.robotDataList = robotDataList;
-    }
 }

@@ -1,8 +1,3 @@
-import {OrbitControls} from './lib/three.js-master/examples/jsm/controls/OrbitControls.js';
-import {FBXLoader} from "./lib/three.js-master/examples/jsm/loaders/FBXLoader.js";
-
-emu3D();
-
 function emu3D() {
 
     //canvas setup
@@ -16,12 +11,12 @@ function emu3D() {
 
     //camera and controls setup
     const fov = 45;
-    let aspect = window.innerWidth / window.innerHeight;
+    let aspect = canvas.innerWidth / canvas.innerHeight;
     const near = 1;
     const far = 10000;
     let camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
     scene.add(camera);
-    const controls = new OrbitControls(camera, renderer.domElement)
+    const controls = new THREE.OrbitControls(camera, renderer.domElement)
     controls.maxPolarAngle = degToRad(160);
     controls.minPolarAngle = degToRad(20);
     camera.position.set(500, 100, 200);
@@ -34,7 +29,7 @@ function emu3D() {
     scene.add(ambient);
 
     //loader setup
-    let fbxloader = new FBXLoader();
+    let fbxloader = new THREE.FBXLoader();
     let palm = scene;
     let wrist = new THREE.Object3D()
     const ppos = blenderToThree(new THREE.Vector3(-1.25736, 0.039318, -0.020059));
@@ -142,8 +137,8 @@ function emu3D() {
      */
     function onMouseDown(event) {
         // update the picking ray with the camera and mouse position
-        mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-        mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+        mouse.x = (event.clientX / canvas.innerWidth) * 2 - 1;
+        mouse.y = -(event.clientY / canvas.innerHeight) * 2 + 1;
         raycaster.setFromCamera( mouse, camera );
 
         // calculate objects intersecting the picking ray

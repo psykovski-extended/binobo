@@ -11,6 +11,8 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.xml.crypto.Data;
+import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
@@ -100,6 +102,18 @@ public class RobotDataServiceImpl implements RobotDataService {
     @Override
     public void saveAll(Iterable<RobotData> robotData) {
         roboRepository.saveAll(robotData);
+    }
+
+    @Override
+    public HashMap<String, List<RobotData>> getAllSortedByToken() {
+        List<DataAccessToken> tokens = datRepository.findAll();
+        HashMap<String, List<RobotData>> res = new HashMap<>();
+        for(DataAccessToken dat : tokens){
+            List<RobotData> temp = roboRepository.findAllByDataAccessToken(dat);
+            res.put(dat.getToken(), temp);
+            deleteAllMatching(temp);
+        }
+        return res;
     }
 
     @Override

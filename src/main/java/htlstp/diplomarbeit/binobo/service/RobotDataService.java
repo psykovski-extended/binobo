@@ -3,6 +3,7 @@ package htlstp.diplomarbeit.binobo.service;
 import htlstp.diplomarbeit.binobo.model.DataAccessToken;
 import htlstp.diplomarbeit.binobo.model.robo.RobotData;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
@@ -19,4 +20,5 @@ public interface RobotDataService {
     void deleteAllByDataAccessToken(String token);
     void deleteAllMatching(List<RobotData> robotData);
     void saveAll(Iterable<RobotData> robotData);
+    HashMap<String, List<RobotData>> getAllSortedByToken();
 }

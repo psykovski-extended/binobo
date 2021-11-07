@@ -1,6 +1,7 @@
 package htlstp.diplomarbeit.binobo.controller;
 
 import htlstp.diplomarbeit.binobo.controller.util.FlashMessage;
+import htlstp.diplomarbeit.binobo.model.Bookmark;
 import htlstp.diplomarbeit.binobo.model.Comment;
 import htlstp.diplomarbeit.binobo.model.Post;
 import htlstp.diplomarbeit.binobo.model.User;
@@ -27,15 +28,18 @@ public class BlogController {
     private final CommentService commentService;
     private final SubCommentService subCommentService;
     private final CategoryService categoryService;
+    private final BookmarkService bookmarkService;
 
     @Autowired
     public BlogController(PostService postService, UserService userService, CommentService commentService,
-                          SubCommentService subCommentService, CategoryService categoryService) {
+                          SubCommentService subCommentService, CategoryService categoryService,
+                          BookmarkService bookmarkService) {
         this.postService = postService;
         this.userService = userService;
         this.commentService = commentService;
         this.subCommentService = subCommentService;
         this.categoryService = categoryService;
+        this.bookmarkService = bookmarkService;
     }
 
     @GetMapping(value = "/blog")
@@ -50,9 +54,12 @@ public class BlogController {
     public String postX(@PathVariable Long postId, Model model, Principal principal){
         Post post = postService.findById(postId);
         User user = (User)((UsernamePasswordAuthenticationToken)principal).getPrincipal();
+        Bookmark bookmark = bookmarkService.findByPostAndUser(post, user);
 
         model.addAttribute("post", post);
         model.addAttribute("user", user);
+        model.addAttribute("bookmark", bookmark == null ? new Bookmark() : bookmark);
+
         model.addAttribute("comments", commentService.findAllByPost(post));
         if(!model.containsAttribute("comment"))
             model.addAttribute("comment", new Comment());
@@ -230,5 +237,7 @@ public class BlogController {
         }
         return String.format("redirect:/blog/%s", comment.getPost().getId());
     }
+
+    // PatchMapping for add/ del bookmark
 
 }

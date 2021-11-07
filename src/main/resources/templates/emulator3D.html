@@ -9,17 +9,45 @@
 <input type="hidden" th:value="${token}" id="token">
 <canvas id="c"></canvas>
 <!--  scripts  -->
+
+<script rel="script" src="webjars/sockjs-client/1.0.2/sockjs.js"></script>
+<script rel="script" src="webjars/stomp-websocket/2.3.3/stomp.js"></script>
+<script rel="script" src="webjars/jquery/3.1.1-1/jquery.js"></script>
+
+<script rel="script" src="webjars/super-three/0.111.6/build/three.js"></script>
+<script rel="script" src="webjars/super-three/0.111.6/examples/js/libs/inflate.min.js"></script>
+<script rel="script" src="webjars/super-three/0.111.6/examples/js/controls/OrbitControls.js"></script>
+<script rel="script" src="webjars/super-three/0.111.6/examples/js/loaders/FBXLoader.js"></script>
+
+<link rel="stylesheet" th:href="@{styles/simulator.css}">
 <script th:src="@{/scripts/onscroll.js}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"
-        integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script th:src="@{/scripts/lib/three.js-master/build/three.js}"></script>
 <script th:src="@{/scripts/globals.js}"></script>
 <script th:src="@{/scripts/emulator_utils.js}"></script>
-<script type="module" th:src="@{scripts/emulator3D.js}"></script>
 
 <script>
-    periodic_rest_call();
+    let stompClient = null;
+
+    function connect() {
+        let socket = new SockJS('/realtime-emulator');
+        stompClient = Stomp.over(socket);
+        stompClient.connect({}, frame => {
+            console.log('Connected: ' + frame);
+            stompClient.subscribe('/publish-data/' + token, res => {
+                let data = JSON.parse(res.body);
+                for(i of data) {
+                    if(i !== undefined)
+                        dat_json_buffer[dat_json_buffer.length] = i;
+                }
+            });
+        });
+    }
+
+    connect();
+</script>
+
+<script type="text/javascript" rel="script" th:src="@{scripts/emulator3D.js}"></script>
+<script>
+    emu3D();
 </script>
 </body>
 </html>

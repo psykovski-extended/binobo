@@ -14,7 +14,6 @@ async function retrieveData(token){
         dataType: "json"
     });
 }
-
 async function yieldData() {
     const data = await retrieveData(token);
     console.log(data)
@@ -26,8 +25,8 @@ async function yieldData() {
     }
 }
 
-function periodic_rest_call(){
+function periodicRestCall(){
     setInterval(() => {
         retrieveData(token).catch(e => console.log(e));
-    }, 100)
+    }, 50)
 }
