@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="de" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Binobo | Login or Register</title>
+    <title>Binobo | Login | Register</title>
     <meta charset="UTF-8"/>
     <link rel="preconnect" href="https://fonts.gstatic.com"/>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600&display=swap" rel="stylesheet"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="webjars/jquery/3.1.1-1/jquery.js"></script>
     <link rel="stylesheet" th:href="@{/styles/navbar_style.css}"/>
     <link rel="stylesheet" th:href="@{/styles/mainStyle.css}"/>
     <link rel="stylesheet" th:href="@{/styles/loginFormStyle.css}"/>
@@ -121,10 +121,5 @@
         isReg = !isReg;
     }
 </script>
-<!--<script>-->
-<!--    $(document).ready(function(){-->
-<!--        alert('To login, please toggle this fancy button!');-->
-<!--    });-->
-<!--</script>-->
 </body>
 </html>

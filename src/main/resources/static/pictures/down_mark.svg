@@ -1,7 +1,13 @@
 <svg id="b245a661-8f97-48b2-bf33-69cf27d346e6" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg"
      viewBox="0 0 412.071 245.596">
     <defs>
-        <style>.e8156cb9-9a48-44fd-9110-d4e7012063b9{fill:#999;stroke:#999;stroke-miterlimit:10;stroke-width:5px;}
+        <style>
+            .e8156cb9-9a48-44fd-9110-d4e7012063b9{
+                fill:white;
+                stroke:white;
+                stroke-miterlimit:10;
+                stroke-width:5px;
+            }
         </style>
     </defs>
     <title>down_mark</title>

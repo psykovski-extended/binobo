@@ -28,8 +28,7 @@ public class SocketController {
     @Scheduled(fixedRate = 10)
     public void greeting() {
         HashMap<String, List<RobotData>> res = robotDataService.getAllSortedByToken();
-        Set<String> keys = res.keySet();
-        for(String key : keys){
+        for(String key : res.keySet()){
             if(key != null && res.get(key).size() > 0)
                 template.convertAndSend("/publish-data/" + key, res.get(key));
         }

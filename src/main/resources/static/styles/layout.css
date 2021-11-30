@@ -1,0 +1,151 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Roboto Mono', monospace;
+    transition: .3s all ease;
+}
+
+html[data-theme='dark'] {
+    --bg: black;
+    --bg-panel: #222;
+    --bg-content: #343434;
+    --color-text: white;
+    --hover-color: #ff7800;
+}
+
+html[data-theme='light'] {
+    --bg: #888;
+    --bg-panel: white;
+    --bg-content: #ccc;
+    --color-text: #222;
+    --hover-color: #ff7800;
+}
+
+html, body {
+    background-color: var(--bg);
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    padding: 10px;
+}
+
+.main_content::-webkit-scrollbar {
+    display: none;
+}
+
+.main_content {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.main_content {
+    overflow:scroll;
+}
+
+.nav_element a svg {
+    height: 50px;
+    width: 50px;
+}
+
+.nav_element a svg * {
+    fill: var(--color-text);
+    outline: var(--color-text);
+    stroke:var(--color-text);
+}
+
+.nav_element * {
+    color: var(--color-text);
+    margin-top: 0;
+}
+
+.nav_element {
+    margin-bottom: 30px;
+}
+
+.nav_element:hover a svg * {
+    fill: var(--hover-color);
+    stroke: var(--hover-color);
+}
+
+.nav_element a {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+
+.nav_element a p {
+    margin: 0;
+}
+
+.side_nav {
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-right: 15px;
+}
+
+.theme_toggle {
+    -webkit-appearance: none;
+    position: relative;
+    width: 80px;
+    height: 40px;
+    background-image: url(https://i.postimg.cc/Hn0nstVK/Screenshot-2020-04-16-at-1-07-19-PM.png);
+    background-size: cover;
+    border-radius: 20px;
+    outline: none;
+    transition: background-image .90s;
+}
+
+.theme_toggle:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height:40px;
+    width: 40px;
+    border-radius: 20px;
+    transition: all .9s;
+    background-color: #1a367d;
+}
+
+.theme_toggle:checked {
+    background-image: url(https://i.postimg.cc/857jHw2q/Screenshot-2020-04-16-at-1-07-06-PM.png);
+    transition: background-image .90s;
+}
+
+.theme_toggle:checked:before {
+    transform: translate(100%);
+    transition: all .9s;
+    background-color: #F7CA33;
+}
+
+.main_wrapper {
+    display: flex;
+    height: calc(100% - 20px);
+    margin: 10px;
+    border-radius: 30px;
+    background-color: var(--bg-panel);
+    padding: 15px;
+}
+
+.main_content {
+    border-radius: 30px;
+    background-color: var(--bg-content);
+    padding: 15px;
+    width: 100%;
+}
+/*TODO change besause of svg*/
+#selected svg * {
+    fill: var(--hover-color);
+    stroke: var(--hover-color);
+}
+
+#selected p {
+    color: var(--hover-color);
+}

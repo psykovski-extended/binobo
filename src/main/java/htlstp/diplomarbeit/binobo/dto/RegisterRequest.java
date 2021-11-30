@@ -5,7 +5,6 @@ import htlstp.diplomarbeit.binobo.service.validation.FieldMatch;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 
 @FieldMatch(first = "password", second = "password_verify", message = "The Passwords must Match!")
 public class RegisterRequest {

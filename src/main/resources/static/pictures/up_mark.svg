@@ -1,7 +1,13 @@
 <svg id="bebdedb3-8fed-42d7-9f02-97a7d9a946b4" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg"
      viewBox="0 0 412.071 245.596">
     <defs>
-        <style>.b8e47e87-f380-4d52-ba88-752db27c399d{fill:#999;stroke:#999;stroke-miterlimit:10;stroke-width:5px;}
+        <style>
+            .b8e47e87-f380-4d52-ba88-752db27c399d{
+                fill:white;
+                stroke:white;
+                stroke-miterlimit:10;
+                stroke-width:5px;
+            }
         </style>
     </defs>
     <title>up_mark</title>

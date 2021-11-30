@@ -15,7 +15,7 @@ import java.util.Vector;
 @RestController
 @ResponseBody
 @RequestMapping(value = "/roboData/rest_api")
-public class RoboDataController { // TODO establish log-system
+public class RoboDataController {
 
     private final RobotDataService robotDataService;
 

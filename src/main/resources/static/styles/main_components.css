@@ -1,0 +1,55 @@
+.thumbnail {
+    width: 100%;
+    display: flex;
+    border-radius: 30px;
+    height: 300px;
+    background-image: url("../pictures/main_tn.jpg");
+    justify-content: center;
+    align-items: center;
+    background-size: 100%;
+    background-position: bottom;
+}
+
+.thumbnail h1 {
+    color: white;
+    font-size: 64px;
+    font-weight: 100;
+}
+
+.flash {
+    padding: 10px;
+    border-radius: 35px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    border: solid #222 3px;
+    font-size: 30px;
+}
+
+.flash .strong {
+    text-align:center;
+    color: #222;
+}
+
+.flash_success, .flash_success .strong {
+    background-color: #0E9A00;
+}
+
+.flash_info, .flash_info .strong {
+    background-color: #0E0EFF;
+}
+
+.flash_error, .flash_error .strong {
+    background-color: #983111;
+}
+
+.flash_warn, .flash_warn .strong {
+    background-color: #7d9726;
+}
+
+.field_error {
+    color: #da3b09;
+    font-size: 20px;
+    text-align: center;
+}

@@ -2,7 +2,7 @@ function emu3D() {
 
     //canvas setup
     let canvas = document.querySelector('#c');
-    const renderer = new THREE.WebGLRenderer({antialias: true, canvas});
+    const renderer = new THREE.WebGLRenderer({ antialias: true, canvas });
     renderer.setSize(canvas.innerWidth, canvas.innerHeight);
 
     //scene setup
@@ -137,8 +137,8 @@ function emu3D() {
      */
     function onMouseDown(event) {
         // update the picking ray with the camera and mouse position
-        mouse.x = (event.clientX / canvas.innerWidth) * 2 - 1;
-        mouse.y = -(event.clientY / canvas.innerHeight) * 2 + 1;
+        mouse.x = ( (event.clientX) / window.innerWidth ) * 2 - 1;
+        mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
         raycaster.setFromCamera( mouse, camera );
 
         // calculate objects intersecting the picking ray
@@ -157,22 +157,6 @@ function emu3D() {
         }
         else
             lastsel=0;
-    }
-
-    /**
-     * Fixes the renderer when the window changes
-     * @param renderer the renderer
-     * @returns {boolean} if resize is required
-     */
-    function resizeRendererToDisplaySize(renderer) {
-        const canvas = renderer.domElement;
-        const width = window.innerWidth;
-        const height = window.innerHeight;
-        const needResize = canvas.width !== width || canvas.height !== height;
-        if (needResize) {
-            renderer.setSize(width, height, true);
-        }
-        return needResize;
     }
 
     /**
@@ -207,15 +191,14 @@ function emu3D() {
             fingers[4][0].rotation.z=degToRad(-dat_json.th_tip);
         } catch (e) {}
 
-        if (resizeRendererToDisplaySize(renderer)) {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-        }
+        camera.aspect = canvas.clientWidth / canvas.clientHeight;
+        renderer.setSize(canvas.clientWidth, canvas.clientHeight, false);
+        camera.updateProjectionMatrix();
+
         requestAnimationFrame(render);
 
         controls.update();
         renderer.render(scene, camera);
-
     }
 
     window.requestAnimationFrame(render);

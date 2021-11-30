@@ -47,7 +47,7 @@ public class BlogController {
         List<Post> posts = postService.findAll();
         model.addAttribute("posts", posts);
 
-        return "blog/blogOverview";
+        return "blogOverview";
     }
 
     @GetMapping(value = "/blog/{postId}")
@@ -60,11 +60,13 @@ public class BlogController {
         model.addAttribute("user", user);
         model.addAttribute("bookmark", bookmark == null ? new Bookmark() : bookmark);
 
+        if(!model.containsAttribute("comment_action"))
+            model.addAttribute("comment_action", String.format("/blog/post/%s/addComment", postId));
         model.addAttribute("comments", commentService.findAllByPost(post));
         if(!model.containsAttribute("comment"))
             model.addAttribute("comment", new Comment());
 
-        return "blog/blog_PostX";
+        return "blogEntryPreview";
     }
 
     @GetMapping(value = "/blog/new")
@@ -78,7 +80,7 @@ public class BlogController {
         model.addAttribute("categories", categoryService.findAll());
         model.addAttribute("method", "post");
 
-        return "blog/blogForm";
+        return "blogForm";
     }
 
     @GetMapping(value = "/blog/{blogId}/edit")
@@ -96,13 +98,13 @@ public class BlogController {
             model.addAttribute("categories", categoryService.findAll());
             model.addAttribute("method", "patch");
 
-            return "blog/blogForm";
+            return "blogForm";
         }
 
         return "redirect:/blog";
     }
 
-    @PatchMapping(value = "/blog/{blogId}")
+    @PostMapping(value = "/blog/{blogId}")
     public String updateBlogEntry(@Valid @ModelAttribute("post") Post post, BindingResult errors, RedirectAttributes redirectAttributes, Principal principal){// BindingResults
         User user = (User)((UsernamePasswordAuthenticationToken)principal).getPrincipal();
 
@@ -153,7 +155,7 @@ public class BlogController {
     public String getAllPostsFromUser(Model model, Principal principal){
         User user = (User)((UsernamePasswordAuthenticationToken)principal).getPrincipal();
         model.addAttribute("posts", postService.findByUser(user));
-        return "blog/blogOverview";
+        return "blogOverview";
     }
 
     @PostMapping(value = "/blog/post/{postId}/addComment")
@@ -238,6 +240,85 @@ public class BlogController {
         return String.format("redirect:/blog/%s", comment.getPost().getId());
     }
 
+    @GetMapping(value = "/blog/{comment_id}/comment/delete")
+    public String deleteComment(@PathVariable Long comment_id, @RequestParam("post_id") Long post_id,
+                                Principal principal, RedirectAttributes redirectAttributes){
+        Comment comment = commentService.findById(comment_id);
+        if(comment == null) return "redirect:/blog";
+
+        User cur_user = (User)((UsernamePasswordAuthenticationToken)principal).getPrincipal();
+        User comment_user = comment.getUser();
+
+        if(cur_user == comment_user || cur_user.getRole().getId() >= 2){
+            commentService.deleteComment(comment);
+
+            redirectAttributes.addFlashAttribute("flash_succ",
+                    new FlashMessage("Comment got successfully deleted!",
+                            FlashMessage.Status.SUCCESS));
+        } else {
+            redirectAttributes.addFlashAttribute("flash_err",
+                    new FlashMessage("You are not allowed to delete this comment!",
+                            FlashMessage.Status.FAILURE));
+        }
+        return String.format("redirect:/blog/%s", post_id);
+    }
+
+    @GetMapping(value = "/blog/{comment_id}/comment/edit")
+    public String editComment(@PathVariable Long comment_id, @RequestParam("post_id") Long post_id,
+                              Principal principal, RedirectAttributes redirectAttributes) {
+
+        Comment comment = commentService.findById(comment_id);
+        if(comment == null) return "redirect:/blog";
+
+        User cur_user = (User)((UsernamePasswordAuthenticationToken)principal).getPrincipal();
+        User comment_user = comment.getUser();
+
+        if(cur_user == comment_user || cur_user.getRole().getId() >= 2){
+            redirectAttributes.addFlashAttribute("comment", comment);
+            redirectAttributes.addFlashAttribute("comment_action", String.format("/blog/confirmCommentChange?post_id=%s&comment_user_id=%s", post_id, comment.getUser().getId()));
+        }
+        return String.format("redirect:/blog/%s", post_id);
+    }
+
+    @PostMapping(value = "/blog/confirmCommentChange")
+    public String editCommentConfirm(@Valid @ModelAttribute("comment") Comment comment, @RequestParam("post_id") Long post_id, @RequestParam("comment_user_id") Long comment_user_id,
+                                        BindingResult errors, RedirectAttributes redirectAttributes, Principal principal){
+
+        User cur_user = (User)((UsernamePasswordAuthenticationToken)principal).getPrincipal();
+
+        if(errors.hasErrors()) {
+            redirectAttributes.addFlashAttribute("flash_warn",
+                    new FlashMessage("Comment contains errors, please check if the input field is not empty!",
+                            FlashMessage.Status.WARN));
+            return String.format("/blog/%s/comment/edit?post_id=%s", comment.getId(), post_id);
+        }
+
+        if(comment.getUser().getUsername().equals(cur_user.getUsername()) || cur_user.getRole().getId() >= 2) {
+            comment.setUser(userService.findById(comment_user_id));
+            commentService.saveComment(comment);
+            redirectAttributes.addFlashAttribute("flash_info",
+                    new FlashMessage("Comment successfully edited!",
+                            FlashMessage.Status.INFO));
+        } else {
+            redirectAttributes.addFlashAttribute("flash_err",
+                    new FlashMessage("You are not allowed to perform such a task!",
+                            FlashMessage.Status.FAILURE));
+        }
+
+        return String.format("redirect:/blog/%s", post_id);
+    }
+
     // PatchMapping for add/ del bookmark
+
+    // only for testing purpose
+    @GetMapping(value = "/blog/test_prev")
+    public String testPrev(Model model){
+        model.addAttribute("post", new Post());
+        model.addAttribute("action", "/blog");
+        model.addAttribute("method", "post");
+        model.addAttribute("categories", categoryService.findAll());
+
+        return "temp_bp";
+    }
 
 }

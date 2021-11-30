@@ -33,11 +33,11 @@ public class User implements UserDetails {
     @NotEmpty
     @NotNull
     private String password;
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.ALL})
     private List<Post> posts = new ArrayList<>();
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.ALL})
     private List<Comment> comments = new ArrayList<>();
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.ALL})
     private List<SubComment> subComments;
     @Column(nullable = false)
     private boolean activated = false;
@@ -47,7 +47,7 @@ public class User implements UserDetails {
     @OneToOne
     @JoinColumn(name = "dataAccessToken_id")
     private DataAccessToken dataAccessToken;
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.ALL})
     private List<Bookmark> bookmarks;
 
     public User(){}

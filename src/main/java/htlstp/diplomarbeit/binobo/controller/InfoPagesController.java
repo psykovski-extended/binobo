@@ -21,9 +21,4 @@ public class InfoPagesController {
         return "projectOverview";
     }
 
-    @RequestMapping(value = "/sponsoring")
-    public String sponsors(){
-        return "sponsoren";
-    }
-
 }

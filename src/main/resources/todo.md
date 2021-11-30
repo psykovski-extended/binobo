@@ -1,34 +1,39 @@
 ## Relevante Arbeitsschritte
 
+### Front - and Backend
+
 - blog fertigstellen
   - Sub-comment funktion schreiben
   - Delete-Funktion für Kommentare und Sub-Kommentare einbauen
   - 'This solved the issue' - Button einbauen
 - admin-pages schreiben (list all users, delete or set deactivated)
-- navbar umbauen
-- react & bootstrap verwenden
+- my account page
 - responsive layout
-- coole plugins einbauen (js-libs, ...)
-- Plotting-seite einbauen? (-Funktion?)
-- generell weitere funktionen einbauen?
-- webjars!!
-- javadoc!
-- organize css files
-- clean up html-trash, rename some files etc
-- sorting all files
+- neues layout fertigstellen
+- svg - stylesheet hinzufügen
 
-- 3D-Simulator:
-  - websockets
-
-- home page fertig designen
 - Entwicklerseite schreiben
     - Fotos von mir und philipp
 - Projektübersicht machen, so weit wie möglich zur Zeit
 
-### Firmware TODO
+### Firmware
 
-- connect to websocket endpoint from server --> python server needed, cuz of stomp
 - v0.1 alpha fertig stellen
+- UART input reader for commands, received from app
+
+### Emulator
+
+- Sync button
+- connect/disconnect button
+- connection lost popup
+- live-plot for current rotation of all joints
+- show current selected joint and its hierarchy (handy-svg)
+
+### App
+
+- Konfiguration-Steps (WLAN, Token)
+- Kalibration (Ausrichtung der Potis)
+- Übertragung starten/stoppen/pausieren button
 
 ## Zweitrangige Ziele
 
@@ -41,7 +46,7 @@
 - exploit schutz einbauen (mit werner reden):
   - sql-injection
   
-# Anforgerungen an den 3D-Simulator
+# Anforderungen an den 3D-Simulator
 
 - Kalibrierbar auf eine bestimmte fixe Abtastrate des Kontrollers // hierbei muss davon ausgegangen werden, dass die Abtastrate zumindest für eine Sekunde konstant bleibt
 - Spontan adaptierbar auf einen Einbruch der Netzwerkgeschwindigkeit // optional
@@ -99,3 +104,4 @@ Fertigstellung des Ganzem wär so Ende September super, August wär auch gut, ab
   - Kalibration
   - Konnex zu Firmware erklären
   - Blender statt Inventor?
+  - Poti Halterung

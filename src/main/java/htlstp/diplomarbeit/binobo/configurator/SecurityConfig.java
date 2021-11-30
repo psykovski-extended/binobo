@@ -59,7 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     public AuthenticationSuccessHandler loginSuccessHandler(){
-        return (request, response, authentication) -> response.sendRedirect("/blog");
+        return (request, response, authentication) -> response.sendRedirect("/");
     }
 
     public AuthenticationFailureHandler loginFailureHandler(){
