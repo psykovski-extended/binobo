@@ -1,0 +1,147 @@
+.content_wrapper {
+    height: 100%;
+}
+
+.form_visible {
+    width: 80%;
+    height: 100%;
+    margin: auto;
+    border-radius: 30px;
+    background-color: #273d269a;
+    padding: 20px;
+}
+
+input {
+    transition: border-color 0.3s ease-out;
+    color: #ff7800;
+    background-color: var(--bg-panel);
+    border-width: 0 0 3px 0;
+    border-color: #ff7800;
+    border-radius: 25px;;
+    padding-left: 20px;
+    font-size : 23px;
+    height: 50px;
+    width: 100%;
+    outline: none;
+}
+
+input:hover {
+    border-color: #008000;
+}
+
+.label_inner {
+    background-color: transparent;
+    font-size: 40px;
+    text-align: center;
+    color: #ff7800;
+    transition: all 0.3s ease 0s;
+}
+
+.flex {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.loginHeader_Wrapper {
+    align-items: center;
+    justify-content: center;
+}
+
+.first_name, .last_name, .verify_btn, .cancel_btn {
+    width: 48%;
+}
+
+.loginHeader {
+    color: #ff7800;
+    font-size: 100px;
+    margin: 0;
+    padding-right: 10px;
+}
+
+hr {
+    border: solid 2px #ff7800;
+    border-radius: 2px;
+}
+
+.btns {
+    margin-top: 10%;
+    width: 100%;
+}
+
+/* Sign in/up toggle btn */
+
+.onoffswitch {
+    position: relative; width: 250px;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+.onoffswitch-checkbox {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+.onoffswitch-label {
+    display: block; overflow: hidden; cursor: pointer;
+    border: 2px solid #FF7800; border-radius: 50px;
+}
+.onoffswitch-inner {
+    display: block; width: 200%; margin-left: -100%;
+    transition: margin 0.2s ease-in 0s;
+}
+.onoffswitch-inner:before, .onoffswitch-inner:after {
+    display: block; float: left; width: 50%; height: 90px; padding: 0; line-height: 90px;
+    font-size: 80px; color: white; font-weight: bold;
+    box-sizing: border-box;
+}
+.onoffswitch-inner:before {
+    content: "UP";
+    padding-left: 27px;
+    background-color: var(--bg-panel); color: #FF7800;
+}
+.onoffswitch-inner:after {
+    content: "IN";
+    padding-right: 27px;
+    background-color: #FF7800; color: var(--bg-panel);
+    text-align: right;
+}
+.onoffswitch-switch {
+    display: block; width: 100px; margin: -5px;
+    background: #ff7800;
+    position: absolute; top: 0; bottom: 0;
+    right: 159px;
+    border: 10px solid var(--bg-panel); border-radius: 50px;
+    transition: all 0.2s ease-in 0s;
+}
+
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+    margin-left: 0;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+    right: 0;
+    background-color: var(--bg-panel);
+    border-color: #ff7800;
+}
+
+/* sign in */
+
+.sign_in {
+    display: none;
+}
+
+.error, .error:hover {
+    border-color: red;
+}
+
+html[data-theme='dark'] .main_content {
+    background: url('../pictures/icon_v2_gr.svg') center, linear-gradient(to right bottom, #272727 20%, #333);
+    background-size: 100% 100%;
+}
+
+html[data-theme='light'] .main_content {
+    background: url('../pictures/icon_v2_wh.svg') center, linear-gradient(to right bottom, #ccc 20%, #eee);
+    background-size: 100% 100%;
+}
+
+.main_wrapper {
+    flex-direction: row-reverse;
+}

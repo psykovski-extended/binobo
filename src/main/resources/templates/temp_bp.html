@@ -1,23 +1,16 @@
 <!DOCTYPE html>
 <html data-theme="dark" lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Binobo - Blog</title>
-    <link href="https://fonts.googleapis.com" rel="preconnect">
-    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
-    <script crossorigin="anonymous"
-            integrity="sha512-+ab24sSOgbciah+hyqPk/XqGOooAInsofud5JB4AdrRfahahDA/WWnnm6dS/bl7UmN8RW8ZGp85EoWU/aFTUhA=="
-            referrerpolicy="no-referrer" src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.0/zepto.js"></script>
+    <meta charset="UTF-8"/>
+    <title>Binobo - Dive into our Network</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet"/>
     <script src="/webjars/jquery/3.1.1-1/jquery.js"></script>
-    <script src="/webjars/editor.md/editormd.js"></script>
-    <script src="/webjars/editor.md/languages/en.js"></script>
-    <link href="/webjars/editor.md/css/editormd.css" rel="stylesheet">
-    <link rel="stylesheet" th:href="@{/styles/layout.css}">
-    <link rel="stylesheet" th:href="@{/styles/main_components.css}">
+    <link rel="stylesheet" th:href="@{/styles/layout.css}"/>
+    <link rel="stylesheet" th:href="@{/styles/main_components.css}"/>
+    <link rel="stylesheet" th:href="@{/styles/login.css}"/>
     <link rel="icon" th:href="@{/pictures/icon_v2_or.svg}" type="image/icon type"/>
-    <link rel="stylesheet" th:href="@{/styles/blog_style.css}"/>
-    <link rel="stylesheet" th:href="@{/styles/blog_preview.css}"/>
 </head>
 <body>
 <div class="main_wrapper">
@@ -64,9 +57,11 @@
                 <a th:href="@{/developer}">
                     <svg viewBox="0 0 383.86 376.56" xmlns="http://www.w3.org/2000/svg">
                         <defs>
-                            <style>.cls-1 {
-                                fill: white;
-                            }</style>
+                            <style>
+                                .cls-1 {
+                                    fill: white;
+                                }
+                            </style>
                         </defs>
                         <g data-name="Ebene 2" id="Ebene_2">
                             <g data-name="Ebene 1" id="Ebene_1-2">
@@ -314,198 +309,95 @@
             </div>
         </div>
         <div class="theme_btn_wrapper">
-            <input class="theme_toggle" id="switch" type="checkbox">
+            <input class="theme_toggle" id="switch" type="checkbox"/>
         </div>
     </div>
     <div class="main_content">
-        <div th:replace="layout :: flash_err"></div>
-        <div th:replace="layout :: flash_succ"></div>
-        <div th:replace="layout :: flash_warn"></div>
-        <div th:replace="layout :: flash_info"></div>
-        <div class="need_help_popup" id="need_help">
-            <div class="head">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 408.87 408.88">
-                    <defs>
-                        <style>
-                            #bd45aff3-ea2d-4dc1-8138-1cf1c325b772 * {
-                                fill: #FF7800;
-                            }
-                        </style>
-                    </defs>
-                    <g id="a7923d0d-a9c2-4dd0-a208-556d601d99a9" data-name="Ebene 2">
-                        <g id="bd45aff3-ea2d-4dc1-8138-1cf1c325b772" data-name="Ebene 1">
-                            <path d="M216.38,408.88h-24a21.92,21.92,0,0,0-3.08-.65c-28.66-1.94-55.81-9.49-80.92-23.35Q22,337.19,3.13,240.07C1.61,232.25,1.36,224.29,0,216.46v-24a27.67,27.67,0,0,0,.68-3.45c2-28.53,9.36-55.65,23.34-80.54C61.66,41.53,119.12,5.19,195.84.39a184.63,184.63,0,0,1,94.83,18.92c72.85,36.23,112.46,95.35,117.79,176.55,2.43,37.15-5.9,72.6-24,105.19q-47.74,86.1-144.84,104.76C231.94,407.28,224.08,407.48,216.38,408.88ZM376.86,204.67C377,109.63,300,32.36,204.79,32S32.11,109,31.94,204.29c-.16,95,76.85,172.31,172.07,172.65S376.7,300,376.86,204.67Z"/>
-                            <path d="M204.29,102.74c30.85-.13,58.08,22.68,63,52.81,5.15,31.42-12.67,61.52-42.51,71.34-3.56,1.18-4.72,2.65-4.54,6.34.34,6.77.16,13.56.08,20.35-.11,9.76-6.9,16.74-16.07,16.67s-15.74-7-15.82-16.51q-.15-19.35,0-38.71c.08-9.11,5.62-15.5,14.71-16.27,10.54-.89,19.83-4,26.36-12.77,7.75-10.4,9.11-21.78,3.36-33.4-6-12.05-16.16-18.22-29.67-17.71-16.34.62-28.32,12.05-30.44,28.31-.19,1.45-.24,2.91-.38,4.37-.83,8.95-7.88,15.23-16.64,14.83a15.62,15.62,0,0,1-15.17-16.3c.58-22.77,10.46-40.61,29.4-53.21A60.75,60.75,0,0,1,204.29,102.74Z"/>
-                            <path d="M204.94,282.45a19.85,19.85,0,1,1-20.45,19.1A19.91,19.91,0,0,1,204.94,282.45Z"/>
-                        </g>
-                    </g>
-                </svg>
-                <h3>How to use?</h3>
-                <svg onclick="document.getElementById('need_help').style.left = '100%'" class="close_help_popup" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 379.7">
-                    <defs>
-                        <style>
-                            #a880d0af-8376-4ac0-9449-40393c66028b * {
-                                fill: #aaa;
-                            }
-                            #a880d0af-8376-4ac0-9449-40393c66028b:hover * {
-                                fill: #ee1100;
-                            }
-                        </style>
-                    </defs>
-                    <g id="a880d0af-8376-4ac0-9449-40393c66028b" data-name="Ebene 2">
-                        <g id="baaedc82-b806-4067-a0f1-2741c27343fc" data-name="Ebene 1">
-                            <path d="M0,350.36v-10.5a47.5,47.5,0,0,1,13.31-23.27q62.22-61.86,124.2-124c2.34-2.33,2.32-3.42,0-5.75Q74.93,124.56,12.56,62c-9.18-9.19-12.5-20.4-9.85-33,2.94-14,11.62-23.41,25.35-27.41S54,1,64.18,11.12q62.37,62,124.66,124c2.31,2.3,3.53,2.65,6,.12Q237.81,92,281,49c13.26-13.25,26.16-26.89,40-39.53,14.3-13.08,36.94-11.24,50,3a36.07,36.07,0,0,1-1,50.12Q308.28,124.3,246.58,185.88c-2.56,2.55-2.92,3.81-.11,6.58,40,39.54,79.77,79.3,119.79,118.82,8.12,8,15.56,16.16,17.74,27.83v9.75c-.32,1.19-.64,2.38-.95,3.57-3.69,13.88-12.28,23.23-26.41,26.18-14.67,3.06-27.84-.18-38.83-11.22q-61.6-61.9-123.41-123.61c-2.37-2.38-3.48-2.24-5.76.06-40.83,41-81.87,81.74-122.57,122.84-9.43,9.52-20.29,13.52-33.37,12.84-15.81-.82-27.91-10.67-31.74-26C.7,352.43,1,351.19,0,350.36Z"/>
-                        </g>
-                    </g>
-                </svg>
-            </div>
-            <div class="body">
-                <div class="md">
-                    <a href="https://pandao.github.io/editor.md/en.html" target="_blank">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 135.24 83.9">
-                            <defs>
-                                <style>
-                                    #abcde754-bb40-4873-83ce-644076b08537 #aec60d0c-fa4a-44c6-a55c-2322aaf8065a{
-                                        fill: white;
-                                    }
-                                </style>
-                            </defs>
-                            <g id="abcde754-bb40-4873-83ce-644076b08537" data-name="Ebene 2">
-                                <g id="aec60d0c-fa4a-44c6-a55c-2322aaf8065a" data-name="Ebene 1">
-                                    <path d="M67.8,0Q95.9,0,124,0c7.76,0,11.2,3.39,11.21,11.1q0,30.86,0,61.73c0,7.36-3.64,11-11,11q-56.57.06-113.15,0c-7.37,0-11-3.68-11-11Q0,41.8,0,10.75C0,3.56,3.63,0,10.85,0Q39.32,0,67.8,0ZM58.24,43.25l.83.32c0,6.92,0,13.84,0,20.75,0,2,.46,3,2.71,2.91,4-.14,8-.1,12,0,1.74,0,2.44-.64,2.44-2.39,0-15.25,0-30.5,0-45.75,0-1,.15-2.36-1.11-2.43a78.89,78.89,0,0,0-15.67.18c-.85.12-1.6,1.46-2.27,2.34-3,3.84-6,7.64-8.74,11.62-1.62,2.34-2.54,1.88-4-.11-3-4.14-6.12-8.15-9.17-12.23-.85-1.13-1.69-2-3.32-2q-6.36.12-12.74,0c-1.95,0-2.61.78-2.6,2.66q.06,22.7,0,45.39c0,2.13.78,2.83,2.85,2.75,3.11-.11,6.24,0,9.36,0,5.12,0,5.13,0,5.13-4.92V42.38c4.07,5.16,7.51,9.36,10.75,13.7,1.36,1.81,2.18,1.84,3.54,0C51.45,51.77,54.88,47.53,58.24,43.25Zm52-14.23c0-3-.13-5.95,0-8.91.15-2.63-.59-3.9-3.52-3.72a91.6,91.6,0,0,1-10.48,0c-2.7-.14-3.38,1-3.32,3.46.14,6.19-.08,12.39.1,18.57.08,2.66-.86,3.5-3.42,3.3-2.23-.18-4.48,0-6.73,0-1.53,0-2.65.24-1.36,2.05q9.32,13,18.62,26c.92,1.29,1.69,1.19,2.57,0q9.38-13,18.77-25.94c1.16-1.59.58-2.15-1.21-2.13-2.37,0-4.75-.12-7.11,0s-3-.85-3-3C110.31,35.47,110.22,32.24,110.22,29Z"/>
-                                </g>
-                            </g>
-                        </svg>
-                    </a>
-                    <p>Markdown</p>
-                </div>
-                <div class="latex">
-                    <a href="https://katex.org/docs/supported.html" target="_blank">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384.21 129">
-                            <defs>
-                                <style>
-                                    #b681ca62-7a9d-408b-8165-28ed0e24fd88 {
-                                        fill: white;
-                                    }
-                                </style>
-                            </defs>
-                            <g id="b681ca62-7a9d-408b-8165-28ed0e24fd88" data-name="Ebene 2">
-                                <g id="e0a1311d-3043-40f1-a99e-847b392aacff" data-name="Ebene 1">
-                                    <path d="M203.6,129c-.55-5.42,2.07-6.82,7.21-6.75,8,.11,8-.26,8-8.18q0-34.25,0-68.48c0-6-.76-6.85-6.76-7.14-1.83-.09-3.66-.1-5.49-.05-2.4.07-2.6-1.41-2.6-3.28s.29-3,2.66-3.19c7.41-.68,7.4-.8,6.12-8.5-1.93-11.65-6.09-15.32-17.94-15.74-3-.1-6,.15-9-.07-3.91-.28-5.18,1.26-5.15,5.2.16,20.16.07,40.32.07,60.48,0,3.83.3,7.7-.08,11.49-.46,4.6,2,6,5.82,6.1s7.66.14,11.49,0c2.29,0,3.74.21,3.69,3.15,0,2.77-1.11,3.2-3.6,3.18-16.33-.11-32.65-.06-49,0-2.1,0-3.92.33-4-2.8s1.18-3.65,3.85-3.54c3.83.16,7.67.07,11.5-.06,3.68-.12,5.6-1.61,5.57-5.85q-.32-36.24-.13-72.47c0-3.71-1.23-5.23-4.9-4.9-1.65.15-3.33,0-5,0-16.91,0-21.08,3.78-23.1,20.52-.34,2.78,1.53,7.16-4.2,7.19-1.36,0-.42,1.6-.15,2.43,3.37,10.09,6.83,20.16,10.12,30.27,1.25,3.84,4.34,3.48,7.29,3.74,1.61.13,3.89-.87,3.87,2.3,0,3.39-2.46,1.94-3.94,2-8.16.15-16.32.13-24.48.26-1.48,0-2.6.13-2.7-1.86s.4-2.78,2.44-2.74a28.07,28.07,0,0,0,3.94-.55c2.12-.27,2.9-1.2,2.1-3.39-1.36-3.75-2.61-7.54-3.8-11.35-.61-1.94-1.84-2.41-3.74-2.38-6.5.1-13,.08-19.49,0-1.93,0-3.13.51-3.63,2.54s-1.28,3.77-1.92,5.67c-2.27,6.75-2.32,6.92,4.32,9.31,2,.7,2.24,1.61,2,3.22-.29,2.18-2,1.28-3.13,1.29-5.46,0-10.93,0-17.14,0,4.69,7.76,8,16,18.8,14.85,2.54-.27,2.46,1.46,2.5,3.22,0,1.92-.32,3.15-2.68,3.13q-17-.1-34,0c-1.9,0-2.86-.59-2.63-2.56.19-1.59-.83-3.46,2.27-3.91,6.29-.91,6.83-2.45,3.4-7.67-7-10.56-14-21-20.82-31.71-2-3.23-3.09-3.5-6.49-1C31.58,57.34,27.58,66,29.6,77.37a5.56,5.56,0,0,1,0,1c0,11.67,0,11.75,11.82,12.53,2.45.17,3.07,1,3.06,3.29s-.77,3.14-3.2,3.11q-19-.17-38,0c-2.37,0-3.31-.63-3.29-3,0-2.19.5-3.18,3-3.35,11.59-.78,11.59-.87,11.59-12.5,0-21.66-.17-43.32.12-65,.06-5.15-1.85-7-6.59-6.77-.83,0-1.66,0-2.5,0C-.57,6.57-.57,6.57.6,0h5a72.43,72.43,0,0,0,23,0h16c.64,5.19-1.19,7.82-6.8,6.66a13,13,0,0,0-2.49,0c-4.09-.06-5.89,1.62-5.79,6,.27,11.47.09,22.94.17,34.41,0,1.86-.53,3.87.84,6C44.21,39.86,57.68,26.8,71.1,13.69c2.24-2.2,2.19-5.35-.7-6-5-1.2-3.63-4.58-3.8-7.64h4a55.78,55.78,0,0,0,20,0h9c1.19,4.63.06,7.06-5.39,7.14A19.89,19.89,0,0,0,80.62,12.7c-7.85,7.45-15.56,15.07-23.51,22.42-2.19,2-2.23,3.45-.6,5.81,6.16,8.9,12.39,17.78,18,27,2.76,4.53,5.81,4.09,9.58,2.4,2.64-1.18,3.73-3.52,4.63-6.16C96,42.77,103.3,21.39,110.6,0h5l10.29,30.53A169.2,169.2,0,0,0,129.1,5C129.29,2,130.26.9,133.52.92c26.33.14,52.66.18,79,0,3.91,0,4.76,1.44,4.94,4.82.33,6.65,1.25,13.28,1.4,19.93.12,4.91,1.65,6.61,6.92,6.5,18.66-.38,37.32-.16,56-.13,1.87,0,4.17-.71,4.52,2.39,1.1,9.6,2.26,19.18,3.35,28.78.14,1.24.52,2.87-1.65,2.83-1.56,0-3.5.63-3.75-2-.15-1.49-.47-3-.7-4.44-2.28-14.66-7.34-19.73-22-20.85-7.79-.59-15.65-.17-23.48-.22-3.1,0-4.45,1.34-4.38,4.58.15,7.5,0,15,0,22.49,0,10.59,0,10.59,10.86,9.82,13.1-.92,13.3-1.1,15.7-13.74a5.45,5.45,0,0,0,.1-1c.07-2,1.57-1.74,2.88-1.82,1.54-.08,2.54.33,2.54,2.16q0,17.49,0,35c0,1.7-.76,2.39-2.41,2.3-1.32-.07-2.77.19-3-1.75-.2-1.65-.44-3.3-.67-5-.86-6.19-3.5-8.94-9.65-9.42-4.31-.34-8.67-.1-13-.33-2.65-.13-3.43.88-3.4,3.46.12,10.83.15,21.67,0,32.5,0,3.27,1.22,4.5,4.37,4.46,8.66-.11,17.34.23,26-.23,13-.7,21.18-8.85,22.53-21.76.1-.91.72-2.43-.47-2.63-3.29-.53-2.67-2.87-2.51-4.88.26-3.31,3.27-1.15,4.79-2.16.86-.57,2.23-.48,3.38-.51a15.36,15.36,0,0,0,13.22-7.59c6.46-10.1,13-20.16,19.69-30.09,1.7-2.5,1.52-4.24,0-6.61-7-10.71-14.2-21.36-20.74-32.37-3-5-6.71-6.88-12.19-6.86-6.27,0-6.27-.14-6-6.59h5a123.41,123.41,0,0,0,30,0h6c1.43,4.22.92,7-4.49,7.27-1.78.08-5.55.14-3.12,4,5.2,8.25,10.5,16.44,16.12,25.21,4.82-7.5,9.25-14.33,13.61-21.2,2.43-3.83,2-6.61-2.32-7.48-5.15-1-5.2-4-4.8-7.8h5a91.69,91.69,0,0,0,26,0h5c1.12,6.26,1.13,6.38-5,6.84-7.27.53-13,3.25-16.86,9.81a223.17,223.17,0,0,1-12.94,19.54c-3.26,4.36-3.36,7.69-.18,12.28,7.5,10.78,14.71,21.8,21.37,33.11,4,6.71,8.55,10.81,16.72,9.4,2.53-.43,3.51.65,3.51,3.31,0,3.06-1.69,2.91-3.89,2.9-11.48,0-23-.06-34.45.13-2.69.05-3.33-.76-3.47-3.33-.16-3.12,1.66-2.86,3.71-3.16,5.89-.88,6.26-1.7,3.09-6.68-5.46-8.55-11.16-17-16.43-25.61-2-3.36-3-2.46-4.65.07-4.68,7.27-9.46,14.48-14.19,21.71-4.1,6.25-3.48,8.37,3.93,10.46,2.81.79,2.14,2.39,2.26,4.07.19,2.55-1.5,2.4-3.29,2.37-6.49-.12-13,.08-19.47-.29-3.62-.21-4.87,1-5.35,4.5-1.23,9.22-2.25,18.49-4.41,27.57ZM109.9,16.93c-3.71,10.78-6.88,20-10.06,29.24-.64,1.87-.65,3.23,2,3.2,5.5-.08,11,0,16.48,0,2.35,0,2.23-1,1.6-2.84C116.64,37.1,113.51,27.67,109.9,16.93Z"/>
-                                </g>
-                            </g>
-                        </svg>
-                    </a>
-                    <p>Formulas</p>
-                </div>
-                <div class="img_upload">
-                    <a href="https://postimages.org/de/" target="_blank">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 347.86 275.78">
-                            <defs>
-                                <style>
-                                    .b13fdb73-606e-4feb-96c9-c4e929f186f4{
-                                        fill:white;
-                                    }
-                                    .a06af451-5e98-48cf-90df-c61ef6a7e422{
-                                        fill:#222222;
-                                    }
-                                    .e6418439-7592-465f-b253-07ff7aaae10c{
-                                        fill:#222222;
-                                    }
-                                </style>
-                            </defs>
-                            <g id="ba1e3dda-a9eb-42bc-8785-289332369d81" data-name="Ebene 2">
-                                <g id="a78a2894-ddca-41ac-bae9-de2cf1c45a4a" data-name="Ebene 1">
-                                    <path class="b13fdb73-606e-4feb-96c9-c4e929f186f4"
-                                          d="M144.23,0H267.55c13.27,0,20.33,7.1,20.33,20.43q0,59.4-.06,118.82c0,3.62.82,5.1,4.78,5.71,32.43,5,55.8,33.47,55.25,67-.53,31.8-25.48,59.36-57.31,63.32-33.36,4.15-63.52-15.94-72.25-48.46-1.07-4-2.7-5-6.59-4.95q-95.4.18-190.79.08c-14,0-20.91-6.95-20.91-21V20.62C0,7.11,7.08,0,20.53,0Z"/>
-                                    <path class="a06af451-5e98-48cf-90df-c61ef6a7e422"
-                                          d="M12.62,199.44c-.94-1.82-.61-3.21-.61-4.53q0-86.77,0-173.54C12,13.49,13.5,12,21.42,12H266.55c7.85,0,9.34,1.51,9.34,9.45q0,58.47,0,116.94c0,6.36-.07,5.81-5.37,6.63a55.78,55.78,0,0,0-20.36,7.25c-2.56,1.54-4,1.07-6-1.09q-21.19-23.52-42.66-46.8c-6.75-7.32-13.21-7.33-20.26-.3-9.55,9.53-19.14,19-28.59,28.66-2.15,2.19-3.32,2.06-5.15-.37-9.54-12.68-19.22-25.26-28.88-37.84-4.54-5.92-8.84-7.65-14.43-6.08-2.94.83-5,2.78-6.79,5.06q-40.86,51.06-81.7,102.13C14.82,196.8,13.86,197.94,12.62,199.44Z"/>
-                                    <path class="e6418439-7592-465f-b253-07ff7aaae10c"
-                                          d="M105.32,209.92q-40.29,0-80.56,0c-1.28,0-3.09.71-3.7-.86-.48-1.23,1.06-2.12,1.81-3.06q41.35-51.58,82.68-103.17c2.53-3.16,3.54-1.07,4.93.74q26.71,35,53.43,70c8.26,10.82,16.57,21.6,24.81,32.43.72.95,2.2,1.91,1.64,3.14-.67,1.51-2.45.82-3.73.82Q146,210,105.32,209.92Z"/>
-                                    <path class="a06af451-5e98-48cf-90df-c61ef6a7e422"
-                                          d="M227.92,209.51C228,180,252.43,155.88,282.19,156s53.8,24.53,53.67,54.56c-.12,29.3-24.63,53.48-54.09,53.38A54.08,54.08,0,0,1,227.92,209.51Z"/>
-                                    <path class="e6418439-7592-465f-b253-07ff7aaae10c"
-                                          d="M210.54,209.9c-2.3.34-4.16-.62-5.79-2.76q-22.44-29.5-45.06-58.87c-1.84-2.38-1.8-3.82.37-5.92,9-8.79,17.89-17.77,26.88-26.62,4.5-4.44,4.63-4.44,8.78.09,13.14,14.35,26.21,28.78,39.37,43.11,1.65,1.79,1.57,3-.09,4.68a65.56,65.56,0,0,0-19,42.85C215.77,210.45,213.3,209.89,210.54,209.9Z"/>
-                                    <path class="b13fdb73-606e-4feb-96c9-c4e929f186f4"
-                                          d="M251.89,54.16A30,30,0,1,1,222,24,30.09,30.09,0,0,1,251.89,54.16Z"/>
-                                    <path class="b13fdb73-606e-4feb-96c9-c4e929f186f4"
-                                          d="M287.89,217.91c0,6.86,0,13.73,0,20.59,0,4.69-2.38,7.43-6.12,7.33s-5.82-2.74-5.84-7.24c0-13.85,0-27.71,0-41.56,0-1.16.64-2.79-.72-3.36-1-.44-1.94.87-2.79,1.55-5.18,4.11-10.33,8.27-15.5,12.39-3.73,3-7.23,3-9.59.13s-1.66-6.4,2-9.33q13.86-11.15,27.76-22.23c3.75-3,6-3,9.69-.06q13.91,11.08,27.76,22.22c3.66,2.94,4.41,6.43,2.1,9.33s-5.87,2.93-9.57,0c-5.37-4.27-10.7-8.59-16.09-12.84-.72-.58-1.47-1.72-2.54-1.07-.79.47-.46,1.6-.46,2.44C287.88,203.43,287.89,210.67,287.89,217.91Z"/>
-                                    <path class="e6418439-7592-465f-b253-07ff7aaae10c"
-                                          d="M203.94,53.84a18,18,0,1,1,35.94.46c0,9.4-8.4,17.69-17.8,17.65A18.27,18.27,0,0,1,203.94,53.84Z"/>
-                                </g>
-                            </g>
-                        </svg>
-                    </a>
-                    <p>Images</p>
-                </div>
-            </div>
-        </div>
-        <div class="need_help_btn">
-            <svg onclick="document.getElementById('need_help').style.left = 'calc(100% - 500px)'" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 408.87 408.88">
-                <defs>
-                    <style>
-                        #bd45aff3-ea2d-4dc1-8138-1cf1c325b772 * {
-                            fill: #FF7800;
-                        }
-                    </style>
-                </defs>
-                <g id="a7923d0d-a9c2-4dd0-a208-556d601d99a9" data-name="Ebene 2">
-                    <g id="bd45aff3-ea2d-4dc1-8138-1cf1c325b772" data-name="Ebene 1">
-                        <path d="M216.38,408.88h-24a21.92,21.92,0,0,0-3.08-.65c-28.66-1.94-55.81-9.49-80.92-23.35Q22,337.19,3.13,240.07C1.61,232.25,1.36,224.29,0,216.46v-24a27.67,27.67,0,0,0,.68-3.45c2-28.53,9.36-55.65,23.34-80.54C61.66,41.53,119.12,5.19,195.84.39a184.63,184.63,0,0,1,94.83,18.92c72.85,36.23,112.46,95.35,117.79,176.55,2.43,37.15-5.9,72.6-24,105.19q-47.74,86.1-144.84,104.76C231.94,407.28,224.08,407.48,216.38,408.88ZM376.86,204.67C377,109.63,300,32.36,204.79,32S32.11,109,31.94,204.29c-.16,95,76.85,172.31,172.07,172.65S376.7,300,376.86,204.67Z"/>
-                        <path d="M204.29,102.74c30.85-.13,58.08,22.68,63,52.81,5.15,31.42-12.67,61.52-42.51,71.34-3.56,1.18-4.72,2.65-4.54,6.34.34,6.77.16,13.56.08,20.35-.11,9.76-6.9,16.74-16.07,16.67s-15.74-7-15.82-16.51q-.15-19.35,0-38.71c.08-9.11,5.62-15.5,14.71-16.27,10.54-.89,19.83-4,26.36-12.77,7.75-10.4,9.11-21.78,3.36-33.4-6-12.05-16.16-18.22-29.67-17.71-16.34.62-28.32,12.05-30.44,28.31-.19,1.45-.24,2.91-.38,4.37-.83,8.95-7.88,15.23-16.64,14.83a15.62,15.62,0,0,1-15.17-16.3c.58-22.77,10.46-40.61,29.4-53.21A60.75,60.75,0,0,1,204.29,102.74Z"/>
-                        <path d="M204.94,282.45a19.85,19.85,0,1,1-20.45,19.1A19.91,19.91,0,0,1,204.94,282.45Z"/>
-                    </g>
-                </g>
-            </svg>
-        </div>
         <div class="content_wrapper">
-            <div class="new_post_entry">
-                <div class="post_editor_wrapper">
-                    <form th:action="@{${action}}" th:method="${method}" th:object="${post}">
-                        <input type="text" class="post_heading_input" th:field="*{title}">
-                        <div id="new_post">
-                            <textarea style="display: none;"></textarea>
-                        </div>
-                        <input type="hidden" th:field="*{content}" id="raw_content">
-                        <input type="hidden" th:field="*{renderedContent}" id="rendered_content">
-                        <input type="hidden" th:field="*{id}"/>
-                        <input type="hidden" th:field="*{username}"/>
-                        <div class="category_select_wrapper">
-                            <select class="category_select" th:field="*{category.id}">
-                                <option value="" disabled>Choose a category:</option>
-                                <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}" th:style="|color:${category.colorCode}|"></option>
-                            </select>
-                        </div>
-
-                        <div class="submit_btn">
-                            <input class="input_custom" type="submit" id="submit" value="Upload"/>
-                        </div>
-                    </form>
+            <div class="form_visible">
+                <div th:replace="layout :: flash_err"></div>
+                <div th:replace="layout :: flash_succ"></div>
+                <div th:replace="layout :: flash_warn"></div>
+                <div th:replace="layout :: flash_info"></div>
+                <div class="flex loginHeader_Wrapper">
+                    <div class="loginHeader_Wrapper">
+                        <h1 class="loginHeader">Sign</h1>
+                    </div>
+                    <div class="onoffswitch">
+                        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" tabindex="0" checked/>
+                        <label id="sign_in_up_toggle" class="onoffswitch-label" for="myonoffswitch">
+                            <span class="onoffswitch-inner"></span>
+                            <span class="onoffswitch-switch"></span>
+                        </label>
+                    </div>
                 </div>
-                <script>
-                    const new_post = editormd("new_post", {
-                        width                : "100%",
-                        height               : "100%",
-                        path                 : "/webjars/editor.md/lib/",
-                        theme                : "dark",
-                        editorTheme          : "monokai",
-                        previewTheme         : "dark",
-                        saveHTMLToTextarea   : true,
-                        emoji                : true,
-                        tex                  : true,
-                        taskList             : true,
-                        flowChart            : true,
-                        sequenceDiagram      : true,
-                        tocm                 : true,
-                        tocDropdown          : true,
-                        readOnly             : false,
-                        markdown             : "## Welcome to our small and geeky network! Enjoy it!",
-                        onchange             : function () {
-                            document.querySelector('#raw_content').value = this.getMarkdown();
-                            document.querySelector('#rendered_content').value = this.getHTML();
-                        }
-                    });
-                </script>
+                <!--          Register Form            -->
+                <form class="form register" id="register" method="post" th:action="@{/login/register}" th:object="${userDTO}">
+                    <div class="flex on_media_flex">
+                        <div class="first_name sign_up" id="fn">
+                            <label for="first_name" class="label_inner">Vorname:</label><br>
+                            <input th:field="*{firstname}" type="text" id="first_name" name="first_name" placeholder="Vorname"
+                                   minlength="2" maxlength="64" th:classappend="${#fields.hasErrors('firstname')}? 'error' : ''"/>
+                        </div>
+                        <hr/>
+                        <div class="last_name sign_up">
+                            <label for="last_name" class="label_inner">Nachname:</label><br/>
+                            <input th:field="*{lastname}" type="text" id="last_name" name="last_name" placeholder="Nachname"
+                                   minlength="2" maxlength="64" th:classappend="${#fields.hasErrors('lastname')}? 'error' : ''"/>
+                        </div>
+                    </div>
+                    <div class="username">
+                        <label for="username" class="label_inner">Username:</label><br/>
+                        <input th:field="*{username}" type="text" id="username" name="username" placeholder="BinoboIsAwesome"
+                               minlength="3" maxlength="64" th:classappend="${#fields.hasErrors('username')}? 'error' : ''"/>
+                        <div class="field_error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
+                    </div>
+                    <div class="email sign_up">
+                        <label for="email" class="label_inner">E-Mail:</label><br/>
+                        <input th:field="*{email}" type="text" id="email" name="email" placeholder="robo@binobo.io"
+                               minlength="7" maxlength="64" th:classappend="${#fields.hasErrors('email')}? 'error' : ''"/>
+                        <div class="field_error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+                    </div>
+                    <div class="password">
+                        <label for="password" class="label_inner">Passwort:</label><br/>
+                        <input th:field="*{password}" type="password" id="password" placeholder="aweSoMe1"
+                               minlength="8" maxlength="128" th:classappend="${#fields.hasErrors('password')}? 'error' : ''"/>
+                        <div class="field_error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+                    </div>
+                    <div class="password_verify sign_up">
+                        <label for="password_verify" class="label_inner">Passwort best&auml;tigen:</label><br/>
+                        <input th:field="*{password_verify}" type="password" id="password_verify" placeholder="aweSoMe1"
+                               minlength="8" maxlength="128" th:classappend="${#fields.hasErrors('password_verify')}? 'error' : ''"/>
+                        <div class="field_error" th:if="${#fields.hasErrors('password_verify')}" th:errors="*{password_verify}"></div>
+                    </div>
+                    <div class="flex btns">
+                        <div class="verify_btn">
+                            <input type="submit" id="verify_btn" value="Submit"/>
+                        </div>
+                        <div class="cancel_btn">
+                            <input type="button" onClick="location.href='/'" value="Cancel"/>
+                        </div>
+                    </div>
+                </form>
+                <!--          Login Form            -->
+                <form class="form login" id="login" th:action="@{/login}" method="post" th:object="${user}">
+                    <div class="username">
+                        <label for="username" class="label_inner">Username:</label><br/>
+                        <input th:field="*{username}" type="text" id="username1" name="username" placeholder="BinoboIsAwesome" required/>
+                    </div>
+                    <div class="password">
+                        <label for="password_s" class="label_inner">Passwort:</label><br/>
+                        <input th:field="*{password}" type="password" id="password_s" placeholder="aweSoMe1" required/>
+                    </div>
+                    <div class="flex btns">
+                        <div class="verify_btn">
+                            <input type="submit" id="verify_btn1" value="Submit"/>
+                        </div>
+                        <div class="cancel_btn">
+                            <input type="button" onClick="location.href='/'" value="Cancel"/>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -534,34 +426,18 @@
         }
     });
 
-    function changeEditorTheme(){
-        let theme = localStorage.getItem('data-theme');
-        if (theme === 'dark') {
-            new_post.setTheme('dark');
-            new_post.setEditorTheme('monokai');
-            new_post.setPreviewTheme('dark');
-        } else {
-            new_post.setTheme('default');
-            new_post.setEditorTheme('solarized');
-            new_post.setPreviewTheme('default');
-        }
+    const register = document.querySelector("#register").innerHTML;
+    const signIN = document.querySelector("#login").innerHTML;
+    document.querySelector("#login").innerHTML = "";
+    let isReg = true;
+
+    function changeForm(){
+        document.querySelector("#register").innerHTML = (isReg) ? "" : register;
+        document.querySelector("#login").innerHTML = (isReg) ? signIN : "";
+        isReg = !isReg;
     }
 
-    function mutationCallback(mutations){
-        for(let mutation of mutations) {
-            if(mutation.type === 'attributes'){
-                changeEditorTheme();
-            }
-        }
-    }
-
-    const node = document.getElementsByTagName('html')[0];
-    const observer = new MutationObserver(mutationCallback);
-
-    observer.observe(node, {
-        attributes: true,
-        attributeFilter: ['data-theme']
-    });
+    document.getElementById("sign_in_up_toggle").onclick = changeForm;
 </script>
 </body>
 </html>

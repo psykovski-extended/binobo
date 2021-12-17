@@ -4,13 +4,13 @@
 
 - blog fertigstellen
   - Sub-comment funktion schreiben
-  - Delete-Funktion für Kommentare und Sub-Kommentare einbauen
+  - Delete-Funktion für Sub-Kommentare einbauen
   - 'This solved the issue' - Button einbauen
-- admin-pages schreiben (list all users, delete or set deactivated)
-- my account page
 - responsive layout
 - neues layout fertigstellen
-- svg - stylesheet hinzufügen
+  - my acc page
+  - admin-pages (list all users, delete or set deactivated)
+- svg - stylesheet hinzufügen (bei layout einbauen)
 
 - Entwicklerseite schreiben
     - Fotos von mir und philipp
@@ -18,26 +18,30 @@
 
 ### Firmware
 
-- v0.1 alpha fertig stellen
-- UART input reader for commands, received from app
+- UART input reader for commands, received from app --> needs to be tested
+- Improve websocket lib --> connection not stable over longer periods of time!
 
 ### Emulator
 
 - Sync button
 - connect/disconnect button
 - connection lost popup
-- live-plot for current rotation of all joints
-- show current selected joint and its hierarchy (handy-svg)
+- live-plot for current rotation of all joints / current selected joints
+- show current selected joint and its hierarchy (handy-svg) ?
+- vl console (feedback, errors, ..)
 
 ### App
 
 - Konfiguration-Steps (WLAN, Token)
 - Kalibration (Ausrichtung der Potis)
-- Übertragung starten/stoppen/pausieren button
+- Übertragung starten/stoppen/pausieren - button
+
+### WebSocket-Server
+
+- Error bei Übertragung ('no close frame received') --> connection seems to be killed from client
 
 ## Zweitrangige Ziele
 
-- REST-API mit OAuth2 sichern (Verification-Token)
 - Operator-Pages
 - HTTPS einbauen
 

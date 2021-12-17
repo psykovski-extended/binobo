@@ -191,6 +191,10 @@ body {
     cursor: text;
 }
 
+/*
+===================== Blog - Form styling =====================
+*/
+
 .category_select, .post_heading_input {
     text-align: center;
 }
@@ -204,9 +208,9 @@ body {
     justify-content: center;
 }
 
-/*
-===================== Blog - Form styling =====================
-*/
+.submit_btn {
+    margin-bottom: 15px;
+}
 
 .content_wrapper, .new_post_entry {
     height: 100%;

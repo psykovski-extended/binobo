@@ -34,6 +34,9 @@ function emu3D() {
     let wrist = new THREE.Object3D()
     const ppos = blenderToThree(new THREE.Vector3(-1.25736, 0.039318, -0.020059));
 
+
+    let frame = 0;
+
     fbxloader.load('scripts/simulatorModels/palm.fbx', function (object) {
 
         scene.add(wrist)
@@ -163,9 +166,13 @@ function emu3D() {
      * The almighty render function
      */
     function render() {
+        frame++;
 
         try {
-            dat_json = dat_json_buffer.shift();
+            if(frame % 2 === 0) {
+                dat_json = dat_json_buffer.shift();
+                frame = 0;
+            }
 
             wrist.rotation.x=degToRad(-dat_json.wr_lr);
             wrist.rotation.z=degToRad(-dat_json.wr_bf);

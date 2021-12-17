@@ -181,7 +181,6 @@ public class RoboDataController {
                 temp.setTh_rot_orthogonal(rawData.get(i + 18));
                 temp.setTh_rot_palm(rawData.get(i + 19));
 
-
                 temp.setWr_bf(rawData.get(i + 20));
                 temp.setWr_lr(rawData.get(i + 21));
 
@@ -226,6 +225,21 @@ public class RoboDataController {
             return ResponseEntity.accepted().body(new FlashMessage("Data got successfully deleted", FlashMessage.Status.SUCCESS));
         } catch (NullPointerException npe){
             return ResponseEntity.badRequest().body(new FlashMessage(npe.getMessage(), FlashMessage.Status.FAILURE));
+        }
+    }
+
+    /**
+     * Validates the parsed token.
+     * @param token Token to be validated
+     * @return Returns a FlashMessage, with Status Success or Failure, depending on the response of the database
+     */
+    @GetMapping(value = "/validate_token")
+    public ResponseEntity<?> validateToken(@RequestParam("token") String token){
+        try {
+            DataAccessToken dat = robotDataService.findDATByToken(token);
+            return ResponseEntity.ok().body(new FlashMessage("Token valid.", FlashMessage.Status.SUCCESS));
+        } catch (NullPointerException npe) {
+            return ResponseEntity.badRequest().body(new FlashMessage("Token invalid.", FlashMessage.Status.FAILURE));
         }
     }
 }

@@ -9,6 +9,7 @@ import htlstp.diplomarbeit.binobo.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,12 +28,17 @@ public class AdminController {
     private final RoleService roleService;
     private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
 
+    private final JdbcTemplate jdbcTemplate;
+
     @Autowired
-    public AdminController(UserService userService, PostService postService, CommentService commentService, RoleService roleService){
+    public AdminController(UserService userService, PostService postService,
+                           CommentService commentService, RoleService roleService,
+                           JdbcTemplate jdbcTemplate){
         this.userService = userService;
         this.postService = postService;
         this.commentService = commentService;
         this.roleService = roleService;
+        this.jdbcTemplate = jdbcTemplate;
     }
 
     /**

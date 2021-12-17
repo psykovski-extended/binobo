@@ -45,12 +45,12 @@ body {
     overflow:scroll;
 }
 
-.nav_element a svg {
+.nav_element a svg, .nav_element form svg {
     height: 50px;
     width: 50px;
 }
 
-.nav_element a svg * {
+.nav_element a svg *, .nav_element form svg * {
     fill: var(--color-text);
     outline: var(--color-text);
     stroke:var(--color-text);
@@ -65,12 +65,12 @@ body {
     margin-bottom: 30px;
 }
 
-.nav_element:hover a svg * {
+.nav_element:hover a svg *, .nav_element:hover form svg * {
     fill: var(--hover-color);
     stroke: var(--hover-color);
 }
 
-.nav_element a {
+.nav_element a, .nav_element form {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -78,7 +78,7 @@ body {
     text-decoration: none;
 }
 
-.nav_element a p {
+.nav_element a p, .nav_element form p {
     margin: 0;
 }
 

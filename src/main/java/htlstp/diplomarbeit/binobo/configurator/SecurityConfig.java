@@ -17,7 +17,7 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 
 /**
  * This class configures Spring's Security Plugin, telling it, how the Filter Chain hast to work, and which patters shall
- * be ignored an which not.
+ * be ignored and which not.
  * This class is annotated with @Configuration and @EnableWebSecurity, telling the JVM that it has to be evaluated
  * on Runtime, as well as that this will configure the Spring environment and that Spring has to enable the Security Plugin.
  */

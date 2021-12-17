@@ -88,7 +88,8 @@ public class BlogController {
         Post p = postService.findById(blogId);
         User user = (User)((UsernamePasswordAuthenticationToken)principal).getPrincipal();
 
-        if(p.getUsername().equals(user.getUsername()) || user.getRole().getName().equals("ROLE_ADMIN") || user.getRole().getName().equals("ROLE_OPERATOR")){
+        if(p.getUsername().equals(user.getUsername()) || user.getRole().getName().equals("ROLE_ADMIN") ||
+                user.getRole().getName().equals("ROLE_OPERATOR")){
             if(!model.containsAttribute("post")){
                 model.addAttribute("post", p);
             }
@@ -105,7 +106,8 @@ public class BlogController {
     }
 
     @PostMapping(value = "/blog/{blogId}")
-    public String updateBlogEntry(@Valid @ModelAttribute("post") Post post, BindingResult errors, RedirectAttributes redirectAttributes, Principal principal){// BindingResults
+    public String updateBlogEntry(@Valid @ModelAttribute("post") Post post, BindingResult errors,
+                                  RedirectAttributes redirectAttributes, Principal principal){// BindingResults
         User user = (User)((UsernamePasswordAuthenticationToken)principal).getPrincipal();
 
         if(post.getUsername().equals(user.getUsername())){
@@ -120,7 +122,8 @@ public class BlogController {
 
             postService.savePost(post);
 
-            redirectAttributes.addFlashAttribute("flash_succ", new FlashMessage("Successfully added new Entry!", FlashMessage.Status.SUCCESS));
+            redirectAttributes.addFlashAttribute("flash_succ",
+                    new FlashMessage("Successfully added new Entry!", FlashMessage.Status.SUCCESS));
         }
 
         return "redirect:/blog";
@@ -130,8 +133,9 @@ public class BlogController {
     public String addBlogEntry(@Valid @ModelAttribute("post") Post post, BindingResult errors, RedirectAttributes redirectAttributes, Principal principal){
         if(errors.hasErrors()){
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.post",errors);
-            redirectAttributes.addFlashAttribute("flash_err", new FlashMessage("Parsed data contains errors, please check the fields below!",
-                    FlashMessage.Status.FAILURE));
+            redirectAttributes.addFlashAttribute("flash_err",
+                    new FlashMessage("Parsed data contains errors, please check the fields below!",
+                            FlashMessage.Status.FAILURE));
             redirectAttributes.addFlashAttribute("post",post);
 
             List<FieldError> errorz = errors.getFieldErrors();
@@ -147,7 +151,9 @@ public class BlogController {
         post.setUsername(user.getUsername());
 
         postService.savePost(post);
-        redirectAttributes.addFlashAttribute("flash_succ", new FlashMessage("Post successfully uploaded!", FlashMessage.Status.SUCCESS));
+        redirectAttributes.addFlashAttribute("flash_succ",
+                new FlashMessage("Post successfully uploaded!",
+                        FlashMessage.Status.SUCCESS));
         return "redirect:/blog";
     }
 
@@ -159,10 +165,13 @@ public class BlogController {
     }
 
     @PostMapping(value = "/blog/post/{postId}/addComment")
-    public String addComment(@PathVariable Long postId, @Valid @ModelAttribute("comment") Comment comment, BindingResult errors, RedirectAttributes redirectAttributes, Principal principal){
+    public String addComment(@PathVariable Long postId, @Valid @ModelAttribute("comment") Comment comment,
+                             BindingResult errors, RedirectAttributes redirectAttributes, Principal principal){
         if(errors.hasErrors()){
              redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.comment",errors);
-             redirectAttributes.addFlashAttribute("flash_err", new FlashMessage("Comment contains errors, please make sure the input is valid and not empty!", FlashMessage.Status.FAILURE));
+             redirectAttributes.addFlashAttribute("flash_err",
+                     new FlashMessage("Comment contains errors, please make sure the input is valid and not empty!",
+                             FlashMessage.Status.FAILURE));
              redirectAttributes.addFlashAttribute("comment", comment);
 
              return String.format("redirect:/blog/%s", postId);
@@ -275,14 +284,16 @@ public class BlogController {
 
         if(cur_user == comment_user || cur_user.getRole().getId() >= 2){
             redirectAttributes.addFlashAttribute("comment", comment);
-            redirectAttributes.addFlashAttribute("comment_action", String.format("/blog/confirmCommentChange?post_id=%s&comment_user_id=%s", post_id, comment.getUser().getId()));
+            redirectAttributes.addFlashAttribute("comment_action",
+                    String.format("/blog/confirmCommentChange?post_id=%s&comment_user_id=%s", post_id, comment.getUser().getId()));
         }
         return String.format("redirect:/blog/%s", post_id);
     }
 
     @PostMapping(value = "/blog/confirmCommentChange")
-    public String editCommentConfirm(@Valid @ModelAttribute("comment") Comment comment, @RequestParam("post_id") Long post_id, @RequestParam("comment_user_id") Long comment_user_id,
-                                        BindingResult errors, RedirectAttributes redirectAttributes, Principal principal){
+    public String editCommentConfirm(@Valid @ModelAttribute("comment") Comment comment, @RequestParam("post_id") Long post_id,
+                                     @RequestParam("comment_user_id") Long comment_user_id,
+                                     BindingResult errors, RedirectAttributes redirectAttributes, Principal principal){
 
         User cur_user = (User)((UsernamePasswordAuthenticationToken)principal).getPrincipal();
 
@@ -309,16 +320,5 @@ public class BlogController {
     }
 
     // PatchMapping for add/ del bookmark
-
-    // only for testing purpose
-    @GetMapping(value = "/blog/test_prev")
-    public String testPrev(Model model){
-        model.addAttribute("post", new Post());
-        model.addAttribute("action", "/blog");
-        model.addAttribute("method", "post");
-        model.addAttribute("categories", categoryService.findAll());
-
-        return "temp_bp";
-    }
 
 }
