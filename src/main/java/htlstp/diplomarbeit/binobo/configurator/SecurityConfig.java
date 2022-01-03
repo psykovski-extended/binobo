@@ -43,8 +43,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.authorizeRequests()
                 .antMatchers("/home", "/project", "/developer", "/sponsoring").permitAll()
-                .antMatchers("/blog/**", "/user/**").hasAnyRole("USER", "ADMIN", "OPERATOR")
-                .antMatchers("/admin/**", "/emulator3D").hasAnyRole("ADMIN", "OPERATOR") // this is because rest-api is not secured!
+                .antMatchers("/blog/**", "/user/**", "/emulator3D").hasAnyRole("USER", "ADMIN", "OPERATOR")
+                .antMatchers("/admin/**").hasAnyRole("ADMIN", "OPERATOR") // this is because rest-api is not secured!
         .and()
             .formLogin().loginPage("/login")
             .permitAll()

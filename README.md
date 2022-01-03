@@ -13,14 +13,14 @@ spring.session.store-type=jdbc
 spring.session.jdbc.initialize-schema=always
 
 # setup MySQL Database
-spring.datasource.url=jdbc:mysql://localhost:3306/binobo_db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
-spring.datasource.username=root
+spring.datasource.url=jdbc:postgresql://localhost:3406/binobo_db
+spring.datasource.username=postgres
 spring.datasource.password=<your-root-pw>
 spring.jpa.hibernate.ddl-auto=update
-# this can be ommited
+# this can be set to false
 spring.jpa.show-sql=true
 
-spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.MySQL5InnoDBDialect
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQL92Dialect
 
 # mail config for email-verification
 # here you can also change this to any other smtp server
@@ -35,13 +35,13 @@ spring.mail.properties.mail.smtp.starttls.enable=true
 server.ssl.key-store=keystore.p12
 server.ssl.key-store-password=<PW_FROM_YOUR_CERTIFICATE>
 server.ssl.keyStoreType=PKCS12
-server.ssl.keyAlias=binobo-diplomarbeit
+server.ssl.keyAlias=<YOUR_ALIAS>
 ```
-You also must have MySQL-Server installed on your machine and before first starting the project, you must create a table called `binobo_db`. Once this is done, you are nearly ready to go!
+You also must have PostgreSQL-Server installed on your machine and before first starting the project, you must create a database called `binobo_db`. Once this is done, you are nearly ready to go!
 
 To enable https, you have to generate an `ssl-certificate`:
 ```bash
-keytool -genkeypair -alias binobo-diplomarbeit -keyalg RSA -keysize 4096 -storetype JKS -keystore springboot.jks -validity 3650 -storepass <PW_FROM_YOUR_CERTIFICATE>
+keytool -genkeypair -alias <YOUR_ALIAS> -keyalg RSA -keysize 4096 -storetype JKS -keystore springboot.jks -validity 3650 -storepass <PW_FROM_YOUR_CERTIFICATE>
 ```
 **Run this command in the root directory of this project, and https is enabled.**
 
