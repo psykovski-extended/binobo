@@ -12,7 +12,7 @@ at `src/main/resources/` with the following lines inserted:
 spring.session.store-type=jdbc
 spring.session.jdbc.initialize-schema=always
 
-# setup MySQL Database
+# setup PostgreSQL Database
 spring.datasource.url=jdbc:postgresql://localhost:3406/binobo_db
 spring.datasource.username=postgres
 spring.datasource.password=<your-root-pw>
