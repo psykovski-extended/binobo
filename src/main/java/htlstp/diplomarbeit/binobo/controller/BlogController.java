@@ -19,6 +19,8 @@ import javax.validation.Valid;
 import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 @Controller
 public class BlogController {
@@ -191,7 +193,7 @@ public class BlogController {
         User user = (User)((UsernamePasswordAuthenticationToken)principal).getPrincipal();
         Post post = postService.findById(postId);
 
-        if(post.getUsername().equals(user.getUsername())){
+        if(post.getUsername().equals(user.getUsername()) || user.getRole().getId() >= 3){
             List<Comment> comments = commentService.findAllByPost(post);
             for(Comment c : comments){
                 subCommentService.deleteAllByComment(c);
@@ -199,7 +201,11 @@ public class BlogController {
             commentService.deleteAllByPost(post);
             postService.deletePost(post);
 
-            redirectAttributes.addFlashAttribute("flash_info", new FlashMessage("Your post has been deleted!", FlashMessage.Status.INFO));
+            redirectAttributes.addFlashAttribute("flash_info", new FlashMessage(
+                    "Your post has been deleted!", FlashMessage.Status.INFO));
+        } else {
+            redirectAttributes.addFlashAttribute("flash_warn", new FlashMessage(
+                    "You do not have permissions to delete this blog entry!", FlashMessage.Status.WARN));
         }
 
         return "redirect:/blog";
@@ -318,7 +324,4 @@ public class BlogController {
 
         return String.format("redirect:/blog/%s", post_id);
     }
-
-    // PatchMapping for add/ del bookmark
-
 }

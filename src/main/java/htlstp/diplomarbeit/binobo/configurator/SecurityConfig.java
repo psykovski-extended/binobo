@@ -44,7 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         httpSecurity.authorizeRequests()
                 .antMatchers("/home", "/project", "/developer", "/sponsoring").permitAll()
                 .antMatchers("/blog/**", "/user/**", "/emulator3D").hasAnyRole("USER", "ADMIN", "OPERATOR")
-                .antMatchers("/admin/**").hasAnyRole("ADMIN", "OPERATOR") // this is because rest-api is not secured!
+                .antMatchers("/admin/**").hasAnyRole("ADMIN", "OPERATOR")
         .and()
             .formLogin().loginPage("/login")
             .permitAll()
@@ -59,7 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     public AuthenticationSuccessHandler loginSuccessHandler(){
-        return (request, response, authentication) -> response.sendRedirect("/");
+        return (request, response, authentication) -> response.sendRedirect("/blog");
     }
 
     public AuthenticationFailureHandler loginFailureHandler(){

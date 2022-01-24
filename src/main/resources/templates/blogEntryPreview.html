@@ -536,7 +536,7 @@
                             </svg>
                         </div>
                         <div class="bookmark">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 119.75 201.24">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 119.75 201.24" onclick="toggleBookmark()">
                                 <defs>
                                     <style>
                                         .a3f547a9-99bf-45a9-92df-de15cfa42e5d{
@@ -815,6 +815,10 @@
     window.onresize = () => {
         post_preview.previewing();
         post_preview.previewing();
+    }
+
+    const toggleBookmark = () => {
+        console.log("hallo")
     }
 </script>
 </body>

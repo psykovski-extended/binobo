@@ -12,7 +12,6 @@ public class SocketConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry config) {
-        //config.enableSimpleBroker("/retrieve-data");
         config.setApplicationDestinationPrefixes("/core");
     }
 

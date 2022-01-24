@@ -18,7 +18,7 @@
 
 ### Firmware
 
-- UART input reader for commands, received from app --> needs to be tested
+- UART - commands interpretieren
 
 ### Emulator
 
