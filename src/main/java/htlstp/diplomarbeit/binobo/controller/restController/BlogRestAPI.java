@@ -6,18 +6,14 @@ import htlstp.diplomarbeit.binobo.model.User;
 import htlstp.diplomarbeit.binobo.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.security.Principal;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 @RestController
-@RequestMapping(value = "/blog/restAPI")
+@ResponseBody
+@RequestMapping(value = "/blog_rest_api")
 public class BlogRestAPI {
 
     private final PostService postService;
@@ -39,11 +35,9 @@ public class BlogRestAPI {
         this.bookmarkService = bookmarkService;
     }
 
-    // PatchMapping for add/ del bookmark
-
     @PatchMapping(value = "/toggle_bookmark")
-    public ResponseEntity<FlashMessage> toggleBookmark(@RequestParam("post_id") Long post_id, Principal principal){
-        User user = (User)((UsernamePasswordAuthenticationToken)principal).getPrincipal();
+    public ResponseEntity<FlashMessage> toggleBookmark(@RequestParam("post_id") Long post_id, @RequestParam("user_id") Long user_id){
+        User user = userService.findById(user_id);
 
         Iterable<Bookmark> bookmarks = bookmarkService.fetchAllBookmarksFromUser(user);
         AtomicBoolean bookmark_exists = new AtomicBoolean(false);
@@ -60,7 +54,7 @@ public class BlogRestAPI {
             bookmarkService.saveBookmark(bookmark);
         }
 
-        return null;
+        return ResponseEntity.ok().body(new FlashMessage("Bookmark toggled!", FlashMessage.Status.SUCCESS));
     }
 
 }

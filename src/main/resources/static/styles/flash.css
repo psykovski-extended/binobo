@@ -15,11 +15,11 @@
 }
 
 .flash_success, .flash_success .strong {
-    background-color: #0E9A00;
+    background-color: #29AF7F;
 }
 
 .flash_info, .flash_info .strong {
-    background-color: #0E0EFF;
+    background-color: #453781;
 }
 
 .flash_error, .flash_error .strong {
@@ -27,11 +27,11 @@
 }
 
 .flash_warn, .flash_warn .strong {
-    background-color: #7d9726;
+    background-color: #B8DE29;
 }
 
 .field_error {
-    color: #da3b09;
+    color: #481567;
     font-size: 20px;
     text-align: center;
 }

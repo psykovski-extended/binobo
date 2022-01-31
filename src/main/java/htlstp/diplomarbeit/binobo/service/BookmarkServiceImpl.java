@@ -6,10 +6,13 @@ import htlstp.diplomarbeit.binobo.model.User;
 import htlstp.diplomarbeit.binobo.repositories.BookmarkRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
+@Transactional
 public class BookmarkServiceImpl implements BookmarkService {
 
     private final BookmarkRepository bookmarkRepository;
@@ -40,7 +43,7 @@ public class BookmarkServiceImpl implements BookmarkService {
     }
 
     @Override
-    public Bookmark findByPostAndUser(Post post, User user) {
+    public Optional<Bookmark> findByPostAndUser(Post post, User user) {
         return bookmarkRepository.findByPostAndUser(post, user);
     }
 

@@ -29,12 +29,11 @@ public class RobotDataWatcher implements CommandLineRunner {
     }
 
     /**
-     * Endlessly retrieves oldest data in database and checks the timestamp
+     * Endlessly retrieves the oldest data in database and checks the timestamp
      * @param args optional arguments - not needed in this case
-     * @throws Exception throws an Exception if stuck or interrupted
      */
     @Override
-    public void run(String...args) throws Exception {
+    public void run(String...args) {
         while(true) {
             try {
                 CompletableFuture<RobotData> robotData = robotDataService.checkIfExpired();

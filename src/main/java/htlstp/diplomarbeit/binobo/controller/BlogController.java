@@ -56,11 +56,13 @@ public class BlogController {
     public String postX(@PathVariable Long postId, Model model, Principal principal){
         Post post = postService.findById(postId);
         User user = (User)((UsernamePasswordAuthenticationToken)principal).getPrincipal();
-        Bookmark bookmark = bookmarkService.findByPostAndUser(post, user);
+        Bookmark bookmark = bookmarkService.findByPostAndUser(post, user).orElse(null);
 
         model.addAttribute("post", post);
         model.addAttribute("user", user);
-        model.addAttribute("bookmark", bookmark == null ? new Bookmark() : bookmark);
+        model.addAttribute("user_id", user.getId());
+        model.addAttribute("post_id", post.getId());
+        model.addAttribute("bookmark", bookmark);
 
         if(!model.containsAttribute("comment_action"))
             model.addAttribute("comment_action", String.format("/blog/post/%s/addComment", postId));

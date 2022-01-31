@@ -30,8 +30,8 @@ public class RoboDataController {
      * @param max Upper border
      * @return Returns the random number as casted to Integer
      */
-    public static Integer generateRandomNumberFromTo(double min, double max){
-        return (int) Math.floor(min + (max - min) * Math.random());
+    public static Double generateRandomNumberFromTo(double min, double max){
+        return Math.floor(min + (max - min) * Math.random());
     }
 
     /**
@@ -147,7 +147,7 @@ public class RoboDataController {
      * @return Returns Success or Error Message
      */
     @PostMapping(value = "/{token}/upload_many_raw_data")
-    public ResponseEntity<?> insertManyRawData(@RequestBody List<Integer> rawData, @PathVariable String token){
+    public ResponseEntity<?> insertManyRawData(@RequestBody List<Double> rawData, @PathVariable String token){
         try {
             DataAccessToken dat = robotDataService.findDATByToken(token);
             List<RobotData> robotData = new Vector<>();
@@ -239,7 +239,7 @@ public class RoboDataController {
             DataAccessToken dat = robotDataService.findDATByToken(token);
             return ResponseEntity.ok().body(new FlashMessage("Token valid.", FlashMessage.Status.SUCCESS));
         } catch (NullPointerException npe) {
-            return ResponseEntity.badRequest().body(new FlashMessage("Token invalid.", FlashMessage.Status.FAILURE));
+            return ResponseEntity.ok().body(new FlashMessage("Token invalid.", FlashMessage.Status.FAILURE));
         }
     }
 }

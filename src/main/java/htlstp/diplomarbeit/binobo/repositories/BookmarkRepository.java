@@ -7,12 +7,13 @@ import htlstp.diplomarbeit.binobo.model.Bookmark;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface BookmarkRepository extends JpaRepository<Bookmark, Long> {
     List<Bookmark> findAllByUser(User user);
     Bookmark findByPost(Post post);
-    Bookmark findByPostAndUser(Post post, User user);
+    Optional<Bookmark> findByPostAndUser(Post post, User user);
     void deleteAllByPost(Post post);
     void deleteAllByUser(User user);
 }
