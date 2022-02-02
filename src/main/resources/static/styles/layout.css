@@ -1,7 +1,10 @@
 * {
     box-sizing: border-box;
     font-family: 'Roboto Mono', monospace;
-    transition: .3s all ease;
+}
+
+svg * {
+    transition: .2s all ease;
 }
 
 html[data-theme='dark'] {
@@ -37,8 +40,8 @@ body {
 }
 
 .main_content {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 .main_content {

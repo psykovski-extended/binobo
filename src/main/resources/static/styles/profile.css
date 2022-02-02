@@ -1,0 +1,118 @@
+.main_content {
+    display: flex;
+}
+
+.user_details_wrapper {
+    background-color: #444;
+    width: 40%;
+    padding: 15px;
+    border-radius: 30px;
+}
+
+.user_details_wrapper .profile_heading h2,
+.bookmarks_heading h2,
+.posts_heading h2 {
+    color: var(--hover-color);
+    font-size: 30px;
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.profile_heading, .bookmarks_heading, .posts_heading {
+    border-style: solid;
+    border-width: 0 0 3px 0;
+    border-color: #ff7800;
+}
+
+.profile_pic {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.profile_pic svg {
+    width: 150px;
+}
+
+.profile_pic_inner_wrapper {
+    height: 220px;
+    width: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #343434;
+    border-radius: 50%;
+}
+
+form div input {
+    transition: border-color 0.3s ease-out;
+    color: #ff7800;
+    background-color: var(--bg-panel);
+    border-width: 1px 1px 3px 1px;
+    border-style: solid;
+    border-color: #ff7800;
+    border-radius: 10px;
+    font-size : 20px;
+    height: 35px;
+    width: 100%;
+    outline: none;
+    text-align: center;
+}
+
+input:hover {
+    border-color: #008000;
+}
+
+.label_inner {
+    background-color: transparent;
+    font-size: 20px;
+    text-align: center;
+    color: #ff7800;
+    transition: all 0.3s ease 0s;
+    padding-left: 20px;
+}
+
+.btn_wrapper {
+    width: 50%;
+    margin: 20px auto auto;
+}
+
+#submit_btn {
+    width: 100%;
+}
+
+.bookmarks_wrapper, .posts_wrapper {
+    height: calc(50% - 7.5px);
+    padding: 15px;
+    margin-left: 15px;
+    background-color: #444;
+    border-radius: 30px;
+}
+
+.bookmarks_wrapper {
+    margin-bottom: 15px;
+}
+
+.posts_bookmarks_wrapper {
+    width: 60%;
+}
+
+.posts_inner_wrapper {
+    margin: 15px;
+}
+
+.entry_wrapper {
+    background-color: var(--bg-panel);
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.entry_wrapper a {
+    font-weight: bold;
+}

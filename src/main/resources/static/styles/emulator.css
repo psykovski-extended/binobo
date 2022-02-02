@@ -3,3 +3,38 @@
     height: 100%;
     border-radius: 30px;
 }
+
+.option_outer_wrapper {
+    position: absolute;
+    transform: translate(15px, 100%);
+    background-color: #343434;
+    display: flex;
+    border-radius: 5px;
+    height: 276px;
+}
+
+.option_outer_wrapper div p {
+    margin-top: 0;
+    margin-bottom: 8px;
+    text-align: center;
+    color: white;
+}
+
+.monitor p {
+    margin-bottom: 0 !important;
+}
+
+.option_outer_wrapper div svg {
+    transition: all .1s ease-in;
+    fill: white;
+}
+
+.options_buttons_wrapper {
+    padding: 5px;
+    padding-bottom: 0 !important;
+}
+
+.options_buttons_wrapper div:hover * {
+    fill: #ff7800;
+    cursor: pointer;
+}

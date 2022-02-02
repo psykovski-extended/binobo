@@ -15,4 +15,5 @@ public interface BookmarkService {
     Optional<Bookmark> findByPostAndUser(Post post, User user);
     void deleteAllByUser(User user);
     void deleteAllByPost(Post post);
+    List<Bookmark> findAllByUser(User user);
 }

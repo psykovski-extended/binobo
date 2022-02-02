@@ -56,4 +56,9 @@ public class BookmarkServiceImpl implements BookmarkService {
     public void deleteAllByPost(Post post) {
         bookmarkRepository.deleteAllByPost(post);
     }
+
+    @Override
+    public List<Bookmark> findAllByUser(User user) {
+        return bookmarkRepository.findAllByUser(user);
+    }
 }

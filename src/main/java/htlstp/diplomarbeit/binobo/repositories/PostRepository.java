@@ -1,5 +1,6 @@
 package htlstp.diplomarbeit.binobo.repositories;
 
+import htlstp.diplomarbeit.binobo.model.Bookmark;
 import htlstp.diplomarbeit.binobo.model.Post;
 import htlstp.diplomarbeit.binobo.model.User;
 import org.springframework.data.repository.CrudRepository;

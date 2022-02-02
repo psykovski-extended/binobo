@@ -33,11 +33,12 @@
 }
 
 .flash_success, .flash_success .strong {
-    background-color: #0E9A00;
+    background-color: #29AF7F;
 }
 
 .flash_info, .flash_info .strong {
-    background-color: #0E0EFF;
+    background-color: #453781;
+    color: white;
 }
 
 .flash_error, .flash_error .strong {
@@ -45,11 +46,79 @@
 }
 
 .flash_warn, .flash_warn .strong {
-    background-color: #7d9726;
+    background-color: #B8DE29;
 }
 
 .field_error {
     color: #da3b09;
     font-size: 20px;
     text-align: center;
+}
+
+.contribute_docker {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.contribute {
+    background-image:linear-gradient(#22222288, #22222244), url(../pictures/code.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: #222222;
+    margin-right: 7.5px;
+}
+
+.docker {
+    background-image:linear-gradient(#22222288, #22222244),  url(../pictures/container.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin-left: 7.5px;
+}
+
+.docker:hover, .contribute:hover, .join_us:hover {
+    transform: scale(1.03);
+}
+
+.contribute, .docker, .join_us {
+    transition: .3s all ease;
+}
+
+.contribute, .docker {
+    width: 50%;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 5px;
+    border-radius: 30px;
+}
+
+.contribute svg, .docker svg, .join_us svg {
+    margin: auto;
+    max-width: 70%;
+    cursor: pointer;
+}
+
+.join_us svg {
+    transform: scale(0.7);
+}
+
+.contribute h2, .docker h2, .join_us h2 {
+    color: white;
+    font-size: 32px;
+    text-align: center;
+}
+
+.join_us {
+    background-image:linear-gradient(#22222288, #22222244),  url(../pictures/matrix.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-around;
+    align-items: center;
+
+    margin-top: 15px;
+    border-radius: 30px;
+    padding: 5px;
 }

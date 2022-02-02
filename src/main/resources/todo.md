@@ -10,7 +10,6 @@
 - neues layout fertigstellen
   - my acc page
   - admin-pages (list all users, delete or set deactivated)
-- svg - stylesheet hinzufügen (bei layout einbauen)
 
 - Entwicklerseite schreiben
     - Fotos von mir und philipp
@@ -27,7 +26,6 @@
 - connection lost popup
 - live-plot for current rotation of all joints / current selected joints
 - show current selected joint and its hierarchy (handy-svg) ?
-- vl console (feedback, errors, ..)
 
 ### App
 
