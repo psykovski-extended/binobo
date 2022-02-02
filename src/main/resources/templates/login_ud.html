@@ -39,13 +39,13 @@
                 <form class="form register" id="register" method="post" th:action="@{/login/register}" th:object="${userDTO}">
                     <div class="flex on_media_flex">
                         <div class="first_name sign_up" id="fn">
-                            <label for="first_name" class="label_inner">Vorname:</label><br>
+                            <label for="first_name" class="label_inner">First name:</label><br>
                             <input th:field="*{firstname}" type="text" id="first_name" name="first_name" placeholder="Vorname"
                                    minlength="2" maxlength="64" th:classappend="${#fields.hasErrors('firstname')}? 'error' : ''"/>
                         </div>
                         <hr/>
                         <div class="last_name sign_up">
-                            <label for="last_name" class="label_inner">Nachname:</label><br/>
+                            <label for="last_name" class="label_inner">Last name:</label><br/>
                             <input th:field="*{lastname}" type="text" id="last_name" name="last_name" placeholder="Nachname"
                                    minlength="2" maxlength="64" th:classappend="${#fields.hasErrors('lastname')}? 'error' : ''"/>
                         </div>
@@ -63,13 +63,13 @@
                         <div class="field_error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
                     </div>
                     <div class="password">
-                        <label for="password" class="label_inner">Passwort:</label><br/>
+                        <label for="password" class="label_inner">Password:</label><br/>
                         <input th:field="*{password}" type="password" id="password" placeholder="aweSoMe1"
                                minlength="8" maxlength="128" th:classappend="${#fields.hasErrors('password')}? 'error' : ''"/>
                         <div class="field_error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
                     </div>
                     <div class="password_verify sign_up">
-                        <label for="password_verify" class="label_inner">Passwort best&auml;tigen:</label><br/>
+                        <label for="password_verify" class="label_inner">Repeat Password:</label><br/>
                         <input th:field="*{password_verify}" type="password" id="password_verify" placeholder="aweSoMe1"
                                minlength="8" maxlength="128" th:classappend="${#fields.hasErrors('password_verify')}? 'error' : ''"/>
                         <div class="field_error" th:if="${#fields.hasErrors('password_verify')}" th:errors="*{password_verify}"></div>
@@ -89,7 +89,7 @@
                         <input th:field="*{username}" type="text" id="username1" name="username" placeholder="BinoboIsAwesome" required/>
                     </div>
                     <div class="password">
-                        <label for="password_s" class="label_inner">Passwort:</label><br/>
+                        <label for="password_s" class="label_inner">Password:</label><br/>
                         <input th:field="*{password}" type="password" id="password_s" placeholder="aweSoMe1" required/>
                     </div>
                     <div class="flex btns">

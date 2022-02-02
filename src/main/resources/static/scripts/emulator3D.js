@@ -145,8 +145,8 @@ function emu3D() {
      */
     function onMouseDown(event) {
         // update the picking ray with the camera and mouse position
-        mouse.x = ((event.clientX) / window.innerWidth) * 2 - 1;
-        mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+        mouse.x = ((event.clientX) / window.innerWidth) * 2 - 1 - (115 / window.innerWidth);
+        mouse.y = -(event.clientY / window.innerHeight) * 2 + 1 - (30 / window.innerHeight);
         raycaster.setFromCamera(mouse, camera);
 
         // calculate objects intersecting the picking ray

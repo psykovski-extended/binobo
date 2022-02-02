@@ -198,7 +198,7 @@
                 </a>
             </div>
             <div class="nav_element">
-                <a id="selected" th:href="@{/blog}">
+                <a th:href="@{/blog}">
                     <svg data-name="Ebene 1" id="e45b9fbc-e955-4684-890a-7c603b12e0c1"
                          viewBox="0 0 431.16 495.21"
                          xmlns="http://www.w3.org/2000/svg">
@@ -217,7 +217,7 @@
                 </a>
             </div>
             <div class="nav_element">
-                <a th:href="@{/user/profile}">
+                <a id="selected" th:href="@{/user/profile}">
                     <svg viewBox="0 0 263.97 311.95" xmlns="http://www.w3.org/2000/svg">
                         <defs>
                             <style>.ab6b077b-8652-4aa8-93e5-13147873f1b7 {
@@ -262,12 +262,12 @@
 
             </div>
             <div class="first_name sign_up" id="fn">
-                <label class="label_inner" for="first_name">Vorname:</label><br>
+                <label class="label_inner" for="first_name">First name:</label><br>
                 <input id="first_name" maxlength="64" minlength="2" name="first_name" placeholder="Vorname"
                        th:field="*{firstName}" type="text"/>
             </div>
             <div class="last_name sign_up">
-                <label class="label_inner" for="last_name">Nachname:</label><br/>
+                <label class="label_inner" for="last_name">Last name:</label><br/>
                 <input id="last_name" maxlength="64" minlength="2" name="last_name" placeholder="Nachname"
                        th:field="*{lastName}" type="text"/>
             </div>
@@ -282,9 +282,9 @@
                        th:field="*{email}" type="text"/>
             </div>
             <div class="password">
-                <label class="label_inner" for="password">Passwort:</label><br/>
+                <label class="label_inner" for="password">Password:</label><br/>
                 <input disabled="disabled" id="password" maxlength="128" minlength="8" placeholder="aweSoMe1"
-                       th:field="*{password}" type="password"/>
+                       type="password" value="************"/>
             </div>
             <div class="btn_wrapper">
                 <input type="submit" id="submit_btn" disabled="disabled" value="save changes"/>
