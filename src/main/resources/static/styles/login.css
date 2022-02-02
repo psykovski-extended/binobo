@@ -11,7 +11,7 @@
     padding: 20px;
 }
 
-input {
+.form_visible input {
     transition: border-color 0.3s ease-out;
     color: #ff7800;
     background-color: var(--bg-panel);
@@ -66,8 +66,20 @@ hr {
 }
 
 .btns {
-    margin-top: 100px;
+    margin-top: 80px;
     width: 100%;
+}
+
+.info_wrapper {
+    width: 80%;
+    margin: auto;
+}
+
+.info_wrapper p {
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    margin: 0;
 }
 
 /* Sign in/up toggle btn */
