@@ -23,10 +23,15 @@ function emu3D() {
     controls.update();
 
     //lighting setup
-    const dir = new THREE.DirectionalLight(0xffffff, 1)
+    const dir = new THREE.DirectionalLight(0xffffff, 1);
+    const dirm = new THREE.DirectionalLight(0xff8800,0.5);
+    dirm.translateY(-10);
+
     const ambient = new THREE.AmbientLight(0x404040, 2.5);
     scene.add(dir);
+    scene.add(dirm);
     scene.add(ambient);
+    dirm.target=dir;
     //loader setup
     let fbxloader = new THREE.FBXLoader();
     let palm = scene;
@@ -178,8 +183,8 @@ function emu3D() {
                 frame = 0;
             }
 
-            wrist.rotation.x = degToRad(-dat_json.wr_lr);
-            wrist.rotation.z = degToRad(-dat_json.wr_bf);
+            // wrist.rotation.x = degToRad(-dat_json.wr_lr);
+            // wrist.rotation.z = degToRad(-dat_json.wr_bf);
             fingers[0][2].rotation.y = degToRad(-dat_json.if_base_rot);
             fingers[0][2].rotation.z = degToRad(-dat_json.if_base);
             fingers[0][1].rotation.z = degToRad(-dat_json.if_middle);
@@ -188,18 +193,18 @@ function emu3D() {
             fingers[1][2].rotation.z = degToRad(-dat_json.mf_base);
             fingers[1][1].rotation.z = degToRad(-dat_json.mf_middle);
             fingers[1][0].rotation.z = degToRad(-dat_json.mf_tip);
-            fingers[2][2].rotation.y = degToRad(-dat_json.rf_base_rot);
-            fingers[2][2].rotation.z = degToRad(-dat_json.rf_base);
-            fingers[2][1].rotation.z = degToRad(-dat_json.rf_middle);
-            fingers[2][0].rotation.z = degToRad(-dat_json.rf_tip);
-            fingers[3][2].rotation.y = degToRad(-dat_json.p_base_rot);
-            fingers[3][2].rotation.z = degToRad(-dat_json.p_base);
-            fingers[3][1].rotation.z = degToRad(-dat_json.p_middle);
-            fingers[3][0].rotation.z = degToRad(-dat_json.p_tip);
-            fingers[4][2].rotation.y = degToRad(-dat_json.th_rot_orthogonal);
-            fingers[4][2].rotation.x = degToRad(-dat_json.th_rot_palm);
-            fingers[4][1].rotation.z = degToRad(-dat_json.th_base);
-            fingers[4][0].rotation.z = degToRad(-dat_json.th_tip);
+            // fingers[2][2].rotation.y = degToRad(-dat_json.rf_base_rot);
+            // fingers[2][2].rotation.z = degToRad(-dat_json.rf_base);
+            // fingers[2][1].rotation.z = degToRad(-dat_json.rf_middle);
+            // fingers[2][0].rotation.z = degToRad(-dat_json.rf_tip);
+            // fingers[3][2].rotation.y = degToRad(-dat_json.p_base_rot);
+            // fingers[3][2].rotation.z = degToRad(-dat_json.p_base);
+            // fingers[3][1].rotation.z = degToRad(-dat_json.p_middle);
+            // fingers[3][0].rotation.z = degToRad(-dat_json.p_tip);
+            // fingers[4][2].rotation.y = degToRad(-dat_json.th_rot_orthogonal);
+            // fingers[4][2].rotation.x = degToRad(-dat_json.th_rot_palm);
+            // fingers[4][1].rotation.z = degToRad(-dat_json.th_base);
+            // fingers[4][0].rotation.z = degToRad(-dat_json.th_tip);
         } catch (e) {
         }
 

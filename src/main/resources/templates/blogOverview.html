@@ -290,7 +290,7 @@
                         </div>
                         <hr>
                         <div class="date_time">
-                            <em th:text="${post.createdOn.toString().replaceAll('T', ' ')}"></em>
+                            <em th:text="${post.createdOn.toString().replaceAll('T', ' ').replaceAll('-', '.').substring(0, 19)}"></em>
                         </div>
                     </div>
                 </div>

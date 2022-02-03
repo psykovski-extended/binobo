@@ -25,7 +25,7 @@
 }
 
 .option_outer_wrapper div svg {
-    transition: all .1s ease-in;
+    transition: all .1s ease;
     fill: white;
 }
 
@@ -37,4 +37,52 @@
 .options_buttons_wrapper div:hover * {
     fill: #ff7800;
     cursor: pointer;
+}
+
+.connected svg * {
+    fill: green;
+}
+
+.connected:hover #b81ffce4-224c-484d-9794-9882947c62c7 * {
+    fill: red;
+}
+
+.token_wrapper {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    width: 330px;
+    bottom: 65px;
+    left: 45%;
+    border: solid 2px;
+    border-radius: 5px;
+    background-color: #111;
+}
+
+#token_input {
+    height: 25px;
+    width: 300px;
+    border: none;
+    color: #ff7800;
+    background-color: #444;
+    border-radius: 2px 0 0 2px;
+    outline: none;
+}
+
+.copy-btn {
+    width: 25px;
+    height: 25px;
+    padding: 2px;
+    border: solid;
+    border-width: 0 0 0 2px;
+    background-color: #111;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0 2px 2px 0;
+    cursor: pointer;
+}
+
+.copy-btn:hover svg * {
+    fill: white;
 }

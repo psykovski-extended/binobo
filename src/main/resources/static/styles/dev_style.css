@@ -1,0 +1,50 @@
+.main_content {
+    display: flex;
+    flex-direction: row;
+}
+
+.dominik_wrapper, .philipp_wrapper {
+    transition: .3s all ease;
+    width: 50%;
+    border-radius: 30px;
+    padding: 15px;
+}
+
+.dominik_wrapper {
+    margin-right: 7.5px;
+    background-image:linear-gradient(#222222aa, #22222277),   url(../pictures/code_2.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.philipp_wrapper {
+    margin-left: 7.5px;
+    background-image:linear-gradient(#222222aa, #22222277),  url(../pictures/rocket.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.dominik_wrapper:hover, .philipp_wrapper:hover {
+    transform: scale(1.1);
+}
+
+.heading_wrapper h1 {
+    text-align: center;
+    color: white;
+}
+
+.about {
+    margin-left: 20px;
+    margin-top: 10%;
+}
+
+.about p {
+    width: 60%;
+    text-align: left;
+    font-weight: bold;
+    color: #ff7800;;
+}
+
+.about a {
+    color: #008000;
+}
