@@ -319,7 +319,11 @@
     </div>
 </div>
 <script>
-    localStorage.setItem("data-theme", "dark");
+    document.documentElement.setAttribute("data-theme", localStorage.getItem("data-theme") !== null ? localStorage.getItem("data-theme") : "dark");
+
+    if(document.documentElement.getAttribute("data-theme") === 'light')
+        document.getElementById("switch").click();
+
     const changeThemeToDark = () => {
         document.documentElement.setAttribute("data-theme", "dark") // set theme to dark
         localStorage.setItem("data-theme", "dark") // save theme to local storage

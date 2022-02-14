@@ -8,12 +8,10 @@
   - 'This solved the issue' - Button einbauen
 - responsive layout
 - neues layout fertigstellen
-  - my acc page
-  - admin-pages (list all users, delete or set deactivated)
+  - operator-pages (list all users, delete or set deactivated)
 
-- Entwicklerseite schreiben
-    - Fotos von mir und philipp
 - Projektübersicht machen, so weit wie möglich zur Zeit
+- Rauschen der übertragenen Werte filtern (Kalman Filter?)
 
 ### Firmware
 
@@ -21,21 +19,30 @@
 
 ### Emulator
 
-- Sync button
-- connect/disconnect button
 - connection lost popup
 - live-plot for current rotation of all joints / current selected joints
 - show current selected joint and its hierarchy (handy-svg) ?
 
 ### App
 
-- Konfiguration-Steps (WLAN, Token)
+- Konfiguration-Steps (WLAN, Token) / use onboard stored data?
 - Kalibration (Ausrichtung der Potis)
+- Store config-data?
 - Übertragung starten/stoppen/pausieren - button
 
-## Zweitrangige Ziele
 
-- Operator-Pages
+# Ideensammlung zur Weiterentwicklung und Implementierung weiterer Features
+
+- Editor.md weiterentwickeln, um User verlinken zu können
+- Öffentliche Ansicht des Kontos eines Users
+- Searchbar bei Blogeinträgen
+- Tags für Blogeinträge
+- Rest API sichern mit JWT
+- Google login (Firebase)
+- OAuth2
+- Eigener Cloud-Server um Bilder hochzuladen
+- Mehrere Configs speichern (Wlan, Token)
+- mehrere Modelle für Emulator
 
 # Anforderungen an den 3D-Simulator
 

@@ -205,8 +205,7 @@ function emu3D() {
             // fingers[4][2].rotation.x = degToRad(-dat_json.th_rot_palm);
             // fingers[4][1].rotation.z = degToRad(-dat_json.th_base);
             // fingers[4][0].rotation.z = degToRad(-dat_json.th_tip);
-        } catch (e) {
-        }
+        } catch (e) {}
 
         camera.aspect = canvas.clientWidth / canvas.clientHeight;
         renderer.setSize(canvas.clientWidth, canvas.clientHeight, false);

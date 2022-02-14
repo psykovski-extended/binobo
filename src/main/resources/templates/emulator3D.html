@@ -339,51 +339,6 @@
 
 <script type="text/javascript" rel="script" th:src="@{scripts/emulator3D.js}"></script>
 <script>
-    let stompClient = null;
-    let socket;
-
-    function disconnect(node){
-        node.onclick = () => connect(node);
-        node.classList.remove("connected");
-
-        socket.close();
-
-        document.getElementById("connect").innerHTML = "connect";
-    }
-
-    function connect(node) {
-        node.onclick = () => disconnect(node);
-        node.classList.add("connected");
-
-        socket = new SockJS('/realtime-emulator');
-        stompClient = Stomp.over(socket);
-        stompClient.connect({}, frame => {
-            console.log('Connected: ' + frame);
-            stompClient.subscribe('/publish-data/' + token, res => {
-                let data = JSON.parse(res.body);
-                for(i of data) {
-                    if(i !== undefined) {
-                        dat_json_buffer[dat_json_buffer.length] = i;
-                    }
-                }
-            });
-        });
-        document.getElementById("connect").innerHTML = "stop";
-    }
-
-    function sync() {
-        $.ajax({
-            type:"Delete",
-            url:"https://localhost/roboData/rest_api/" + token + "/delete_all_to_synchronize"
-        })
-    }
-
-    function copy_token(){
-        let node = document.querySelector("#token_input");
-        node.select();
-        document.execCommand("copy");
-    }
-
     emu3D();
 </script>
 </body>

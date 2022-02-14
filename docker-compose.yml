@@ -1,0 +1,24 @@
+version: '3.1'
+services:
+  app:
+    container_name: binobo_server
+    image: 'binobo_server:latest'
+    build: ./
+    ports:
+      - "80:80"
+    depends_on:
+      - binobo_database
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://binobo_database:5432/binobo_db
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=password
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+  binobo_database:
+    image: postgres
+    container_name: binobo_database
+    ports:
+      - "3506:5432"
+    environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=binobo_db

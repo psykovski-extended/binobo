@@ -11,7 +11,7 @@ http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     </parent>
     <groupId>htlstp.diplomarbeit</groupId>
     <artifactId>binobo</artifactId>
-    <version>1.0.0.Alpha</version>
+    <version>2.0-Alpha</version>
     <name>binobo</name>
     <description>Server-Host and Emulator for bionic robotic hand</description>
     <properties>
@@ -59,7 +59,8 @@ http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <optional>true</optional>
+            <version>1.18.20</version>
+            <optional>false</optional>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -185,6 +186,14 @@ http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
                             <artifactId>lombok</artifactId>
                         </exclude>
                     </excludes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
                 </configuration>
             </plugin>
         </plugins>

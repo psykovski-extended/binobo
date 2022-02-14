@@ -365,6 +365,7 @@
     function changeForm(){
         document.querySelector("#register").innerHTML = (isReg) ? "" : register;
         document.querySelector("#login").innerHTML = (isReg) ? signIN : "";
+        document.querySelector("#info").innerHTML = (!isReg) ? "Toggle this button if you already have an account!" : "Toggle this button if you dont have an account!";
         isReg = !isReg;
     }
 </script>

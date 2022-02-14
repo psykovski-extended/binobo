@@ -11,6 +11,7 @@ html[data-theme='dark'] {
     --bg: black;
     --bg-panel: #222;
     --bg-content: #343434;
+    --bg-content2: #151515;
     --bg-panel2: #444;
     --color-text: white;
     --hover-color: #ff7800;
@@ -20,6 +21,7 @@ html[data-theme='light'] {
     --bg: #888;
     --bg-panel: white;
     --bg-content: #ccc;
+    --bg-content2: white;
     --bg-panel2: #ddd;
     --color-text: #222;
     --hover-color: #ff7800;
