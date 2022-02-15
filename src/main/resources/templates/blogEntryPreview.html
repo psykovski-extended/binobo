@@ -728,7 +728,7 @@
         let user_id = document.getElementById("user_id").valueOf().value;
         let post_id = document.getElementById("post_id").valueOf().value;
 
-        let url = `https://localhost/blog_rest_api/toggle_bookmark?post_id=${post_id}&user_id=${user_id}`;
+        let url = `http://localhost/blog_rest_api/toggle_bookmark?post_id=${post_id}&user_id=${user_id}`;
         $.ajax({
             type:"Patch",
             url:url

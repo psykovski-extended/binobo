@@ -13,6 +13,13 @@ services:
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=password
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+  websocket_server:
+    container_name: binobo_websocket_server
+    image: 'binobo_websocket_server:latest'
+    ports:
+      - "8080:8080"
+    depends_on:
+      - binobo_database
   binobo_database:
     image: postgres
     container_name: binobo_database

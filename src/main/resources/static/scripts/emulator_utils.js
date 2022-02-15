@@ -33,7 +33,7 @@ function sync() {
     dat_json_buffer = [];
     $.ajax({
         type:"Delete",
-        url:"https://localhost/roboData/rest_api/" + token + "/delete_all_to_synchronize"
+        url:"http://localhost/roboData/rest_api/" + token + "/delete_all_to_synchronize"
     })
 }
 
@@ -44,33 +44,35 @@ function copy_token(){
 }
 
 function apply_filter_to_data(data_to_filter){
-    data_to_filter.p_tip = 0.95 * data_to_filter.p_tip + 0.05 * last_dat_json.p_tip;
-    data_to_filter.p_middle = 0.95 * data_to_filter.p_middle + 0.05 * last_dat_json.p_middle;
-    data_to_filter.p_base = 0.95 * data_to_filter.p_base + 0.05 * last_dat_json.p_base;
-    data_to_filter.p_base_rot = 0.95 * data_to_filter.p_base_rot + 0.05 * last_dat_json.p_base_rot;
+    let d = 0.6;
+    let d_m1 = 1 - d;
+    data_to_filter.p_tip = d * data_to_filter.p_tip + d_m1 * last_dat_json.p_tip;
+    data_to_filter.p_middle = d * data_to_filter.p_middle + d_m1 * last_dat_json.p_middle;
+    data_to_filter.p_base = d * data_to_filter.p_base + d_m1 * last_dat_json.p_base;
+    data_to_filter.p_base_rot = d * data_to_filter.p_base_rot + d_m1 * last_dat_json.p_base_rot;
 
-    data_to_filter.rf_tip = 0.95 * data_to_filter.rf_tip + 0.05 * last_dat_json.rf_tip;
-    data_to_filter.rf_middle = 0.95 * data_to_filter.rf_middle + 0.05 * last_dat_json.rf_middle;
-    data_to_filter.rf_base = 0.95 * data_to_filter.rf_base + 0.05 * last_dat_json.rf_base;
-    data_to_filter.rf_base_rot = 0.95 * data_to_filter.rf_base_rot + 0.05 * last_dat_json.rf_base_rot;
+    data_to_filter.rf_tip = d * data_to_filter.rf_tip + d_m1 * last_dat_json.rf_tip;
+    data_to_filter.rf_middle = d * data_to_filter.rf_middle + d_m1 * last_dat_json.rf_middle;
+    data_to_filter.rf_base = d * data_to_filter.rf_base + d_m1 * last_dat_json.rf_base;
+    data_to_filter.rf_base_rot = d * data_to_filter.rf_base_rot + d_m1 * last_dat_json.rf_base_rot;
 
-    data_to_filter.mf_tip = 0.95 * data_to_filter.mf_tip + 0.05 * last_dat_json.mf_tip;
-    data_to_filter.mf_middle = 0.95 * data_to_filter.mf_middle + 0.05 * last_dat_json.mf_middle;
-    data_to_filter.mf_base = 0.95 * data_to_filter.mf_base + 0.05 * last_dat_json.mf_base;
-    data_to_filter.mf_base_rot = 0.95 * data_to_filter.mf_base_rot + 0.05 * last_dat_json.mf_base_rot;
+    data_to_filter.mf_tip = d * data_to_filter.mf_tip + d_m1 * last_dat_json.mf_tip;
+    data_to_filter.mf_middle = d * data_to_filter.mf_middle + d_m1 * last_dat_json.mf_middle;
+    data_to_filter.mf_base = d * data_to_filter.mf_base + d_m1 * last_dat_json.mf_base;
+    data_to_filter.mf_base_rot = d * data_to_filter.mf_base_rot + d_m1 * last_dat_json.mf_base_rot;
 
-    data_to_filter.if_tip = 0.95 * data_to_filter.if_tip + 0.05 * last_dat_json.if_tip;
-    data_to_filter.if_middle = 0.95 * data_to_filter.if_middle + 0.05 * last_dat_json.if_middle;
-    data_to_filter.if_base = 0.95 * data_to_filter.if_base + 0.05 * last_dat_json.if_base;
-    data_to_filter.if_base_rot = 0.95 * data_to_filter.if_base_rot + 0.05 * last_dat_json.if_base_rot;
+    data_to_filter.if_tip = d * data_to_filter.if_tip + d_m1 * last_dat_json.if_tip;
+    data_to_filter.if_middle = d * data_to_filter.if_middle + d_m1 * last_dat_json.if_middle;
+    data_to_filter.if_base = d * data_to_filter.if_base + d_m1 * last_dat_json.if_base;
+    data_to_filter.if_base_rot = d * data_to_filter.if_base_rot + d_m1 * last_dat_json.if_base_rot;
 
-    data_to_filter.th_tip = 0.95 * data_to_filter.th_tip + 0.05 * last_dat_json.th_tip;
-    data_to_filter.th_base = 0.95 * data_to_filter.th_base + 0.05 * last_dat_json.th_base;
-    data_to_filter.th_rot_orthogonal = 0.95 * data_to_filter.th_rot_orthogonal + 0.05 * last_dat_json.th_rot_orthogonal;
-    data_to_filter.th_rot_palm = 0.95 * data_to_filter.th_rot_palm + 0.05 * last_dat_json.th_rot_palm;
+    data_to_filter.th_tip = d * data_to_filter.th_tip + d_m1 * last_dat_json.th_tip;
+    data_to_filter.th_base = d * data_to_filter.th_base + d_m1 * last_dat_json.th_base;
+    data_to_filter.th_rot_orthogonal = d * data_to_filter.th_rot_orthogonal + d_m1 * last_dat_json.th_rot_orthogonal;
+    data_to_filter.th_rot_palm = d * data_to_filter.th_rot_palm + d_m1 * last_dat_json.th_rot_palm;
 
-    data_to_filter.wr_bf = 0.95 * data_to_filter.wr_bf + 0.05 * last_dat_json.wr_bf;
-    data_to_filter.wr_lr = 0.95 * data_to_filter.wr_lr + 0.05 * last_dat_json.wr_lr;
+    data_to_filter.wr_bf = d * data_to_filter.wr_bf + d_m1 * last_dat_json.wr_bf;
+    data_to_filter.wr_lr = d * data_to_filter.wr_lr + d_m1 * last_dat_json.wr_lr;
 
     last_dat_json = data_to_filter;
 }

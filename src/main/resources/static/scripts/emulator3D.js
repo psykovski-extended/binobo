@@ -24,25 +24,25 @@ function emu3D() {
 
     //lighting setup
     const dir = new THREE.DirectionalLight(0xffffff, 1);
-    const dirm = new THREE.DirectionalLight(0xff8800,0.5);
+    const dirm = new THREE.DirectionalLight(0xff8800, 0.5);
     dirm.translateY(-10);
 
     const ambient = new THREE.AmbientLight(0x404040, 2.5);
     scene.add(dir);
     scene.add(dirm);
     scene.add(ambient);
-    dirm.target=dir;
+    dirm.target = dir;
     //loader setup
     let fbxloader = new THREE.FBXLoader();
     let palm = scene;
     let wrist = new THREE.Object3D()
-    const ppos = blenderToThree(new THREE.Vector3(-1.25736, 0.039318, -0.020059));
+    const ppos = blenderToThree(new THREE.Vector3(0, 0, 0));
 
 
     let frame = 0;
     let path = '';
 
-    fbxloader.load('scripts/simulatorModels/palm.fbx', async function (object) {
+    fbxloader.load('scripts/simulatorModels/hand_new/new_palm.fbx', async function (object) {
 
         scene.add(wrist)
         wrist.add(object);
@@ -53,34 +53,32 @@ function emu3D() {
         palm.name = 'palm';
 
         await loadFingers();
-        scene.traverse(obj => {
-            obj.material = new THREE.MeshStandardMaterial({color: 0xcccccc});
-        })
     });
 
     let fingers = [[palm, palm, palm], [palm, palm, palm], [palm, palm, palm], [palm, palm, palm], [palm, palm, palm]];
-    const fpos = [ //DO NOT TOUCH!
+    const fpos = [ //DO NOT TOUCH!, new version
         [
-            blenderToThree(new THREE.Vector3(2.38672, 0.434034, 0.00079)),
-            blenderToThree(new THREE.Vector3(1.7966, 0.438078, 0.001156)),
-            blenderToThree(new THREE.Vector3(1.07962, 0.438278, 0.001571))
+            blenderToThree(new THREE.Vector3(3.59622, 0.353044, -0.018004)),
+            blenderToThree(new THREE.Vector3(2.90712, 0.353044, -0.000326)),
+            blenderToThree(new THREE.Vector3(1.98374, 0.355688, -0.005718))
         ], [
-            blenderToThree(new THREE.Vector3(2.56557, -0.091211, -0.002479)),
-            blenderToThree(new THREE.Vector3(1.91216, -0.090908, -0.0021)),
-            blenderToThree(new THREE.Vector3(1.07947, -0.091304, -0.001621))
+            blenderToThree(new THREE.Vector3(3.78517, -0.121099, -0.018709)),
+            blenderToThree(new THREE.Vector3(3.02742, -0.121099, 0.000276)),
+            blenderToThree(new THREE.Vector3(2.03528, -0.118192, -0.005514))
         ], [
-            blenderToThree(new THREE.Vector3(2.37357, -0.626907, -0.005598)),
-            blenderToThree(new THREE.Vector3(1.73113, -0.61744, -0.00517)),
-            blenderToThree(new THREE.Vector3(0.988469, -0.60875, -0.004688))
+            blenderToThree(new THREE.Vector3(3.55936, -0.61488, -0.018362)),
+            blenderToThree(new THREE.Vector3(2.84435, -0.61488, -0.00002)),
+            blenderToThree(new THREE.Vector3(1.90818, -0.612137, -0.005614))
         ], [
-            blenderToThree(new THREE.Vector3(2.07439, -1.08967, -0.008215)),
-            blenderToThree(new THREE.Vector3(1.51741, -1.08203, -0.007847)),
-            blenderToThree(new THREE.Vector3(0.913147, -1.08187, -0.007497))
+            blenderToThree(new THREE.Vector3(3.09757, -1.02955, -0.016404)),
+            blenderToThree(new THREE.Vector3(2.52417, -1.02955, -0.001695)),
+            blenderToThree(new THREE.Vector3(1.77339, -1.02735, -0.006181))
         ], [
-            blenderToThree(new THREE.Vector3(1.10977, 1.15397, 0.000587)),
-            blenderToThree(new THREE.Vector3(0.43031, 1.1529, 0.000975)),
-            blenderToThree(new THREE.Vector3(-0.001847, 0.982914, 0.005479))
-        ]];
+            blenderToThree(new THREE.Vector3(1.99089, 1.39046, -0.004993)),
+            blenderToThree(new THREE.Vector3(1.38421, 1.16946, -0.004993)),
+            blenderToThree(new THREE.Vector3(0.46195, 0.78016, -0.004993))
+        ]]
+    ;
 
     /**
      * places a specific finger segment from the /simulatorModels folder
@@ -117,7 +115,7 @@ function emu3D() {
     async function loadFingers() {
         for (let s = 3; s > 0; s--) {
             for (let d = 1; d < 6; d++) {
-                path = 'scripts/simulatorModels/simHand_id' + d + '' + s + '.fbx';
+                path = 'scripts/simulatorModels/hand_new/new_simHand_id' + d + '' + s + '.fbx';
                 let object = await new Promise(loadTheFinger);
                 object.name = namePart(d, s);
                 await loadSegment(object, d, s);
@@ -139,7 +137,7 @@ function emu3D() {
     let mouse = new THREE.Vector2();
 
     // window.addEventListener('mousedown',onMouseDown, false);
-    canvas.onclick = event => onMouseDown(event);
+    //canvas.onclick = event => onMouseDown(event);
 
     let lastsel = 0;
 
@@ -160,12 +158,7 @@ function emu3D() {
             lastsel.material = new THREE.MeshStandardMaterial({color: 0xcccccc});
         }
         if (intersects.length > 0) {
-            console.log(intersects[0].object.parent.name);
-            let quat;
-            quat = intersects[0].object.parent.getWorldQuaternion(new THREE.Quaternion());
-            let rotation = new THREE.Euler().setFromQuaternion(quat);
             intersects[0].object.material = new THREE.MeshStandardMaterial({color: 0xff7800});
-            console.log(radToDeg(rotation.z));
             lastsel = intersects[0].object;
         } else
             lastsel = 0;
@@ -205,7 +198,8 @@ function emu3D() {
             // fingers[4][2].rotation.x = degToRad(-dat_json.th_rot_palm);
             // fingers[4][1].rotation.z = degToRad(-dat_json.th_base);
             // fingers[4][0].rotation.z = degToRad(-dat_json.th_tip);
-        } catch (e) {}
+        } catch (e) {
+        }
 
         camera.aspect = canvas.clientWidth / canvas.clientHeight;
         renderer.setSize(canvas.clientWidth, canvas.clientHeight, false);
