@@ -21,7 +21,7 @@ function connect(node) {
             for(i of data) {
                 if(i !== undefined) {
                     dat_json_buffer[dat_json_buffer.length] = i;
-                    apply_filter_to_data(dat_json_buffer[dat_json_buffer.length-1])
+                    //apply_filter_to_data(dat_json_buffer[dat_json_buffer.length-1])
                 }
             }
         });

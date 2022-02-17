@@ -38,7 +38,6 @@ function emu3D() {
     let wrist = new THREE.Object3D()
     const ppos = blenderToThree(new THREE.Vector3(0, 0, 0));
 
-
     let frame = 0;
     let path = '';
 
@@ -55,7 +54,13 @@ function emu3D() {
         await loadFingers();
     });
 
-    let fingers = [[palm, palm, palm], [palm, palm, palm], [palm, palm, palm], [palm, palm, palm], [palm, palm, palm]];
+    let fingers = [
+        [palm, palm, palm],
+        [palm, palm, palm],
+        [palm, palm, palm],
+        [palm, palm, palm],
+        [palm, palm, palm]
+    ];
     const fpos = [ //DO NOT TOUCH!, new version
         [
             blenderToThree(new THREE.Vector3(3.59622, 0.353044, -0.018004)),

@@ -34,7 +34,8 @@
 }
 
 .entry_wrapper:hover, .new_entry:hover {
-    box-shadow: -5px 5px #00b2b2;
+    box-shadow: -10px 10px #00b2b2;
+    transform: translate(5px, -5px);
 }
 
 .new_entry {
