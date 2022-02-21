@@ -11,25 +11,17 @@
   - operator-pages (list all users, delete or set deactivated)
 
 - Projektübersicht machen, so weit wie möglich zur Zeit
-- Rauschen der übertragenen Werte filtern (Kalman Filter?)
+- Rauschen der übertragenen Werte filtern (IFR - Filter → exponential Filter)
 
 ### Firmware
 
-- UART - commands interpretieren
+- UART - commands interpretieren, really?
 
 ### Emulator
 
 - connection lost popup
 - live-plot for current rotation of all joints / current selected joints
 - show current selected joint and its hierarchy (handy-svg) ?
-
-### App
-
-- Konfiguration-Steps (WLAN, Token) / use onboard stored data?
-- Kalibration (Ausrichtung der Potis)
-- Store config-data?
-- Übertragung starten/stoppen/pausieren - button
-
 
 # Ideensammlung zur Weiterentwicklung und Implementierung weiterer Features
 

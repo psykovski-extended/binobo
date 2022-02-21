@@ -61,4 +61,9 @@ public class BookmarkServiceImpl implements BookmarkService {
     public List<Bookmark> findAllByUser(User user) {
         return bookmarkRepository.findAllByUser(user);
     }
+
+    @Override
+    public List<Bookmark> findByAllPost(Post post) {
+        return bookmarkRepository.findAllByPost(post);
+    }
 }

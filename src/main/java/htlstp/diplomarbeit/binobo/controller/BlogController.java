@@ -200,6 +200,10 @@ public class BlogController {
             for(Comment c : comments){
                 subCommentService.deleteAllByComment(c);
             }
+            List<Bookmark> bookmarks = bookmarkService.findByAllPost(post);
+            for(Bookmark bm : bookmarks) {
+                bookmarkService.deleteBookmark(bm);
+            }
             commentService.deleteAllByPost(post);
             postService.deletePost(post);
 
@@ -266,7 +270,7 @@ public class BlogController {
         User cur_user = (User)((UsernamePasswordAuthenticationToken)principal).getPrincipal();
         User comment_user = comment.getUser();
 
-        if(cur_user == comment_user || cur_user.getRole().getId() >= 2){
+        if(Objects.equals(cur_user.getUsername(), comment_user.getUsername()) || cur_user.getRole().getId() >= 2){
             commentService.deleteComment(comment);
 
             redirectAttributes.addFlashAttribute("flash_succ",
@@ -290,7 +294,7 @@ public class BlogController {
         User cur_user = (User)((UsernamePasswordAuthenticationToken)principal).getPrincipal();
         User comment_user = comment.getUser();
 
-        if(cur_user == comment_user || cur_user.getRole().getId() >= 2){
+        if(Objects.equals(cur_user.getUsername(), comment_user.getUsername()) || cur_user.getRole().getId() >= 2){
             redirectAttributes.addFlashAttribute("comment", comment);
             redirectAttributes.addFlashAttribute("comment_action",
                     String.format("/blog/confirmCommentChange?post_id=%s&comment_user_id=%s", post_id, comment.getUser().getId()));
