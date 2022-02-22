@@ -7,7 +7,7 @@ function emu3D() {
 
     //scene setup
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color('#222');
+    scene.background = new THREE.Color('#333');
 
     //camera and controls setup
     const fov = 45;
