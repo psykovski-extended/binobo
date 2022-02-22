@@ -33,7 +33,7 @@ function sync() {
     dat_json_buffer = [];
     $.ajax({
         type:"Delete",
-        url:"http://localhost/roboData/rest_api/" + token + "/delete_all_to_synchronize"
+        url:"http://www.binobo.io/roboData/rest_api/" + token + "/delete_all_to_synchronize"
     })
 }
 

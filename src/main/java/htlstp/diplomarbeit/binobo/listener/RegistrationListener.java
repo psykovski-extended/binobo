@@ -33,13 +33,12 @@ public class RegistrationListener implements
 
         String recipientAddress = user.getEmail();
         String subject = "Binobo | Registration-Confirmation Email";
-        String confirmationUrl =  "/registrationConfirm?token=" + token;
-              //  = "https://binobo-diplomarbeit.ddns.net:1443" + "/registrationConfirm?token=" + token;
+        String confirmationUri =  "/registrationConfirm?token=" + token;
 
         SimpleMailMessage email = new SimpleMailMessage();
         email.setTo(recipientAddress);
         email.setSubject(subject);
-        email.setText("Click the following link to verify your email:" + "\r\n" + "https://localhost:1443" + confirmationUrl);
+        email.setText("Click the following link to verify your email:" + "\r\n" + "http://www.binobo.io" + confirmationUri);
         mailSender.send(email);
     }
 }
