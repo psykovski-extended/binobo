@@ -1,6 +1,6 @@
 # Bionic Robotic-Arm: Binobo
 
-#### Copyright (C) 2021 Dominik Lovetinsky, Philipp Maschayechi - This project is licenced under the Apache-Licence
+#### Copyright (C) 2021 Dominik Lovetinsky, Philipp Maschayechi - This project is licenced under the GPL-3.0-Licence
 
 This project aims at simulating a bionic robotic hand at as many degrees of freedom as possible.
 In this source code, there is also the functionality of registration embedded as well as a blog functionality.
