@@ -1,31 +1,32 @@
 .main_content {
     display: flex;
     flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .dominik_wrapper, .philipp_wrapper {
     transition: .3s all ease;
-    width: 50%;
+    width: 45%;
+    height: 85%;
     border-radius: 30px;
     padding: 15px;
 }
 
 .dominik_wrapper {
-    margin-right: 7.5px;
     background-image:linear-gradient(#222222aa, #22222277),   url(../pictures/code_2.jpg);
     background-size: cover;
     background-repeat: no-repeat;
 }
 
 .philipp_wrapper {
-    margin-left: 7.5px;
     background-image:linear-gradient(#222222aa, #22222277),  url(../pictures/rocket.jpg);
     background-size: cover;
     background-repeat: no-repeat;
 }
 
 .dominik_wrapper:hover, .philipp_wrapper:hover {
-    transform: scale(1.1);
+    transform: scale(1.03);
 }
 
 .heading_wrapper h1 {
