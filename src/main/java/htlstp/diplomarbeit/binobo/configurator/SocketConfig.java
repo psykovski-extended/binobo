@@ -17,7 +17,7 @@ public class SocketConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/realtime-emulator").withSockJS();
+        registry.addEndpoint("/realtime-emulator").setAllowedOriginPatterns("*").withSockJS();
     }
 
 }
