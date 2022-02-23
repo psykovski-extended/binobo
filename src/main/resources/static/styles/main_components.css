@@ -14,6 +14,7 @@
     color: white;
     font-size: 64px;
     font-weight: 100;
+    text-align: center;
 }
 
 .flash {
@@ -92,12 +93,12 @@
     justify-content: space-between;
     padding: 5px;
     border-radius: 30px;
+    cursor: pointer;
 }
 
 .contribute svg, .docker svg, .join_us svg {
     margin: auto;
     max-width: 70%;
-    cursor: pointer;
 }
 
 .join_us svg {
@@ -122,4 +123,5 @@
     margin-top: 15px;
     border-radius: 30px;
     padding: 5px;
+    cursor: pointer;
 }

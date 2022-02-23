@@ -39,11 +39,11 @@ body {
     padding: 10px;
 }
 
-.main_content::-webkit-scrollbar {
+.main_content::-webkit-scrollbar, .side_nav::-webkit-scrollbar {
     display: none;
 }
 
-.main_content {
+.main_content, .side_nav {
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
@@ -54,8 +54,8 @@ body {
 
 .nav_element a svg, .nav_element form svg {
     cursor: pointer;
-    height: 50px;
-    width: 50px;
+    height: 3rem;
+    width: 3rem;
 }
 
 .nav_element a svg *, .nav_element form svg * {
@@ -91,11 +91,13 @@ body {
 }
 
 .side_nav {
-    width: 100px;
+    width: 110px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     padding-right: 15px;
+    overflow-y: scroll;
+    overflow-x: visible;
 }
 
 .theme_toggle {
@@ -148,7 +150,7 @@ body {
     padding: 15px;
     width: 100%;
 }
-/*TODO change besause of svg*/
+
 #selected svg * {
     fill: var(--hover-color);
     stroke: var(--hover-color);

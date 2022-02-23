@@ -7,6 +7,16 @@
     width: 40%;
     padding: 15px;
     border-radius: 30px;
+    overflow: scroll;
+}
+
+.user_details_wrapper::-webkit-scrollbar, .bookmarks_wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.user_details_wrapper, .bookmarks_wrapper {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 .user_details_wrapper .profile_heading h2,
