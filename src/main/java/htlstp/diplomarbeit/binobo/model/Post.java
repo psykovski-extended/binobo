@@ -18,7 +18,7 @@ public class Post {
     private String username;
     @Column
     @NotNull
-    @Size(min = 12, max = 64)
+    @Size(min = 8, max = 64)
     private String title;
     @Column(length = 65535)
     @NotNull

@@ -33,6 +33,6 @@ spring.mail.properties.mail.smtp.starttls.enable=true
 ```
 You also must have PostgreSQL-Server installed on your machine and before first starting the project, you must create a database called `binobo_db`. Once this is done, you are nearly ready to go!
 
-This project is completely open-source, so if you want to change anything in this source-code, just do so by creating a new branch and making a push-request.
+This project is completely open-source, so if you want to change anything in this source-code, just do so by creating a new branch and making a pull-request.
 
 ## Considering the fact, that this is meant to be a diploma work, we please everybody to not change the main propose of this project. This is also mentioned in our licence.

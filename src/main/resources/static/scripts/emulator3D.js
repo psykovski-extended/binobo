@@ -1,12 +1,16 @@
+let scene;
+let canvas;
+let renderer;
+
 function emu3D() {
 
     //canvas setup
-    let canvas = document.querySelector('#c');
-    const renderer = new THREE.WebGLRenderer({antialias: true, canvas});
+    canvas = document.querySelector('#c');
+    renderer = new THREE.WebGLRenderer({antialias: true, canvas});
     renderer.setSize(canvas.innerWidth, canvas.innerHeight);
 
     //scene setup
-    const scene = new THREE.Scene();
+    scene = new THREE.Scene();
     scene.background = new THREE.Color('#333');
 
     //camera and controls setup

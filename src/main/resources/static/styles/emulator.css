@@ -15,6 +15,7 @@
     display: flex;
     border-radius: 5px;
     height: 276px;
+    width: 110px;
 }
 
 .option_outer_wrapper div p {
