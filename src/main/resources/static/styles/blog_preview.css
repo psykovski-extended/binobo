@@ -106,6 +106,10 @@ body {
     margin-top: 15px;
 }
 
+.mark svg, .bookmark svg {
+    cursor: pointer;
+}
+
 .post_info_wrapper {
     padding-left: 1px;
 }
