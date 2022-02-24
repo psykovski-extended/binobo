@@ -318,7 +318,8 @@
     </div>
 </div>
 <script>
-    document.documentElement.setAttribute("data-theme", localStorage.getItem("data-theme") !== null ? localStorage.getItem("data-theme") : "dark");
+    document.documentElement.setAttribute("data-theme", localStorage.getItem("data-theme") == null ? "dark" : localStorage.getItem("data-theme"));
+    localStorage.setItem('data-theme', document.documentElement.getAttribute("data-theme"))
 
     if(document.documentElement.getAttribute("data-theme") === 'light')
         document.getElementById("switch").click();
