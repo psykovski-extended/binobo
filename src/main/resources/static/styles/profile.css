@@ -63,9 +63,7 @@ form div input {
     transition: border-color 0.3s ease-out;
     color: #ff7800;
     background-color: var(--bg-panel);
-    border-width: 1px 1px 3px 1px;
-    border-style: solid;
-    border-color: #ff7800;
+    border-style: none;
     border-radius: 10px;
     font-size : 20px;
     height: 35px;
@@ -74,8 +72,8 @@ form div input {
     text-align: center;
 }
 
-input:hover {
-    border-color: #008000;
+input:hover, input:focus {
+    box-shadow: -5px 5px teal;
 }
 
 .label_inner {
