@@ -35,6 +35,7 @@
 - Eigener Cloud-Server um Bilder hochzuladen
 - Mehrere Configs speichern (Wlan, Token)
 - mehrere Modelle für Emulator
+- WebRTC - Derivate für Emulator, um Punkt-zu-Punkt Verbindung vom ESP32 zum Webbrowser aufzubauen
 
 # Anforderungen an den 3D-Simulator
 
