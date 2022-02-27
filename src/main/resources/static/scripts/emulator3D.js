@@ -142,37 +142,6 @@ function emu3D() {
         return 'digit' + d + ' segment' + s;
     }
 
-    let raycaster = new THREE.Raycaster();
-    let mouse = new THREE.Vector2();
-
-    // window.addEventListener('mousedown',onMouseDown, false);
-    //canvas.onclick = event => onMouseDown(event);
-
-    let lastsel = 0;
-
-    /**
-     * Function to be executed when a mouse button is clicked.
-     * fires raycast to detect segment and log rotation dat a
-     * @param event onMouseDown event
-     */
-    function onMouseDown(event) {
-        // update the picking ray with the camera and mouse position
-        mouse.x = ((event.clientX) / window.innerWidth) * 2 - 1 - (115 / window.innerWidth);
-        mouse.y = -(event.clientY / window.innerHeight) * 2 + 1 - (30 / window.innerHeight);
-        raycaster.setFromCamera(mouse, camera);
-
-        // calculate objects intersecting the picking ray
-        let intersects = raycaster.intersectObjects(scene.children, true);
-        if (lastsel !== 0) {
-            lastsel.material = new THREE.MeshStandardMaterial({color: 0xcccccc});
-        }
-        if (intersects.length > 0) {
-            intersects[0].object.material = new THREE.MeshStandardMaterial({color: 0xff7800});
-            lastsel = intersects[0].object;
-        } else
-            lastsel = 0;
-    }
-
     /**
      * The almighty render function
      */
@@ -181,34 +150,33 @@ function emu3D() {
 
         try {
             if (frame % 2 === 0) {
-                dat_json = dat_json_buffer.shift();
+                data = data_buffer.shift();
                 frame = 0;
             }
 
-            // wrist.rotation.x = degToRad(-dat_json.wr_lr);
-            // wrist.rotation.z = degToRad(-dat_json.wr_bf);
-            fingers[0][2].rotation.y = degToRad(-dat_json.if_base_rot);
-            fingers[0][2].rotation.z = degToRad(-dat_json.if_base);
-            fingers[0][1].rotation.z = degToRad(-dat_json.if_middle);
-            fingers[0][0].rotation.z = degToRad(-dat_json.if_tip);
-            fingers[1][2].rotation.y = degToRad(-dat_json.mf_base_rot);
-            fingers[1][2].rotation.z = degToRad(-dat_json.mf_base);
-            fingers[1][1].rotation.z = degToRad(-dat_json.mf_middle);
-            fingers[1][0].rotation.z = degToRad(-dat_json.mf_tip);
-            // fingers[2][2].rotation.y = degToRad(-dat_json.rf_base_rot);
-            // fingers[2][2].rotation.z = degToRad(-dat_json.rf_base);
-            // fingers[2][1].rotation.z = degToRad(-dat_json.rf_middle);
-            // fingers[2][0].rotation.z = degToRad(-dat_json.rf_tip);
-            // fingers[3][2].rotation.y = degToRad(-dat_json.p_base_rot);
-            // fingers[3][2].rotation.z = degToRad(-dat_json.p_base);
-            // fingers[3][1].rotation.z = degToRad(-dat_json.p_middle);
-            // fingers[3][0].rotation.z = degToRad(-dat_json.p_tip);
-            // fingers[4][2].rotation.y = degToRad(-dat_json.th_rot_orthogonal);
-            // fingers[4][2].rotation.x = degToRad(-dat_json.th_rot_palm);
-            // fingers[4][1].rotation.z = degToRad(-dat_json.th_base);
-            // fingers[4][0].rotation.z = degToRad(-dat_json.th_tip);
-        } catch (e) {
-        }
+            fingers[0][2].rotation.y = degToRad(-data[0]); // if_base_rot
+            fingers[0][2].rotation.z = degToRad(-data[1]); // if_base
+            fingers[0][1].rotation.z = degToRad(-data[2]); // if_middle
+            fingers[0][0].rotation.z = degToRad(-data[3]); // if_tip
+            fingers[1][2].rotation.y = degToRad(-data[4]); // mf_base_rot
+            fingers[1][2].rotation.z = degToRad(-data[5]); // mf_base
+            fingers[1][1].rotation.z = degToRad(-data[6]); // mf_middle
+            fingers[1][0].rotation.z = degToRad(-data[7]); // mf_tip
+            fingers[2][2].rotation.y = degToRad(-data[8]); // rf_base_rot
+            fingers[2][2].rotation.z = degToRad(-data[9]); // rf_base
+            fingers[2][1].rotation.z = degToRad(-data[10]); // rf_middle
+            fingers[2][0].rotation.z = degToRad(-data[11]); // rf_tip
+            fingers[3][2].rotation.y = degToRad(-data[12]); // p_base_rot
+            fingers[3][2].rotation.z = degToRad(-data[13]); // p_base
+            fingers[3][1].rotation.z = degToRad(-data[14]); // p_middle
+            fingers[3][0].rotation.z = degToRad(-data[15]); // p_tip
+            fingers[4][2].rotation.y = degToRad(-data[16]); // th_rot_orthogonal
+            fingers[4][2].rotation.x = degToRad(-data[17]); // th_rot_palm
+            fingers[4][1].rotation.z = degToRad(-data[18]); // th_base
+            fingers[4][0].rotation.z = degToRad(-data[19]); // th_tip
+            wrist.rotation.x = degToRad(-data[20]); // wr_lr
+            wrist.rotation.z = degToRad(-data[21]); // wr_bf
+        } catch (e) {}
 
         camera.aspect = canvas.clientWidth / canvas.clientHeight;
         renderer.setSize(canvas.clientWidth, canvas.clientHeight, false);
