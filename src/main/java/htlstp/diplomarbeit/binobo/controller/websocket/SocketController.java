@@ -25,12 +25,12 @@ public class SocketController {
         this.robotDataService = robotDataService;
     }
 
-    @Scheduled(fixedRate = 10)
+    /*@Scheduled(fixedRate = 10)
     public void greeting() {
         HashMap<String, List<RobotData>> res = robotDataService.getAllSortedByToken();
         for(String key : res.keySet()){
             if(key != null && res.get(key).size() > 0)
                 template.convertAndSend("/publish-data/" + key, res.get(key));
         }
-    }
+    }*/
 }

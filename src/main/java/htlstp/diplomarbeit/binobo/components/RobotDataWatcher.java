@@ -34,7 +34,7 @@ public class RobotDataWatcher implements CommandLineRunner {
      */
     @Override
     public void run(String...args) {
-        while(true) {
+        /*while(true) {
             try {
                 CompletableFuture<RobotData> robotData = robotDataService.checkIfExpired();
 
@@ -49,6 +49,6 @@ public class RobotDataWatcher implements CommandLineRunner {
             } catch (Exception e){
                 logger.warn("Error occurred: " + e.getMessage());
             }
-        }
+        }*/
     }
 }

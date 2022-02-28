@@ -148,35 +148,38 @@ function emu3D() {
     function render() {
         frame++;
 
+        let data;
         try {
             if (frame % 2 === 0) {
                 data = data_buffer.shift();
                 frame = 0;
+                // TODO fix indices
+                fingers[0][2].rotation.y = degToRad(-data[0]); // if_base_rot
+                fingers[0][2].rotation.z = degToRad(-data[1]); // if_base
+                fingers[0][1].rotation.z = degToRad(-data[2]); // if_middle
+                fingers[0][0].rotation.z = degToRad(-data[3]); // if_tip
+                fingers[1][2].rotation.y = degToRad(-data[4]); // mf_base_rot
+                fingers[1][2].rotation.z = degToRad(-data[5]); // mf_base
+                fingers[1][1].rotation.z = degToRad(-data[6]); // mf_middle
+                fingers[1][0].rotation.z = degToRad(-data[7]); // mf_tip
+                fingers[2][2].rotation.y = degToRad(-data[8]); // rf_base_rot
+                fingers[2][2].rotation.z = degToRad(-data[9]); // rf_base
+                fingers[2][1].rotation.z = degToRad(-data[10]); // rf_middle
+                fingers[2][0].rotation.z = degToRad(-data[11]); // rf_tip
+                fingers[3][2].rotation.y = degToRad(-data[12]); // p_base_rot
+                fingers[3][2].rotation.z = degToRad(-data[13]); // p_base
+                fingers[3][1].rotation.z = degToRad(-data[14]); // p_middle
+                fingers[3][0].rotation.z = degToRad(-data[15]); // p_tip
+                fingers[4][2].rotation.y = degToRad(-data[16]); // th_rot_orthogonal
+                fingers[4][2].rotation.x = degToRad(-data[17]); // th_rot_palm
+                fingers[4][1].rotation.z = degToRad(-data[18]); // th_base
+                fingers[4][0].rotation.z = degToRad(-data[19]); // th_tip
+                wrist.rotation.x = degToRad(-data[20]); // wr_lr
+                wrist.rotation.z = degToRad(-data[21]); // wr_bf
             }
 
-            fingers[0][2].rotation.y = degToRad(-data[0]); // if_base_rot
-            fingers[0][2].rotation.z = degToRad(-data[1]); // if_base
-            fingers[0][1].rotation.z = degToRad(-data[2]); // if_middle
-            fingers[0][0].rotation.z = degToRad(-data[3]); // if_tip
-            fingers[1][2].rotation.y = degToRad(-data[4]); // mf_base_rot
-            fingers[1][2].rotation.z = degToRad(-data[5]); // mf_base
-            fingers[1][1].rotation.z = degToRad(-data[6]); // mf_middle
-            fingers[1][0].rotation.z = degToRad(-data[7]); // mf_tip
-            fingers[2][2].rotation.y = degToRad(-data[8]); // rf_base_rot
-            fingers[2][2].rotation.z = degToRad(-data[9]); // rf_base
-            fingers[2][1].rotation.z = degToRad(-data[10]); // rf_middle
-            fingers[2][0].rotation.z = degToRad(-data[11]); // rf_tip
-            fingers[3][2].rotation.y = degToRad(-data[12]); // p_base_rot
-            fingers[3][2].rotation.z = degToRad(-data[13]); // p_base
-            fingers[3][1].rotation.z = degToRad(-data[14]); // p_middle
-            fingers[3][0].rotation.z = degToRad(-data[15]); // p_tip
-            fingers[4][2].rotation.y = degToRad(-data[16]); // th_rot_orthogonal
-            fingers[4][2].rotation.x = degToRad(-data[17]); // th_rot_palm
-            fingers[4][1].rotation.z = degToRad(-data[18]); // th_base
-            fingers[4][0].rotation.z = degToRad(-data[19]); // th_tip
-            wrist.rotation.x = degToRad(-data[20]); // wr_lr
-            wrist.rotation.z = degToRad(-data[21]); // wr_bf
-        } catch (e) {}
+        } catch (e) {
+        }
 
         camera.aspect = canvas.clientWidth / canvas.clientHeight;
         renderer.setSize(canvas.clientWidth, canvas.clientHeight, false);
