@@ -6,22 +6,22 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
-@FieldMatch(first = "password", second = "password_verify", message = "The Passwords must Match!")
+@FieldMatch(first = "password", second = "password_verify", message = "The passwords must match!")
 public class RegisterRequest {
 
-    @NotNull(message = "May not be null!")
-    @NotEmpty(message = "May not be null!")
+    @NotNull(message = "A username is required!")
+    @NotEmpty(message = "A username is required!")
     private String username;
-    @NotNull(message = "May not be null!")
-    @NotEmpty(message = "May not be null!")
+    @NotNull(message = "No password is not a good idea!")
+    @NotEmpty(message = "No password is not a good idea!")
     private String password;
-    @NotNull(message = "May not be null!")
-    @NotEmpty(message = "May not be null!")
+    @NotNull(message = "You need to validate your password!")
+    @NotEmpty(message = "You need to validate your password!")
     private String password_verify;
-    @NotNull(message = "May not be null!")
-    @NotEmpty(message = "May not be null!")
+    @NotNull(message = "A valid email is required, but dont worry! We wont send any spam-emails!")
+    @NotEmpty(message = "A valid email is required, but dont worry! We wont send any spam-emails!")
     @Pattern(regexp = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$",
-            message = "Email pattern must be valid! Please try again with correct Email!")
+            message = "Email must be valid! Please try again with an correct email address!")
     private String email;
     private String firstname;
     private String lastname;

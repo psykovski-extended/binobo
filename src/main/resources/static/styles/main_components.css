@@ -18,14 +18,11 @@
 }
 
 .flash {
-    padding: 10px;
-    border-radius: 35px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    padding: 5px;
+    border-radius: 10px;
     display: flex;
     justify-content: center;
-    border: solid #222 3px;
-    font-size: 30px;
+    font-size: 20px;
 }
 
 .flash .strong {
@@ -52,7 +49,7 @@
 
 .field_error {
     color: #da3b09;
-    font-size: 20px;
+    font-size: 15px;
     text-align: center;
 }
 
