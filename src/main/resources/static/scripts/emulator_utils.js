@@ -25,15 +25,18 @@ function connect(node) {
     socket_ping_receiver.addEventListener('message', ({ data }) => {
         let x = new Date();
         let ping = x.getTime() - eval(data);
-        console.log(ping);
         let node = document.getElementById("ping")
         node.innerHTML = ping + "ms"
     });
 
     socket_ping.addEventListener('open', evt => {
         socket_ping_interval = setInterval(() => {
-            socket_ping.send('[ping_' + token + "," + (new Date()).getTime() + "]");
+            socket_ping.send('["ping_' + token + '",' + (new Date()).getTime() + "]");
         }, 1000);
+    });
+
+    socket_ping_receiver.addEventListener('open', evt => {
+        socket_ping_receiver.send('ping receiver for: ' + token)
     });
 
     socket.addEventListener('message', ({data}) => {

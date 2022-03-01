@@ -20,9 +20,6 @@
     <script rel="script" src="webjars/super-three/0.111.6/examples/js/libs/inflate.min.js"></script>
     <script rel="script" src="webjars/super-three/0.111.6/examples/js/controls/OrbitControls.js"></script>
     <script rel="script" src="webjars/super-three/0.111.6/examples/js/loaders/FBXLoader.js"></script>
-
-    <script th:src="@{/scripts/globals.js}"></script>
-    <script th:src="@{/scripts/emulator_utils.js}"></script>
 </head>
 <body>
 <input type="hidden" th:value="${token}" id="token">
@@ -341,7 +338,8 @@
         }
     });
 </script>
-
+<script th:src="@{/scripts/globals.js}"></script>
+<script th:src="@{/scripts/emulator_utils.js}"></script>
 <script type="text/javascript" rel="script" th:src="@{scripts/emulator3D.js}"></script>
 <script>
     emu3D();
