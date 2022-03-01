@@ -48,7 +48,7 @@ public class AuthController {
     public String registerUser(@Valid @ModelAttribute("userDTO") RegisterRequest userDto, BindingResult errors,
                                RedirectAttributes redirectAttributes, HttpServletRequest request) {
         try {
-            if(errors.hasErrors())throw new ValidationException("Some fields contain errors, please check them again!");
+            if(errors.hasErrors())throw new ValidationException("Your credentials do not seem to be correct, please try again!");
             userService.register(userDto);
 
             User user = userService.findByUsername(userDto.getUsername());
@@ -79,7 +79,8 @@ public class AuthController {
         Calendar cal = Calendar.getInstance();
         if ((confirmationToken.getExpiryDate().getTime() - cal.getTime().getTime()) <= 0) {
             // TODO: send Email again
-            redirectAttributes.addFlashAttribute("flash_err", new FlashMessage("Confirmation-Token has expired!", FlashMessage.Status.FAILURE));
+            userService.deleteByUsername(user.getUsername());
+            redirectAttributes.addFlashAttribute("flash_err", new FlashMessage("Your confirmation-Token has expired! Please enter your credentials again:", FlashMessage.Status.FAILURE));
             return "redirect:/login";
         }
 

@@ -6,5 +6,10 @@ let data_buffer = [];
 
 let token = document.getElementById("token").value;
 
-// let stompClient = null;
 let socket;
+
+let socket_ping;
+
+let socket_ping_receiver;
+
+let socket_ping_interval;

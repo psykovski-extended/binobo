@@ -22,4 +22,5 @@ public interface UserService extends UserDetailsService {
     void createVerificationToken(User user, String token);
     void deleteToken(ConfirmationToken token);
     void save(User user);
+    void deleteByUsername(String username);
 }

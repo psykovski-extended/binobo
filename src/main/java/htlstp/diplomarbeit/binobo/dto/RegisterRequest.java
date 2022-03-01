@@ -9,8 +9,8 @@ import javax.validation.constraints.Pattern;
 @FieldMatch(first = "password", second = "password_verify", message = "The passwords must match!")
 public class RegisterRequest {
 
-    @NotNull(message = "A username is required!")
-    @NotEmpty(message = "A username is required!")
+    @NotNull(message = "An username is required!")
+    @NotEmpty(message = "An username is required!")
     private String username;
     @NotNull(message = "No password is not a good idea!")
     @NotEmpty(message = "No password is not a good idea!")
@@ -21,7 +21,7 @@ public class RegisterRequest {
     @NotNull(message = "A valid email is required, but dont worry! We wont send any spam-emails!")
     @NotEmpty(message = "A valid email is required, but dont worry! We wont send any spam-emails!")
     @Pattern(regexp = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$",
-            message = "Email must be valid! Please try again with an correct email address!")
+            message = "Sorry, that's not a valid email!")
     private String email;
     private String firstname;
     private String lastname;

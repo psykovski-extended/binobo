@@ -10,7 +10,8 @@
 
 .option_outer_wrapper {
     position: absolute;
-    transform: translate(15px, 100%);
+    top: calc(50vh - 133px);
+    left: 150px;
     background-color: #222;
     display: flex;
     border-radius: 5px;
@@ -68,7 +69,7 @@
     flex-direction: row;
     width: 330px;
     bottom: 65px;
-    left: 45%;
+    left: calc(50vw - 115px);
     border: solid 2px;
     border-radius: 5px;
     background-color: #111;
@@ -104,4 +105,15 @@
 
 .main_content {
     padding: 0 !important;
+}
+
+.stats_wrapper {
+    position: absolute;
+    right: 130px;
+    top: 50px;
+}
+
+.ping span {
+    color: green;
+    font-size: 20px;
 }

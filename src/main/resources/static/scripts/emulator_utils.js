@@ -6,6 +6,11 @@ function disconnect(node){
     socket.send('close session');
     socket.close();
 
+    clearInterval(socket_ping_interval);
+
+    socket_ping.close();
+    socket_ping_receiver.close();
+
     document.getElementById("connect").innerHTML = "connect";
 }
 
@@ -13,7 +18,24 @@ function connect(node) {
     node.onclick = () => disconnect(node);
     node.classList.add("connected");
 
-    socket = new WebSocket('wss://emulator.binobo.io/' + token); // change to ws://emulator.binobo.io
+    socket = new WebSocket('wss://emulator.binobo.io/' + token);
+    socket_ping = new WebSocket('wss://emulator.binobo.io/');
+    socket_ping_receiver = new WebSocket('wss://emulator.binobo.io/ping_' + token);
+
+    socket_ping_receiver.addEventListener('message', ({ data }) => {
+        let x = new Date();
+        let ping = x.getTime() - eval(data);
+        console.log(ping);
+        let node = document.getElementById("ping")
+        node.innerHTML = ping + "ms"
+    });
+
+    socket_ping.addEventListener('open', evt => {
+        socket_ping_interval = setInterval(() => {
+            socket_ping.send('[ping_' + token + "," + (new Date()).getTime() + "]");
+        }, 1000);
+    });
+
     socket.addEventListener('message', ({data}) => {
         try {
             for(i of eval(data)){

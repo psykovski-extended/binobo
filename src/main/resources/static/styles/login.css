@@ -1,5 +1,5 @@
 .content_wrapper {
-    height: 100%;
+    height: auto;
 }
 
 .form_visible {
@@ -158,4 +158,55 @@ html[data-theme='light'] .main_content {
 
 .main_wrapper {
     flex-direction: row-reverse;
+}
+
+.error:hover {
+    box-shadow: -5px 5px red !important;
+}
+
+.required {
+    transition: color .2s ease;
+}
+
+.required:hover, label:hover .required {
+    color: red;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip_text {
+    font-size: 15px;
+}
+
+.tooltip .tooltip_text {
+    visibility: hidden;
+    min-width: 250px;
+    background-color: teal;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 90%;
+    left: 50%;
+    margin-left: -60px;
+}
+
+.tooltip .tooltip_text::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: teal transparent transparent transparent;
+}
+
+.tooltip:hover .tooltip_text {
+    visibility: visible;
 }
