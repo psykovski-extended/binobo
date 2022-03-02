@@ -3,6 +3,7 @@ package htlstp.diplomarbeit.binobo.controller;
 import htlstp.diplomarbeit.binobo.controller.util.FlashMessage;
 import htlstp.diplomarbeit.binobo.dto.RegisterRequest;
 import htlstp.diplomarbeit.binobo.event.OnRegistrationCompleteEvent;
+import htlstp.diplomarbeit.binobo.model.API_Key;
 import htlstp.diplomarbeit.binobo.model.ConfirmationToken;
 import htlstp.diplomarbeit.binobo.model.DataAccessToken;
 import htlstp.diplomarbeit.binobo.model.User;
@@ -88,6 +89,10 @@ public class AuthController {
 
         DataAccessToken dat = new DataAccessToken();
         user.setDataAccessToken(robotDataService.saveDataAccessToken(dat));
+
+        API_Key key = new API_Key();
+        userService.saveAPIKey(key);
+        user.setApi_key(key);
 
         userService.save(user);
         userService.deleteToken(confirmationToken);

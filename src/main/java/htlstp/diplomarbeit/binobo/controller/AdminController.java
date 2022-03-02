@@ -57,7 +57,7 @@ public class AdminController {
         User user = (User)((UsernamePasswordAuthenticationToken)principal).getPrincipal();
         logger.info("[ " + user.getUsername() + " ] : Administration-Pages called. All available user got fetched.");
 
-        return "admin/users/listAllUsers";
+        return "operator/operator_page";
     }
 
     /**

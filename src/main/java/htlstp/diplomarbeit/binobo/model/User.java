@@ -40,6 +40,8 @@ public class User implements UserDetails {
     private List<Comment> comments = new ArrayList<>();
     @OneToMany(mappedBy = "user", cascade = {CascadeType.ALL})
     private List<SubComment> subComments;
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.ALL}, orphanRemoval = true)
+    private List<Vote> votes;
     @Column(nullable = false)
     private boolean activated = false;
     @OneToOne
@@ -48,6 +50,9 @@ public class User implements UserDetails {
     @OneToOne
     @JoinColumn(name = "dataAccessToken_id")
     private DataAccessToken dataAccessToken;
+    @OneToOne
+    @JoinColumn(name = "api_key_id")
+    private API_Key api_key;
     @OneToMany(mappedBy = "user", cascade = {CascadeType.ALL})
     private List<Bookmark> bookmarks;
 
@@ -183,5 +188,25 @@ public class User implements UserDetails {
 
     public void setBookmarks(List<Bookmark> bookmarks) {
         this.bookmarks = bookmarks;
+    }
+
+    public List<Vote> getVotes() {
+        return votes;
+    }
+
+    public void setVotes(List<Vote> votes) {
+        this.votes = votes;
+    }
+
+    public void addVote(Vote vote) {
+        this.votes.add(vote);
+    }
+
+    public API_Key getApi_key() {
+        return api_key;
+    }
+
+    public void setApi_key(API_Key api_key) {
+        this.api_key = api_key;
     }
 }

@@ -32,6 +32,9 @@ function connect(node) {
     socket_ping.addEventListener('open', evt => {
         socket_ping_interval = setInterval(() => {
             socket_ping.send('["ping_' + token + '",' + (new Date()).getTime() + "]");
+        }, 10000);
+        setTimeout(() => {
+            socket_ping.send('["ping_' + token + '",' + (new Date()).getTime() + "]");
         }, 1000);
     });
 

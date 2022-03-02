@@ -1,9 +1,8 @@
 package htlstp.diplomarbeit.binobo.service;
 
 import htlstp.diplomarbeit.binobo.dto.RegisterRequest;
-import htlstp.diplomarbeit.binobo.model.ConfirmationToken;
-import htlstp.diplomarbeit.binobo.model.Role;
-import htlstp.diplomarbeit.binobo.model.User;
+import htlstp.diplomarbeit.binobo.model.*;
+import htlstp.diplomarbeit.binobo.repositories.API_KEY_Repository;
 import htlstp.diplomarbeit.binobo.repositories.RoleRepository;
 import htlstp.diplomarbeit.binobo.repositories.TokenRepository;
 import htlstp.diplomarbeit.binobo.repositories.UserRepository;
@@ -23,11 +22,13 @@ public class UserServiceImpl implements UserService{
     @Autowired
     private UserRepository userRepository;
     @Autowired
-    RoleRepository roleRepository;
+    private RoleRepository roleRepository;
     @Autowired
-    TokenRepository tokenRepository;
+    private TokenRepository tokenRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
+    private API_KEY_Repository api_key_repository;
 
     @Override
     public User findByUsername(String username) {
@@ -117,6 +118,44 @@ public class UserServiceImpl implements UserService{
     @Override
     public void deleteByUsername(String username) {
         userRepository.deleteByUsername(username);
+    }
+
+    @Override
+    public void saveAPIKey(API_Key key) {
+        api_key_repository.save(key);
+    }
+
+    @Override
+    public void deleteAPIKey(API_Key key) {
+        api_key_repository.delete(key);
+    }
+
+    @Override
+    public void updateAPIKeyForUser(User user) {
+        API_Key key = new API_Key();
+        user.setApi_key(key);
+        userRepository.save(user);
+        api_key_repository.save(key);
+    }
+
+    @Override
+    public API_Key findAPIKeyByToken(String token) {
+        return api_key_repository.findByToken(token);
+    }
+
+    @Override
+    public void generateNewTokenForUser(User user) {
+        API_Key key = new API_Key();
+        this.saveAPIKey(key);
+        user.setApi_key(key);
+        userRepository.save(user);
+    }
+
+    @Override
+    @Transactional
+    public void removeFromVotes(User user, Vote vote) {
+        user.getVotes().remove(vote);
+        save(user);
     }
 
 }

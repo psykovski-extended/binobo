@@ -2,6 +2,7 @@ package htlstp.diplomarbeit.binobo.service;
 
 import htlstp.diplomarbeit.binobo.model.Post;
 import htlstp.diplomarbeit.binobo.model.User;
+import htlstp.diplomarbeit.binobo.model.Vote;
 
 import java.util.List;
 
@@ -15,4 +16,6 @@ public interface PostService {
     void deleteAllByUser(User user);
     void incrementMarks(Post post);
     void decrementMarks(Post post);
+
+    void removeFromVotes(Post post, Vote vote);
 }

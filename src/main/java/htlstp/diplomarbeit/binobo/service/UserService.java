@@ -1,9 +1,7 @@
 package htlstp.diplomarbeit.binobo.service;
 
 import htlstp.diplomarbeit.binobo.dto.RegisterRequest;
-import htlstp.diplomarbeit.binobo.model.ConfirmationToken;
-import htlstp.diplomarbeit.binobo.model.Role;
-import htlstp.diplomarbeit.binobo.model.User;
+import htlstp.diplomarbeit.binobo.model.*;
 import htlstp.diplomarbeit.binobo.service.validation.UserAlreadyExistException;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
@@ -23,4 +21,11 @@ public interface UserService extends UserDetailsService {
     void deleteToken(ConfirmationToken token);
     void save(User user);
     void deleteByUsername(String username);
+    void saveAPIKey(API_Key key);
+    void deleteAPIKey(API_Key key);
+    void updateAPIKeyForUser(User user);
+    API_Key findAPIKeyByToken(String token);
+    void generateNewTokenForUser(User user);
+
+    void removeFromVotes(User user, Vote vote);
 }

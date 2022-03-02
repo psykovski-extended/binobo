@@ -1,6 +1,8 @@
 package htlstp.diplomarbeit.binobo.configurator;
 
 import htlstp.diplomarbeit.binobo.controller.util.FlashMessage;
+import htlstp.diplomarbeit.binobo.model.API_Key;
+import htlstp.diplomarbeit.binobo.model.User;
 import htlstp.diplomarbeit.binobo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -60,7 +62,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     public AuthenticationSuccessHandler loginSuccessHandler(){
-        return (request, response, authentication) -> response.sendRedirect("/blog");
+        return (request, response, authentication) -> {
+            User user = (User)authentication.getPrincipal();
+            userService.generateNewTokenForUser(user);
+            response.sendRedirect("/blog");
+        };
     }
 
     public AuthenticationFailureHandler loginFailureHandler(){

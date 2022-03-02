@@ -32,6 +32,8 @@ public class Comment {
     @Size(min = 20, max = 65535)
     @Lob
     private String renderedContent;
+    @OneToMany(mappedBy = "comment", cascade = {CascadeType.ALL}, orphanRemoval = true)
+    private List<Vote> votes;
     @Column
     private Long marks = 0L;
 
@@ -99,5 +101,13 @@ public class Comment {
 
     public void setSubComments(List<SubComment> subComments) {
         this.subComments = subComments;
+    }
+
+    public List<Vote> getVotes() {
+        return votes;
+    }
+
+    public void setVotes(List<Vote> votes) {
+        this.votes = votes;
     }
 }

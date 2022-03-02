@@ -1,10 +1,7 @@
 package htlstp.diplomarbeit.binobo.controller;
 
 import htlstp.diplomarbeit.binobo.controller.util.FlashMessage;
-import htlstp.diplomarbeit.binobo.model.Bookmark;
-import htlstp.diplomarbeit.binobo.model.Comment;
-import htlstp.diplomarbeit.binobo.model.Post;
-import htlstp.diplomarbeit.binobo.model.User;
+import htlstp.diplomarbeit.binobo.model.*;
 import htlstp.diplomarbeit.binobo.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -18,9 +15,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
 import java.security.Principal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 @Controller
 public class BlogController {
@@ -31,17 +29,19 @@ public class BlogController {
     private final SubCommentService subCommentService;
     private final CategoryService categoryService;
     private final BookmarkService bookmarkService;
+    private final VoteService voteService;
 
     @Autowired
     public BlogController(PostService postService, UserService userService, CommentService commentService,
                           SubCommentService subCommentService, CategoryService categoryService,
-                          BookmarkService bookmarkService) {
+                          BookmarkService bookmarkService, VoteService voteService) {
         this.postService = postService;
         this.userService = userService;
         this.commentService = commentService;
         this.subCommentService = subCommentService;
         this.categoryService = categoryService;
         this.bookmarkService = bookmarkService;
+        this.voteService = voteService;
     }
 
     @GetMapping(value = "/blog")
@@ -53,20 +53,37 @@ public class BlogController {
     }
 
     @GetMapping(value = "/blog/{postId}")
-    public String postX(@PathVariable Long postId, Model model, Principal principal){
+    public String postPreview(@PathVariable Long postId, Model model, Principal principal){
         Post post = postService.findById(postId);
         User user = (User)((UsernamePasswordAuthenticationToken)principal).getPrincipal();
         Bookmark bookmark = bookmarkService.findByPostAndUser(post, user).orElse(null);
+        List<Comment> comments = commentService.findAllByPost(post);
 
         model.addAttribute("post", post);
+        model.addAttribute("postVoteCount", voteService.getVoteCountByPost(post));
+        model.addAttribute("current_user_vote_post", voteService.findByUserAndPost(user, post));
         model.addAttribute("user", user);
         model.addAttribute("user_id", user.getId());
         model.addAttribute("post_id", post.getId());
         model.addAttribute("bookmark", bookmark);
+        model.addAttribute("comments", comments);
+        model.addAttribute("api_key", user.getApi_key().getToken());
+
+        HashMap<Comment, Integer> commentVoteHashMap = new HashMap<>();
+        comments.forEach(comment -> commentVoteHashMap.put(comment, voteService.getVoteCountByComment(comment)));
+
+        model.addAttribute("votes_comment_count", commentVoteHashMap);
+
+        HashMap<Comment, Vote> votes_from_comments = new HashMap<>();
+        comments.forEach(comment -> {
+            Vote vote = voteService.findByUserAndComment(user, comment);
+            if(vote != null)
+                votes_from_comments.put(comment, vote);
+        });
+        model.addAttribute("current_user_votes_comments", votes_from_comments);
 
         if(!model.containsAttribute("comment_action"))
             model.addAttribute("comment_action", String.format("/blog/post/%s/addComment", postId));
-        model.addAttribute("comments", commentService.findAllByPost(post));
         if(!model.containsAttribute("comment"))
             model.addAttribute("comment", new Comment());
 

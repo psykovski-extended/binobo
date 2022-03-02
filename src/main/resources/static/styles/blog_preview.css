@@ -232,3 +232,8 @@ body {
 .category_select {
     padding: 1px;
 }
+
+.checked * {
+    fill: #ff7800 !important;
+    stroke: #ff7800 !important;
+}

@@ -2,6 +2,7 @@ package htlstp.diplomarbeit.binobo.service;
 
 import htlstp.diplomarbeit.binobo.model.Post;
 import htlstp.diplomarbeit.binobo.model.User;
+import htlstp.diplomarbeit.binobo.model.Vote;
 import htlstp.diplomarbeit.binobo.repositories.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -69,5 +70,12 @@ public class PostServiceImpl implements PostService {
         if(post == null)throw new NullPointerException("Post may not be null");
         post.setMarks(post.getMarks() - 1);
         postRepository.save(post);
+    }
+
+    @Override
+    @Transactional
+    public void removeFromVotes(Post post, Vote vote) {
+        post.getVotes().remove(vote);
+        savePost(post);
     }
 }

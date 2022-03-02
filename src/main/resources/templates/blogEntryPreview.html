@@ -26,6 +26,7 @@
 <div class="main_wrapper">
     <input type="hidden" th:value="${user_id}" id="user_id">
     <input type="hidden" th:value="${post_id}" id="post_id">
+    <input type="hidden" th:value="${api_key}" id="api_key"/>
     <div class="side_nav">
         <div class="navigation">
             <div class="nav_element">
@@ -394,7 +395,9 @@
                     <div class="scrollable_wrapper">
                         <!--                        TODO add listener for async rest-call    -->
                         <div class="mark">
-                            <svg id="bebdedb3-8fed-42d7-9f02-97a7d9a946b4" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg"
+                            <svg th:onclick="'votePost(this, ' + ${post.id} + ', ' + ${user.id} +  ',\'up\')'"
+                                 th:classappend="${current_user_vote_post == null ? '' : (current_user_vote_post.isUseful ? 'checked' : '')}"
+                                 id="bebdedb3-8fed-42d7-9f02-97a7d9a946b4" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg"
                                  viewBox="0 0 412.071 245.596">
                                 <defs>
                                     <style>
@@ -409,10 +412,11 @@
                                 <title>Up-vote this blog entry</title>
                                 <polygon class="b8e47e87-f380-4d52-ba88-752db27c399d"
                                          points="206.036 3.536 6.036 203.536 406.036 203.536 206.036 3.536"/>
-                                <!--    <rect class="b8e47e87-f380-4d52-ba88-752db27c399d" x="106.036" y="180.459" width="200" height="62.637"/>-->
                             </svg>
-                            <span th:text="${post.marks}">0</span>
-                            <svg id="b245a661-8f97-48b2-bf33-69cf27d346e6" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg"
+                            <span id="post_vote_count" th:text="${postVoteCount}">0</span>
+                            <svg th:onclick="'votePost(this, ' + ${post.id} + ', ' + ${user.id} +  ',\'down\')'"
+                                 th:classappend="${current_user_vote_post == null ? '' : (!current_user_vote_post.isUseful ? 'checked' : '')}"
+                                 id="b245a661-8f97-48b2-bf33-69cf27d346e6" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg"
                                  viewBox="0 0 412.071 245.596">
                                 <defs>
                                     <style>
@@ -427,7 +431,6 @@
                                 <title>Down-vote this blog entry</title>
                                 <polygon class="e8156cb9-9a48-44fd-9110-d4e7012063b9"
                                          points="206.036 242.06 6.036 42.06 406.036 42.06 206.036 242.06"/>
-                                <!--    <rect class="e8156cb9-9a48-44fd-9110-d4e7012063b9" x="106.036" y="2.5" width="200" height="62.637"/>-->
                             </svg>
                         </div>
                         <div class="bookmark">
@@ -508,7 +511,9 @@
                     <div class="scrollable_wrapper">
                         <!--                        TODO add listener for async rest-call    -->
                         <div class="mark">
-                            <svg id="bebdedb3-8fed-42d7-9f02-97a7d9a946b4" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg"
+                            <svg th:onclick="'voteComment(this, ' + ${comment.id} + ', ' + ${user.id} +  ',\'up\')'"
+                                 th:classappend="${current_user_votes_comments.get(comment) == null ? '' : (current_user_votes_comments.get(comment).isUseful ? 'checked' : '')}"
+                                 id="bebdedb3-8fed-42d7-9f02-97a7d9a946b4" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg"
                                  viewBox="0 0 412.071 245.596">
                                 <defs>
                                     <style>
@@ -525,8 +530,10 @@
                                          points="206.036 3.536 6.036 203.536 406.036 203.536 206.036 3.536"/>
                                 <!--    <rect class="b8e47e87-f380-4d52-ba88-752db27c399d" x="106.036" y="180.459" width="200" height="62.637"/>-->
                             </svg>
-                            <span th:text="${comment.marks}">0</span>
-                            <svg id="b245a661-8f97-48b2-bf33-69cf27d346e6" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg"
+                            <span th:text="${votes_comment_count.get(comment)}">0</span>
+                            <svg th:onclick="'voteComment(this, ' + ${comment.id} + ', ' + ${user.id} +  ',\'down\')'"
+                                 th:classappend="${current_user_votes_comments.get(comment) == null ? '' : (!current_user_votes_comments.get(comment).isUseful ? 'checked' : '')}"
+                                 id="b245a661-8f97-48b2-bf33-69cf27d346e6" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg"
                                  viewBox="0 0 412.071 245.596">
                                 <defs>
                                     <style>
@@ -727,13 +734,35 @@
 
         let user_id = document.getElementById("user_id").valueOf().value;
         let post_id = document.getElementById("post_id").valueOf().value;
+        let api_key = document.getElementById("api_key").valueOf().value;
 
-        let url = `${window.location.protocol}//${window.location.hostname}/blog_rest_api/toggle_bookmark?post_id=${post_id}&user_id=${user_id}`;
+        let url = `${window.location.protocol}//${window.location.hostname}/blog_rest_api/toggle_bookmark?post_id=${post_id}&user_id=${user_id}&api_key=${api_key}`;
         $.ajax({
             type:"Patch",
             url:url
         });
     }
+
+    const voteComment = (node, comment_id, user_id, action) => {
+        let api_key = document.getElementById("api_key").valueOf().value;
+        let url = `${window.location.protocol}//${window.location.hostname}/blog_rest_api/toggle_vote_for_comment?comment_id=${comment_id}&user_id=${user_id}&api_key=${api_key}&action=${action}`;
+        $.ajax({
+            type:"Patch",
+            url:url
+        });
+    };
+
+    const votePost = (node, post_id, user_id, action) => {
+        let api_key = document.getElementById("api_key").valueOf().value;
+        let url = `${window.location.protocol}//${window.location.hostname}/blog_rest_api/toggle_vote_for_post?post_id=${post_id}&user_id=${user_id}&api_key=${api_key}&action=${action}`;
+        $.ajax({
+            type:"Patch",
+            url:url,
+            success: function(response) {
+
+            }
+        });
+    };
 </script>
 </body>
 </html>
