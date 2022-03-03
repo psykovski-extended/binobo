@@ -3,6 +3,7 @@ package htlstp.diplomarbeit.binobo.service;
 import htlstp.diplomarbeit.binobo.model.Comment;
 import htlstp.diplomarbeit.binobo.model.Post;
 import htlstp.diplomarbeit.binobo.model.User;
+import htlstp.diplomarbeit.binobo.model.Vote;
 import htlstp.diplomarbeit.binobo.repositories.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -69,5 +70,11 @@ public class CommentServiceImpl implements CommentService{
         if(comment == null)throw new NullPointerException("Post may not be null");
         comment.setMarks(comment.getMarks() - 1);
         commentRepository.save(comment);
+    }
+
+    @Override
+    public void removeFromVotes(Comment comment, Vote vote) {
+        comment.getVotes().remove(vote);
+        saveComment(comment);
     }
 }

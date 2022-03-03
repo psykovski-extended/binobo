@@ -3,6 +3,7 @@ package htlstp.diplomarbeit.binobo.service;
 import htlstp.diplomarbeit.binobo.model.Comment;
 import htlstp.diplomarbeit.binobo.model.Post;
 import htlstp.diplomarbeit.binobo.model.User;
+import htlstp.diplomarbeit.binobo.model.Vote;
 
 import java.util.List;
 
@@ -17,4 +18,6 @@ public interface CommentService {
     void deleteComment(Comment comment);
     void incrementMarks(Comment comment);
     void decrementMarks(Comment comment);
+
+    void removeFromVotes(Comment comment, Vote vote);
 }

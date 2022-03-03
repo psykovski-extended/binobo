@@ -76,7 +76,7 @@ public class BlogRestAPI {
 
             if (vote == null) {
                 Vote newVote = new Vote();
-                newVote.setIsUseful(true);
+                newVote.setIsUseful(Objects.equals(action, "up"));
 
                 newVote.setUser(user);
                 newVote.setPost(post);
@@ -88,8 +88,7 @@ public class BlogRestAPI {
                         if (vote.getIsUseful()) {
                             vote.setPost(null);
                             vote.setUser(null);
-                            voteService.save(vote); // this is needed to disassociate the vote from the user and post
-                            voteService.delete(vote);
+                            // this is needed to disassociate the vote from the user and post
                         } else {
                             vote.setIsUseful(true);
                         }
@@ -98,8 +97,6 @@ public class BlogRestAPI {
                         if (!vote.getIsUseful()) {
                             vote.setPost(null);
                             vote.setUser(null);
-                            voteService.save(vote);
-                            voteService.delete(vote);
                         } else {
                             vote.setIsUseful(false);
                         }
@@ -126,33 +123,26 @@ public class BlogRestAPI {
 
             if (vote == null) {
                 Vote newVote = new Vote();
-                newVote.setIsUseful(true);
+                newVote.setIsUseful(Objects.equals(action, "up"));
 
                 newVote.setUser(user);
                 newVote.setComment(comment);
-
-                /*user.getVotes().add(newVote);
-                comment.getVotes().add(newVote);*/
 
                 voteService.save(newVote);
             } else {
                 switch (action) {
                     case "up": {
                         if (vote.getIsUseful()) {
-                            vote.setPost(null);
+                            vote.setComment(null);
                             vote.setUser(null);
-                            voteService.save(vote);
-                            voteService.delete(vote);
                         } else {
                             vote.setIsUseful(true);
                         }
                     } break;
                     case "down": {
                         if (!vote.getIsUseful()) {
-                            vote.setPost(null);
+                            vote.setComment(null);
                             vote.setUser(null);
-                            voteService.save(vote);
-                            voteService.delete(vote);
                         } else {
                             vote.setIsUseful(false);
                         }
