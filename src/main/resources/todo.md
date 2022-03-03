@@ -29,7 +29,6 @@
 - Öffentliche Ansicht des Kontos eines Users
 - Searchbar bei Blogeinträgen
 - Tags für Blogeinträge
-- Rest API sichern mit JWT
 - Google login (Firebase)
 - OAuth2
 - Eigener Cloud-Server um Bilder hochzuladen

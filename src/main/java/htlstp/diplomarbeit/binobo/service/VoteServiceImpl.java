@@ -7,12 +7,14 @@ import htlstp.diplomarbeit.binobo.model.Vote;
 import htlstp.diplomarbeit.binobo.repositories.VoteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
+@Transactional
 public class VoteServiceImpl implements VoteService{
 
     private final VoteRepository voteRepository;
@@ -115,5 +117,10 @@ public class VoteServiceImpl implements VoteService{
     @Override
     public void delete(Vote vote) {
         voteRepository.delete(vote);
+    }
+
+    @Override
+    public void saveAll(List<Vote> votes) {
+        voteRepository.saveAll(votes);
     }
 }

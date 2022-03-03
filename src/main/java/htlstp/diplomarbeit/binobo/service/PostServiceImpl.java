@@ -78,4 +78,9 @@ public class PostServiceImpl implements PostService {
         post.getVotes().remove(vote);
         savePost(post);
     }
+
+    @Override
+    public Post savePostWithReturn(Post post) {
+        return postRepository.save(post);
+    }
 }

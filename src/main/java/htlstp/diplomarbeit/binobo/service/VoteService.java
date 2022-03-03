@@ -28,4 +28,5 @@ public interface VoteService {
     void save(Vote vote);
     void delete(Vote vote);
 
+    void saveAll(List<Vote> votes);
 }

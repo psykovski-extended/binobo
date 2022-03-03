@@ -18,4 +18,6 @@ public interface PostService {
     void decrementMarks(Post post);
 
     void removeFromVotes(Post post, Vote vote);
+
+    Post savePostWithReturn(Post post);
 }

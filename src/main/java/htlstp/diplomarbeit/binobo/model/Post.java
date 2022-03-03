@@ -44,7 +44,7 @@ public class Post {
     private User user;
     @OneToMany(mappedBy = "post", cascade = {CascadeType.ALL})
     private List<Comment> comments = new ArrayList<>();
-    @OneToMany(mappedBy = "post", cascade = {CascadeType.ALL}, orphanRemoval = true)
+    @OneToMany(mappedBy = "post", cascade = {CascadeType.ALL})
     private List<Vote> votes;
     @Column
     private Long marks = 0L;
