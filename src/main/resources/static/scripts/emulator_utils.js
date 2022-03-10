@@ -68,6 +68,13 @@ function copy_token(){
 }
 
 function apply_filter_to_data(data_to_filter){
-    let d = 0.6;
-    let d_m1 = 1 - d;
+    let w = 0.6;
+    let w_m1 = 1 - w;
+    let filtered_data = [];
+
+    for(let i = 0; i<data_to_filter.length; i++){
+        filtered_data[i] = w * data_to_filter[i] + w_m1 * last_filtered_data[i]
+    }
+    last_filtered_data = filtered_data;
+    return filtered_data;
 }

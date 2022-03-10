@@ -3,9 +3,20 @@ body {
 }
 
 .need_help_btn {
+    transition: .2s all ease;
     position: absolute;
     right: 50px;
     cursor: pointer;
+    height: 70px;
+    width: 70px;
+    display: flex;
+    justify-content: center;
+    border-radius: 30%;
+}
+
+.need_help_btn:hover {
+    background-color: teal;
+    border-radius: 50%;
 }
 
 .need_help_btn svg {
@@ -38,8 +49,12 @@ body {
 }
 
 .close_help_popup {
-    transform: scale(0.5);
+    transform: scale(0.3) translate(35px,-35px);
     cursor: pointer;
+}
+
+.close_help_popup * {
+    transition: none;
 }
 
 .need_help_popup .head h3 {

@@ -1,7 +1,6 @@
 package htlstp.diplomarbeit.binobo.configurator;
 
 import htlstp.diplomarbeit.binobo.controller.util.FlashMessage;
-import htlstp.diplomarbeit.binobo.model.API_Key;
 import htlstp.diplomarbeit.binobo.model.User;
 import htlstp.diplomarbeit.binobo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,15 +37,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity webSecurity) throws Exception {
-        webSecurity.ignoring().antMatchers("/pictures/**", "/styles/**", "/scripts/**","/login/register",
+        webSecurity.ignoring().antMatchers("/pictures/**", "/styles/**",
+                "/scripts/**","/login/register",
                 "/blog_rest_api/**", "/roboData/rest_api/**");
     }
 
     @Override
     public void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.authorizeRequests()
-                .antMatchers("/home", "/project", "/developer", "/sponsoring").permitAll()
-                .antMatchers("/blog/**", "/user/**", "/emulator3D").hasAnyRole("USER", "ADMIN", "OPERATOR")
+                .antMatchers("/home", "/project", "/developer", "/sponsoring")
+                    .permitAll()
+                .antMatchers("/blog/**", "/user/**", "/emulator3D")
+                    .hasAnyRole("USER", "ADMIN", "OPERATOR")
                 .antMatchers("/admin/**").hasAnyRole("ADMIN", "OPERATOR")
         .and()
             .formLogin().loginPage("/login")
@@ -61,6 +63,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .csrf();
     }
 
+    /**
+     * Authentication Success Handler - gets called, when login is successful
+     * @return Anonymous Interface implementation gets returned
+     */
     public AuthenticationSuccessHandler loginSuccessHandler(){
         return (request, response, authentication) -> {
             User user = (User)authentication.getPrincipal();
@@ -69,13 +75,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         };
     }
 
+    /**
+     * Authentication Failure Handler - gets called, when login is unsuccessful
+     * @return Anonymous Interface implementation gets returned
+     */
     public AuthenticationFailureHandler loginFailureHandler(){
         return ((request, response, exception) -> {
-            request.getSession().setAttribute("flash_err", new FlashMessage("Incorrect data parsed!", FlashMessage.Status.FAILURE));
+            request.getSession().setAttribute("flash_err",
+                    new FlashMessage("Incorrect data parsed!",
+                            FlashMessage.Status.FAILURE));
             response.sendRedirect("/login");
         });
     }
 
+    /**
+     * Password encoder Bean
+     * @return returns an BCryptPasswordEncoder Object with strength 10
+     */
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder(10);

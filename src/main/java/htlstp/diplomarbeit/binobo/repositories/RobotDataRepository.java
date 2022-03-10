@@ -11,7 +11,6 @@ import java.util.Optional;
 @Repository
 public interface RobotDataRepository extends JpaRepository<RobotData, Long> {
     RobotData findTopByOrderByIdAsc();
-    List<RobotData> findAll();
     List<RobotData> findAllByDataAccessToken(DataAccessToken dataAccessToken);
     Optional<RobotData> findTopByDataAccessToken(DataAccessToken dataAccessToken);
     void deleteAllByDataAccessToken(DataAccessToken dataAccessToken);

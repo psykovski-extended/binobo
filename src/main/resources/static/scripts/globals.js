@@ -1,6 +1,11 @@
 let data = [];
 
-let last_filtered_data = [];
+let last_filtered_data = [0,0,0,0,
+                            0,0,0,0,
+                            0,0,0,0,
+                            0,0,0,0,
+                            0,0,0,0,
+                            0,0];
 
 let data_buffer = [];
 

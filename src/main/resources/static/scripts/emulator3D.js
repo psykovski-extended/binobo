@@ -151,7 +151,7 @@ function emu3D() {
         let data;
         try {
             if (frame % 2 === 0) {
-                data = data_buffer.shift();
+                data = apply_filter_to_data(data_buffer.shift());
                 frame = 0;
                 // TODO fix indices
                 fingers[0][2].rotation.y = degToRad(-data[0]); // if_base_rot

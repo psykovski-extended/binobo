@@ -24,9 +24,13 @@ public class BlogRestAPI {
     private final VoteService voteService;
 
     @Autowired
-    public BlogRestAPI(PostService postService, UserService userService, CommentService commentService,
-                          SubCommentService subCommentService, CategoryService categoryService,
-                          BookmarkService bookmarkService, VoteService voteService) {
+    public BlogRestAPI(PostService postService,
+                       UserService userService,
+                       CommentService commentService,
+                       SubCommentService subCommentService,
+                       CategoryService categoryService,
+                       BookmarkService bookmarkService,
+                       VoteService voteService) {
         this.postService = postService;
         this.userService = userService;
         this.commentService = commentService;
@@ -37,7 +41,9 @@ public class BlogRestAPI {
     }
 
     @PatchMapping(value = "/toggle_bookmark")
-    public ResponseEntity<FlashMessage> toggleBookmark(@RequestParam("post_id") Long post_id, @RequestParam("user_id") Long user_id, @RequestParam("api_key") String token){
+    public ResponseEntity<FlashMessage> toggleBookmark(@RequestParam("post_id") Long post_id,
+                                                       @RequestParam("user_id") Long user_id,
+                                                       @RequestParam("api_key") String token){
         User user = userService.findById(user_id);
 
         if(Objects.equals(user.getApi_key().getToken(), token)) {
@@ -56,9 +62,13 @@ public class BlogRestAPI {
                 bookmarkService.saveBookmark(bookmark);
             }
 
-            return ResponseEntity.ok().body(new FlashMessage("Bookmark toggled!", FlashMessage.Status.SUCCESS));
+            return ResponseEntity.ok().body(
+                    new FlashMessage("Bookmark toggled!",
+                            FlashMessage.Status.SUCCESS));
         }else {
-            return ResponseEntity.badRequest().body(new FlashMessage("Invalid API Key!", FlashMessage.Status.FAILURE));
+            return ResponseEntity.badRequest().body(
+                    new FlashMessage("Invalid API Key!",
+                            FlashMessage.Status.FAILURE));
         }
     }
 
@@ -103,10 +113,15 @@ public class BlogRestAPI {
                     } break;
                 }
                 voteService.save(vote);
+                if(vote.getUser() == null && vote.getPost() == null) voteService.delete(vote);
             }
-            return ResponseEntity.ok().body(new FlashMessage("Set Vote", FlashMessage.Status.SUCCESS));
+            return ResponseEntity.ok().body(
+                    new FlashMessage("Set Vote",
+                            FlashMessage.Status.SUCCESS));
         }
-        return ResponseEntity.badRequest().body(new FlashMessage("Invalid API Key!", FlashMessage.Status.FAILURE));
+        return ResponseEntity.badRequest().body(
+                new FlashMessage("Invalid API Key!",
+                        FlashMessage.Status.FAILURE));
     }
 
     // upvote comment, down-vote comment, remove vote from comment
@@ -149,10 +164,15 @@ public class BlogRestAPI {
                     } break;
                 }
                 voteService.save(vote);
+                if(vote.getUser() == null && vote.getComment() == null) voteService.delete(vote);
             }
-            return ResponseEntity.ok().body(new FlashMessage("Set Vote", FlashMessage.Status.SUCCESS));
+            return ResponseEntity.ok().body(
+                    new FlashMessage("Set Vote",
+                            FlashMessage.Status.SUCCESS));
         }
-        return ResponseEntity.badRequest().body(new FlashMessage("Invalid API Key!", FlashMessage.Status.FAILURE));
+        return ResponseEntity.badRequest().body(
+                new FlashMessage("Invalid API Key!",
+                        FlashMessage.Status.FAILURE));
     }
 
 }

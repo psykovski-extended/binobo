@@ -230,8 +230,8 @@
                 </a>
             </div>
         </div>
-        <div class="theme_btn_wrapper">
-            <input class="theme_toggle" id="switch" type="checkbox">
+        <div class="theme_btn_wrapper" id="switch">
+            <img th:src="@{/pictures/light_mode.svg}" alt="theme_mode" id="theme_icon"/>
         </div>
     </div>
     <div class="main_content">
@@ -301,23 +301,26 @@
     document.documentElement.setAttribute("data-theme", localStorage.getItem("data-theme") == null ? "dark" : localStorage.getItem("data-theme"));
     localStorage.setItem('data-theme', document.documentElement.getAttribute("data-theme"))
 
-    if(document.documentElement.getAttribute("data-theme") === 'light')
-        document.getElementById("switch").click();
-
     const changeThemeToDark = () => {
-        document.documentElement.setAttribute("data-theme", "dark") // set theme to dark
-        localStorage.setItem("data-theme", "dark") // save theme to local storage
+        document.documentElement.setAttribute("data-theme", "dark"); // set theme to dark
+        localStorage.setItem("data-theme", "dark"); // save theme to local storage
+        document.getElementById("theme_icon").src = '/pictures/light_mode.svg';
     }
 
     const changeThemeToLight = () => {
-        document.documentElement.setAttribute("data-theme", "light") // set theme light
-        localStorage.setItem("data-theme", 'light') // save theme to local storage
+        document.documentElement.setAttribute("data-theme", "light"); // set theme light
+        localStorage.setItem("data-theme", 'light'); // save theme to local storage
+        document.getElementById("theme_icon").src = '/pictures/dark_mode.svg';
+    }
+
+    if(document.documentElement.getAttribute("data-theme") === 'light') {
+        changeThemeToLight();
     }
 
     // Get the element based on ID
     const checkbox = document.getElementById("switch");
     // Apply retrived them to the website
-    checkbox.addEventListener('change', () => {
+    checkbox.addEventListener('click', () => {
         let theme = localStorage.getItem('data-theme'); // Retrieve saved them from local storage
         if (theme ==='dark'){
             changeThemeToLight();

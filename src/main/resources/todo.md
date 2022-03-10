@@ -32,9 +32,9 @@
 - Google login (Firebase)
 - OAuth2
 - Eigener Cloud-Server um Bilder hochzuladen
-- Mehrere Configs speichern (Wlan, Token)
+- Mehrere Configs speichern (WLAN, Token)
 - mehrere Modelle für Emulator
-- WebRTC - Derivate für Emulator, um Punkt-zu-Punkt Verbindung vom ESP32 zum Webbrowser aufzubauen
+- WebRTC - Derivat für Emulator, um Punkt-zu-Punkt Verbindung vom ESP32 zum Webbrowser aufzubauen
 
 # Anforderungen an den 3D-Simulator
 
