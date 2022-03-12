@@ -3,7 +3,7 @@ body {
 }
 
 .need_help_btn {
-    transition: .2s all ease;
+    transition: .3s all ease;
     position: absolute;
     right: 50px;
     cursor: pointer;
@@ -15,7 +15,7 @@ body {
 }
 
 .need_help_btn:hover {
-    background-color: teal;
+    background-color: var(--color-text);
     border-radius: 50%;
 }
 
