@@ -38,7 +38,7 @@ public class RegistrationListener implements
         SimpleMailMessage email = new SimpleMailMessage();
         email.setTo(recipientAddress);
         email.setSubject(subject);
-        email.setText("Click the following link to verify your email:" + "\r\n" + "http://www.binobo.io" + confirmationUri);
+        email.setText("Click the following link to verify your email:" + "\r\n" + "https://www.binobo.io" + confirmationUri);
         mailSender.send(email);
     }
 }
