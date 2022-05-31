@@ -18,3 +18,5 @@ let socket_ping;
 let socket_ping_receiver;
 
 let socket_ping_interval;
+
+let data_shifter_interval;

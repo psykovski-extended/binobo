@@ -65,6 +65,12 @@ function emu3D() {
         [palm, palm, palm],
         [palm, palm, palm]
     ];
+    /**
+     * This array is necessary in order to set proper rotation points for the imported models.
+     * The coordinates are copied from the corresponding .blend file.
+     * TODO: change this array from being hardcoded to being read from a .json file to enable the use of multiple models without code changes.
+     * @type {Vector3[][]}
+     */
     const fpos = [ //DO NOT TOUCH!, new version
         [
             blenderToThree(new THREE.Vector3(3.59622, 0.353044, -0.018004)),
@@ -119,7 +125,7 @@ function emu3D() {
     }
 
     /**
-     * loads a finger from the /simulatorModels folder
+     * loads a finger from the scripts/simulatorModels folder
      */
     async function loadFingers() {
         for (let s = 3; s > 0; s--) {
@@ -153,31 +159,29 @@ function emu3D() {
             if (frame % 2 === 0) {
                 data = apply_filter_to_data(data_buffer.shift());
                 frame = 0;
-                // TODO fix indices
-                fingers[0][2].rotation.y = degToRad(-data[0]); // if_base_rot
-                fingers[0][2].rotation.z = degToRad(-data[1]); // if_base
-                fingers[0][1].rotation.z = degToRad(-data[2]); // if_middle
-                fingers[0][0].rotation.z = degToRad(-data[3]); // if_tip
-                fingers[1][2].rotation.y = degToRad(-data[4]); // mf_base_rot
-                fingers[1][2].rotation.z = degToRad(-data[5]); // mf_base
-                fingers[1][1].rotation.z = degToRad(-data[6]); // mf_middle
-                fingers[1][0].rotation.z = degToRad(-data[7]); // mf_tip
-                fingers[2][2].rotation.y = degToRad(-data[8]); // rf_base_rot
-                fingers[2][2].rotation.z = degToRad(-data[9]); // rf_base
-                fingers[2][1].rotation.z = degToRad(-data[10]); // rf_middle
-                fingers[2][0].rotation.z = degToRad(-data[11]); // rf_tip
-                fingers[3][2].rotation.y = degToRad(-data[12]); // p_base_rot
-                fingers[3][2].rotation.z = degToRad(-data[13]); // p_base
-                fingers[3][1].rotation.z = degToRad(-data[14]); // p_middle
-                fingers[3][0].rotation.z = degToRad(-data[15]); // p_tip
-                fingers[4][2].rotation.y = degToRad(-data[16]); // th_rot_orthogonal
-                fingers[4][2].rotation.x = degToRad(-data[17]); // th_rot_palm
-                fingers[4][1].rotation.z = degToRad(-data[18]); // th_base
-                fingers[4][0].rotation.z = degToRad(-data[19]); // th_tip
-                wrist.rotation.x = degToRad(-data[20]); // wr_lr
-                wrist.rotation.z = degToRad(-data[21]); // wr_bf
+                fingers[4][2].rotation.y = degToRad(-data[0]); // th_rot_orthogonal
+                fingers[4][2].rotation.x = degToRad(-data[1]); // th_rot_palm
+                fingers[4][1].rotation.y = degToRad(-data[2]); // th_base
+                fingers[4][0].rotation.y = degToRad(-data[3]); // th_tip
+                fingers[0][2].rotation.y = degToRad(-data[4]); // if_base_rot
+                fingers[0][2].rotation.z = degToRad(-data[5]); // if_base
+                fingers[0][1].rotation.z = degToRad(-data[6]); // if_middle
+                fingers[0][0].rotation.z = degToRad(-data[7]); // if_tip
+                fingers[1][2].rotation.y = degToRad(-data[8]); // mf_base_rot
+                fingers[1][2].rotation.z = degToRad(-data[9]); // mf_base
+                fingers[1][1].rotation.z = degToRad(-data[10]); // mf_middle
+                fingers[1][0].rotation.z = degToRad(-data[11]); // mf_tip
+                fingers[2][2].rotation.y = degToRad(-data[12]); // rf_base_rot
+                fingers[2][2].rotation.z = degToRad(-data[13]); // rf_base
+                fingers[2][1].rotation.z = degToRad(-data[14]); // rf_middle
+                fingers[2][0].rotation.z = degToRad(-data[15]); // rf_tip
+                fingers[3][2].rotation.y = degToRad(-data[16]); // p_base_rot
+                fingers[3][2].rotation.z = degToRad(-data[17]); // p_base
+                fingers[3][1].rotation.z = degToRad(-data[18]); // p_middle
+                fingers[3][0].rotation.z = degToRad(-data[19]); // p_tip
+                wrist.rotation.x = degToRad(0);//-data[20]); // wr_lr
+                wrist.rotation.z = degToRad(0);//-data[21]); // wr_bf
             }
-
         } catch (e) {
         }
 

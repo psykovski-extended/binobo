@@ -2,13 +2,14 @@
 
 ### Front - and Backend
 
-- blog fertigstellen
-  - Sub-comment funktion schreiben
-  - Delete-Funktion für Sub-Kommentare einbauen
-  - 'This solved the issue' - Button einbauen
+- blog umbauen
+  - api erweitern
+  - solved-the-issue button einbauen
+  - editorjs.io anstelle von editor.io verwenden
 - responsive layout
 - neues layout fertigstellen
   - operator-pages (list all users, delete or set deactivated)
+  - auf react wechseln
 
 - Projektübersicht machen, so weit wie möglich zur Zeit
 - Rauschen der übertragenen Werte filtern (IFR - Filter → exponential Filter)
@@ -22,6 +23,8 @@
 - connection lost popup
 - live-plot for current rotation of all joints / current selected joints
 - show current selected joint and its hierarchy (handy-svg) ?
+- how-to-use dialog einbauen
+- Kalibrationsschritte einbauen
 
 # Ideensammlung zur Weiterentwicklung und Implementierung weiterer Features
 

@@ -7,6 +7,7 @@ function disconnect(node){
     socket.close();
 
     clearInterval(socket_ping_interval);
+    clearInterval(data_shifter_interval); // data_shifter_interval
 
     socket_ping.close();
     socket_ping_receiver.close();
@@ -36,6 +37,11 @@ function connect(node) {
         setTimeout(() => {
             socket_ping.send('["ping_' + token + '",' + (new Date()).getTime() + "]");
         }, 1000);
+        data_shifter_interval = setInterval(() => {
+            let data = data_buffer.shift();
+            if(data !== undefined)
+                unityInstance.SendMessage("Hand_new", "parseHndValues", data + "");
+        }, 33)
     });
 
     socket_ping_receiver.addEventListener('open', evt => {
@@ -46,6 +52,7 @@ function connect(node) {
         try {
             for(i of eval(data)){
                 data_buffer[data_buffer.length] = i;
+                console.log(i);
             }
         } catch (e) {
             console.log('wrong data-format received: ' + data)
